@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RTX PRO 6000 Hub — RTX Pro 6000 Deployment</title>
+<title>RTX PRO 6000 Hub — Your Private AI, Always On</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -109,6 +109,45 @@
     margin-bottom: 20px;
   }
 
+  /* Benefits grid */
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .benefit-card {
+    background: #111827;
+    border: 1px solid #1e2d45;
+    border-radius: 14px;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: border-color 0.2s;
+  }
+  .benefit-card:hover {
+    border-color: #2d4a72;
+  }
+  .benefit-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .benefit-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #f1f5f9;
+    line-height: 1.3;
+  }
+  .benefit-desc {
+    font-size: 0.85rem;
+    color: #64748b;
+    line-height: 1.65;
+  }
+
   /* Stack overview */
   .stack-grid {
     display: grid;
@@ -147,7 +186,50 @@
     line-height: 1.5;
   }
 
-  /* Architecture flow */
+  /* Use cases */
+  .usecases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px;
+    margin-bottom: 48px;
+  }
+  .usecase-card {
+    background: #111827;
+    border: 1px solid #1e2d45;
+    border-radius: 14px;
+    padding: 22px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: border-color 0.2s;
+  }
+  .usecase-card:hover { border-color: #2d4a72; }
+  .usecase-tag {
+    display: inline-block;
+    background: rgba(79,142,247,0.1);
+    border: 1px solid rgba(79,142,247,0.2);
+    border-radius: 20px;
+    padding: 2px 10px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #93c5fd;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    width: fit-content;
+  }
+  .usecase-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #f1f5f9;
+    line-height: 1.35;
+  }
+  .usecase-desc {
+    font-size: 0.82rem;
+    color: #64748b;
+    line-height: 1.6;
+  }
+
+  /* How it works flow */
   .flow-section {
     margin-bottom: 48px;
   }
@@ -169,28 +251,95 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
-    min-width: 90px;
+    gap: 10px;
+    min-width: 130px;
+    padding: 0 8px;
   }
   .flow-node-icon {
-    width: 52px; height: 52px;
-    border-radius: 12px;
+    width: 60px; height: 60px;
+    border-radius: 14px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 22px;
+    font-size: 26px;
     border: 1px solid transparent;
   }
   .flow-node-label {
-    font-size: 0.75rem;
-    color: #94a3b8;
+    font-size: 0.88rem;
+    color: #e2e8f0;
     text-align: center;
-    font-weight: 500;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  .flow-node-sub {
+    font-size: 0.75rem;
+    color: #64748b;
+    text-align: center;
+    line-height: 1.4;
   }
   .flow-arrow {
     color: #2d4a72;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     padding: 0 4px;
     flex-shrink: 0;
   }
+
+  /* Under the Hood container */
+  .under-hood-wrapper {
+    border: 1px solid #1e2d45;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 0;
+  }
+  .under-hood-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 24px 32px;
+    background: #0d1220;
+    border-bottom: 1px solid #1e2d45;
+  }
+  .under-hood-header-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: rgba(79,142,247,0.12);
+    border: 1px solid rgba(79,142,247,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .under-hood-header-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    letter-spacing: -0.01em;
+  }
+  .under-hood-header-sub {
+    font-size: 0.82rem;
+    color: #475569;
+    margin-top: 2px;
+  }
+  .under-hood-body {
+    padding: 32px;
+    background: #0a0d18;
+  }
+
+  /* Buyer flow — force single row, let sub-text wrap inside each node */
+  .flow-row-buyer {
+    flex-wrap: nowrap;
+    align-items: flex-start;
+  }
+  .flow-row-buyer .flow-node {
+    flex: 1;
+    min-width: 0;
+  }
+  .flow-row-buyer .flow-arrow {
+    margin-top: 18px;
+    flex-shrink: 0;
+  }
+
+  /* Compact flow variant for technical pipeline */
+  .flow-row-sm .flow-node { min-width: 90px; padding: 0; gap: 6px; }
+  .flow-row-sm .flow-node-icon { width: 52px; height: 52px; font-size: 22px; }
+  .flow-row-sm .flow-node-label { font-size: 0.75rem; font-weight: 500; color: #94a3b8; }
 
   /* Highlight stat */
   .stats-row {
@@ -307,6 +456,13 @@
     margin: 8px 4px 0 0;
   }
 
+  /* Specs divider */
+  .specs-divider {
+    border: none;
+    border-top: 1px solid #1a2540;
+    margin: 0 0 48px 0;
+  }
+
   /* Footer */
   footer {
     border-top: 1px solid #1a2540;
@@ -322,10 +478,10 @@
 
 <!-- Hero -->
 <div class="hero">
-  <div class="hero-badge">Deployment Completed</div>
+  <div class="hero-badge">Included with Your Purchase</div>
   <h1>RTX PRO <span>6000 Hub</span></h1>
-  <div class="hero-sub">Private LLM · RAG / Knowledge Base · On-Premise GPU</div>
-  <div class="hero-sub" style="font-size:0.9rem;margin-top:6px;">Multi-user · Long-term memory · Fully private · Secured · Always on</div>
+  <div class="hero-sub">Your own private AI — no subscriptions, no data leaks, always on.</div>
+  <div class="hero-sub" style="font-size:0.9rem;margin-top:6px;">Multi-user · Remembers Everything · Fully private · Always on</div>
   <div class="hero-hardware">
     <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h12M6 14h8"/></svg>
     NVIDIA RTX Pro 6000 · Windows · Image Generation Support
@@ -338,11 +494,11 @@
   <div class="stats-row">
     <div class="stat-card">
       <div class="stat-value">6</div>
-      <div class="stat-label">Services Deployed</div>
+      <div class="stat-label">AI Services Included</div>
     </div>
     <div class="stat-card">
       <div class="stat-value">100%</div>
-      <div class="stat-label">On-Premise / Private</div>
+      <div class="stat-label">Private & On-Premise</div>
     </div>
     <div class="stat-card">
       <div class="stat-value">∞</div>
@@ -350,13 +506,151 @@
     </div>
   </div>
 
-  <!-- Stack cards -->
+  <!-- Benefits -->
+  <div class="section-label">What You Get</div>
+  <div class="benefits-grid">
+
+    <div class="benefit-card">
+      <div class="benefit-icon" style="background:rgba(139,92,246,0.12); border:1px solid rgba(139,92,246,0.25);">🤖</div>
+      <div class="benefit-title">Personal AI Asistant ran locally</div>
+      <div class="benefit-desc">Ask questions, get answers, draft content, and brainstorm ideas. Powered by an advanced AI model running entirely on your own hardware — not a distant server.</div>
+    </div>
+
+    <div class="benefit-card">
+      <div class="benefit-icon" style="background:rgba(34,197,94,0.12); border:1px solid rgba(34,197,94,0.25);">📂</div>
+      <div class="benefit-title">Chat about your own documents</div>
+      <div class="benefit-desc">Upload your files, manuals, reports, or internal knowledge and get instant answers based on your content — not generic internet data.</div>
+    </div>
+
+    <div class="benefit-card">
+      <div class="benefit-icon" style="background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.25);">🧠</div>
+      <div class="benefit-title">Remembers preferences & history</div>
+      <div class="benefit-desc">Your AI recalls past conversations and learns your preferences over time. No need to re-explain yourself every session. It picks up right where you left off.</div>
+    </div>
+
+    <div class="benefit-card">
+      <div class="benefit-icon" style="background:rgba(249,115,22,0.12); border:1px solid rgba(249,115,22,0.25);">🖼️</div>
+      <div class="benefit-title">On-demand Image Generation</div>
+      <div class="benefit-desc">Create visuals, illustrations, and design assets on request. All generated instantly on your own hardware without any external service or usage fees.</div>
+    </div>
+
+    <div class="benefit-card">
+      <div class="benefit-icon" style="background:rgba(56,189,248,0.12); border:1px solid rgba(56,189,248,0.25);">📱</div>
+      <div class="benefit-title">Mobile Access Anytime</div>
+      <div class="benefit-desc">Chat with your AI through Telegram, a free messaging app. It is just like texting a contact. Available 24/7 from any mobile device anywhere.</div>
+    </div>
+
+    <div class="benefit-card">
+      <div class="benefit-icon" style="background:rgba(79,142,247,0.12); border:1px solid rgba(79,142,247,0.25);">🔒</div>
+      <div class="benefit-title">Data Stays Private</div>
+      <div class="benefit-desc">Unlike ChatGPT or Copilot, nothing you ask or upload ever touches a third-party cloud. Everything only runs on your hardware and under your control.</div>
+    </div>
+
+  </div>
+
+  <!-- Use cases -->
+  <div class="section-label">Real-World Use Cases</div>
+  <div class="usecases-grid">
+
+    <div class="usecase-card">
+      <div class="usecase-tag">Onboarding</div>
+      <div class="usecase-title">New hires get answers instantly</div>
+      <div class="usecase-desc">Upload your employee handbook, policies, and benefits docs. New staff can ask questions through the RTX PRO 6000 Hub instead of waiting on HR.</div>
+    </div>
+
+    <div class="usecase-card">
+      <div class="usecase-tag">IT Support</div>
+      <div class="usecase-title">Self service troubleshooting</div>
+      <div class="usecase-desc">Index your internal runbooks and help articles. Staff resolve common issues on their own without having to ask IT or open a ticket.</div>
+    </div>
+
+    <div class="usecase-card">
+      <div class="usecase-tag">Incident Resolution</div>
+      <div class="usecase-title">Log incidents for easy future fixes</div>
+      <div class="usecase-desc">After resolving an incident, document the solution, error codes, and prevention steps. The next time a similar issue hits, your AI surfaces the fix instantly.</div>
+    </div>
+
+    <div class="usecase-card">
+      <div class="usecase-tag">Legal & Contracts</div>
+      <div class="usecase-title">Search contracts & policies in seconds</div>
+      <div class="usecase-desc">Ask "what's the termination clause in vendor X's agreement?" and get the exact answer. No need to read through 40 pages hunting for the answer.</div>
+    </div>
+
+    <div class="usecase-card">
+      <div class="usecase-tag">Product Docs</div>
+      <div class="usecase-title">Turn spec sheets into expert assistant</div>
+      <div class="usecase-desc">Sales and support teams query product manuals, datasheets, and release notes conversationally.No expertise required.</div>
+    </div>
+
+    <div class="usecase-card">
+      <div class="usecase-tag">Training</div>
+      <div class="usecase-title">Make training materials interactive</div>
+      <div class="usecase-desc">Upload course content, safety guides, or certification materials and let learners ask follow-up questions at their own pace.</div>
+    </div>
+
+  </div>
+
+  <!-- How it works -->
+  <div class="flow-section">
+    <div class="section-label">How It Works</div>
+    <div class="flow-box">
+      <div class="flow-row flow-row-buyer">
+
+        <div class="flow-node">
+          <div class="flow-node-icon" style="background:rgba(56,189,248,0.1); border-color:rgba(56,189,248,0.25);">💬</div>
+          <div class="flow-node-label">Ask Anything</div>
+          <div class="flow-node-sub">Type a question, request a summary, or start a conversation from any device</div>
+        </div>
+        <div class="flow-arrow">→</div>
+
+        <div class="flow-node">
+          <div class="flow-node-icon" style="background:rgba(139,92,246,0.1); border-color:rgba(139,92,246,0.25);">⚙️</div>
+          <div class="flow-node-label">Your AI Gets to Work</div>
+          <div class="flow-node-sub">Searches your documents, recalls your history, and reasons through the answer</div>
+        </div>
+        <div class="flow-arrow">→</div>
+
+        <div class="flow-node">
+          <div class="flow-node-icon" style="background:rgba(34,197,94,0.1); border-color:rgba(34,197,94,0.25);">✅</div>
+          <div class="flow-node-label">Instant, Private Response</div>
+          <div class="flow-node-sub">A personalized answer delivered entirely on your hardware — no cloud, no wait</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Privacy callout -->
+  <div class="callout">
+    <div class="callout-title">Complete Privacy — No Cloud, No Compromise</div>
+    <p>
+      Every question you ask, every document you upload, every conversation you have — all of it
+      stays on your machine. There are no third-party servers, no data agreements, and no monthly
+      AI subscriptions. The RTX Pro 6000 handles everything locally, giving you the power of
+      a top-tier AI system without giving up control of your data.
+    </p>
+  </div>
+
+  <!-- Technical specs divider -->
+  <hr class="specs-divider">
+
+  <!-- Under the Hood container -->
+  <div class="under-hood-wrapper">
+    <div class="under-hood-header">
+      <div class="under-hood-header-icon">⚙️</div>
+      <div>
+        <div class="under-hood-header-title">Under the Hood</div>
+        <div class="under-hood-header-sub">AI models, request pipeline & architecture</div>
+      </div>
+    </div>
+    <div class="under-hood-body">
+
   <div class="section-label">AI Stack</div>
   <div class="stack-grid">
 
     <div class="stack-card">
       <div class="stack-icon" style="background:rgba(139,92,246,0.12); border-color:rgba(139,92,246,0.25);">🧠</div>
-      <div class="stack-card-name">Qwen3.6</div>
+      <div class="stack-card-name">Qwen3</div>
       <div class="stack-card-desc">Private LLM inference · Reasoning + chat · On-device GPU acceleration</div>
     </div>
 
@@ -392,83 +686,46 @@
 
   </div>
 
-  <!-- Architecture flow -->
-  <div class="flow-section">
-    <div class="section-label">Request Flow</div>
-    <div class="flow-box">
-      <div class="flow-row">
+  <!-- Technical request flow -->
+  <div class="section-label">Request Flow</div>
+  <div class="flow-box" style="margin-bottom:32px;">
+    <div class="flow-row flow-row-sm">
 
-        <div class="flow-node">
-          <div class="flow-node-icon" style="background:rgba(56,189,248,0.1); border-color:rgba(56,189,248,0.25);">📱</div>
-          <div class="flow-node-label">Telegram<br>Mobile</div>
-        </div>
-        <div class="flow-arrow">→</div>
-
-        <div class="flow-node">
-          <div class="flow-node-icon" style="background:rgba(245,158,11,0.1); border-color:rgba(245,158,11,0.25);">💾</div>
-          <div class="flow-node-label">Mem0<br>Memory</div>
-        </div>
-        <div class="flow-arrow">→</div>
-
-        <div class="flow-node">
-          <div class="flow-node-icon" style="background:rgba(34,197,94,0.1); border-color:rgba(34,197,94,0.25);">📚</div>
-          <div class="flow-node-label">Onyx KB<br>+ Embed</div>
-        </div>
-        <div class="flow-arrow">→</div>
-
-        <div class="flow-node">
-          <div class="flow-node-icon" style="background:rgba(79,142,247,0.1); border-color:rgba(79,142,247,0.25);">🔍</div>
-          <div class="flow-node-label">Rerank<br>Score</div>
-        </div>
-        <div class="flow-arrow">→</div>
-
-        <div class="flow-node">
-          <div class="flow-node-icon" style="background:rgba(139,92,246,0.1); border-color:rgba(139,92,246,0.25);">🧠</div>
-          <div class="flow-node-label">Qwen3.6<br>Inference</div>
-        </div>
-        <div class="flow-arrow">→</div>
-
-        <div class="flow-node">
-          <div class="flow-node-icon" style="background:rgba(249,115,22,0.1); border-color:rgba(249,115,22,0.25);">🖼️</div>
-          <div class="flow-node-label">Image<br>Gen</div>
-        </div>
-
+      <div class="flow-node">
+        <div class="flow-node-icon" style="background:rgba(56,189,248,0.1); border-color:rgba(56,189,248,0.25);">📱</div>
+        <div class="flow-node-label">Telegram<br>Mobile</div>
       </div>
-    </div>
-  </div>
+      <div class="flow-arrow">→</div>
 
-  <!-- Callout -->
-  <div class="callout">
-    <div class="callout-title">RAG / Knowledge Base on RTX Pro 6000</div>
-    <p>
-      All inference runs entirely on-premise with no data leaving the network.
-      The RTX Pro 6000 powers both LLM reasoning and image generation simultaneously,
-      while the RAG pipeline combines Onyx document retrieval, dense vector embedding,
-      and cross-encoder reranking to deliver high-precision answers grounded in internal knowledge.
-    </p>
-  </div>
+      <div class="flow-node">
+        <div class="flow-node-icon" style="background:rgba(245,158,11,0.1); border-color:rgba(245,158,11,0.25);">💾</div>
+        <div class="flow-node-label">Mem0<br>Memory</div>
+      </div>
+      <div class="flow-arrow">→</div>
 
-  <!-- Mobile / Telegram -->
-  <div class="section-label">Mobile Access</div>
-  <div class="mobile-section">
-    <div class="mobile-phone">
-      <div class="mobile-screen-dot"></div>
-      <div class="mobile-screen-bar"></div>
-      <div class="mobile-screen-bar" style="width:28px; opacity:0.6;"></div>
-      <div class="mobile-screen-bar" style="opacity:0.4;"></div>
-    </div>
-    <div class="mobile-content">
-      <h3>Private AI on Your Phone</h3>
-      <p>
-        Users connect directly to the on-premise AI system through the Telegram Bot,
-        accessible from any mobile device. Long-term memory via Mem0 means the assistant
-        remembers past interactions — delivering a personalized, context-aware experience
-        without ever touching a third-party cloud.
-      </p>
-      <span class="feature-pill">End-to-end private</span>
-      <span class="feature-pill">Long-term memory</span>
-      <span class="feature-pill">Mobile-first access</span>
-      <span class="feature-pill">Image generation</span>
+      <div class="flow-node">
+        <div class="flow-node-icon" style="background:rgba(34,197,94,0.1); border-color:rgba(34,197,94,0.25);">📚</div>
+        <div class="flow-node-label">Onyx KB<br>+ Embed</div>
+      </div>
+      <div class="flow-arrow">→</div>
+
+      <div class="flow-node">
+        <div class="flow-node-icon" style="background:rgba(79,142,247,0.1); border-color:rgba(79,142,247,0.25);">🔍</div>
+        <div class="flow-node-label">Rerank<br>Score</div>
+      </div>
+      <div class="flow-arrow">→</div>
+
+      <div class="flow-node">
+        <div class="flow-node-icon" style="background:rgba(139,92,246,0.1); border-color:rgba(139,92,246,0.25);">🧠</div>
+        <div class="flow-node-label">Qwen3<br>Inference</div>
+      </div>
+      <div class="flow-arrow">→</div>
+
+      <div class="flow-node">
+        <div class="flow-node-icon" style="background:rgba(249,115,22,0.1); border-color:rgba(249,115,22,0.25);">🖼️</div>
+        <div class="flow-node-label">Image<br>Gen</div>
+      </div>
+
     </div>
   </div>
 
@@ -491,10 +748,13 @@
     <div style="font-size:1.4rem;color:#2d4a72;padding-left:16px;flex-shrink:0;">→</div>
   </a>
 
+    </div><!-- end under-hood-body -->
+  </div><!-- end under-hood-wrapper -->
+
 </div>
 
 <footer>
-  <span>RTX PRO 6000 Hub</span> · RTX Pro 6000 Windows Deployment · On-Premise Private AI
+  <span>RTX PRO 6000 Hub</span> · Private AI · On-Premise · Powered by NVIDIA RTX Pro 6000
 </footer>
 
 </body>

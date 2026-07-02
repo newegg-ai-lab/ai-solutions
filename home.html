@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Newegg AI Solutions</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="home.css">
+<script>(function(){var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t||'dark');})();</script>
+</head>
+<body>
+
+<!-- Topbar -->
+<header class="topbar">
+  <div class="wrap">
+    <a href="home.html" class="mark"><span class="glyph"></span>Newegg AI Solutions</a>
+    <nav>
+      <a href="#products">Products</a>
+      <a href="#compare">Compare</a>
+      <a href="#finder">Find Mine</a>
+      <a href="#support">Support</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="19.78" y1="4.22" x2="17.66" y2="6.34"/><line x1="6.34" y1="17.66" x2="4.22" y2="19.78"/></svg>
+    </button>
+    <select class="lang-select" aria-label="Language"><option>EN</option><option>中文</option></select>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="wrap hero-inner">
+    <p class="hero-tag" data-i18n="hero-tag">Newegg AI Solutions</p>
+    <h1 data-i18n-h1="hero-h1">AI that stays on<span class="line2" data-i18n="hero-h1-line2">your hardware.</span></h1>
+    <p class="hero-sub" data-i18n="hero-sub">Three platforms built for teams that take data seriously. Private by design — no cloud dependency, no subscriptions, no compromise.</p>
+    <div class="hero-badges">
+      <span class="hero-badge" data-i18n="badge-1">3 Platforms</span>
+      <span class="hero-badge" data-i18n="badge-2">100% On-Device</span>
+      <span class="hero-badge" data-i18n="badge-3">Zero Cloud</span>
+      <span class="hero-badge" data-i18n="badge-4">No Usage Limits</span>
+    </div>
+    <div class="cta-group">
+      <a href="#products" class="cta-primary">
+        <span data-i18n="cta-primary">Explore Platforms</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="#compare" class="cta-secondary">
+        <span data-i18n="cta-secondary">Compare Specs</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span data-i18n="scroll-hint">Scroll</span>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+</section>
+
+<!-- Products -->
+<section class="products-section reveal" id="products">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="products-eye">Available Platforms</p>
+    <h2 class="section-h" data-i18n="products-h">Choose your AI hardware.</h2>
+    <div class="products-grid">
+
+      <!-- Hailo Hub -->
+      <a class="product-card" href="hailo-hub 3.html">
+        <div class="card-visual" style="background:#0b0d11;">
+          <div class="card-visual-glow" style="background:radial-gradient(ellipse at 50% 60%,rgba(88,198,214,0.18) 0%,transparent 70%);"></div>
+          <svg class="card-visual-icon" width="100" height="72" viewBox="0 0 100 72" fill="none" stroke="#58C6D6" stroke-width="1.2" stroke-linecap="round">
+            <!-- USB accelerator body -->
+            <rect x="12" y="24" width="76" height="30" rx="3"/>
+            <rect x="70" y="32" width="18" height="14" rx="1.5" fill="rgba(88,198,214,0.08)" stroke="#58C6D6"/>
+            <!-- chip grid on device -->
+            <rect x="24" y="32" width="32" height="14" rx="1"/>
+            <line x1="32" y1="32" x2="32" y2="46"/><line x1="40" y1="32" x2="40" y2="46"/><line x1="48" y1="32" x2="48" y2="46"/>
+            <line x1="24" y1="39" x2="56" y2="39"/>
+            <!-- status dots -->
+            <circle cx="62" cy="36" r="2" fill="#58C6D6" opacity=".7"/>
+            <circle cx="62" cy="42" r="2" fill="#58C6D6" opacity=".35"/>
+            <!-- indicator lines top/bottom -->
+            <line x1="20" y1="20" x2="30" y2="24"/><line x1="50" y1="18" x2="50" y2="24"/><line x1="80" y1="20" x2="70" y2="24"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <p class="product-cat" style="color:var(--accent-2)" data-i18n="hailo-cat">Edge AI</p>
+          <h3 class="product-name">Hailo Hub</h3>
+          <p class="product-hw">ASUS UGen300 · Hailo-10H NPU</p>
+          <p class="product-desc" data-i18n="hailo-desc">Standalone Windows AI for the Hailo-10H. Chat, vision, object detection, and speech — all on-device, no GPU required.</p>
+          <div class="product-chips">
+            <span class="chip" data-i18n="hailo-c1">LLM Chat</span><span class="chip" data-i18n="hailo-c2">Image Analysis</span>
+            <span class="chip" data-i18n="hailo-c3">Detection</span><span class="chip" data-i18n="hailo-c4">Speech</span>
+          </div>
+          <div class="product-tops">
+            <span class="tops-num">40</span>
+            <span class="tops-lbl">TOPS · INT4</span>
+          </div>
+          <span class="product-cta">Explore <span>→</span></span>
+        </div>
+      </a>
+
+      <!-- RTX PRO 6000 -->
+      <a class="product-card" href="rtx.html">
+        <div class="card-visual" style="background:#0d0c0a;">
+          <div class="card-visual-glow" style="background:radial-gradient(ellipse at 50% 70%,rgba(240,169,59,0.22) 0%,transparent 65%);"></div>
+          <svg class="card-visual-icon" width="120" height="80" viewBox="0 0 120 80" fill="none" stroke="#F0A93B" stroke-width="1.2" stroke-linecap="round">
+            <!-- GPU PCB -->
+            <rect x="8" y="28" width="104" height="36" rx="2"/>
+            <!-- Cooling fins -->
+            <line x1="20" y1="16" x2="20" y2="28"/><line x1="30" y1="12" x2="30" y2="28"/>
+            <line x1="40" y1="10" x2="40" y2="28"/><line x1="50" y1="9" x2="50" y2="28"/>
+            <line x1="60" y1="9" x2="60" y2="28"/><line x1="70" y1="10" x2="70" y2="28"/>
+            <line x1="80" y1="12" x2="80" y2="28"/><line x1="90" y1="16" x2="90" y2="28"/>
+            <line x1="18" y1="12" x2="92" y2="12"/>
+            <!-- Main die -->
+            <rect x="30" y="36" width="50" height="20" rx="1" fill="rgba(240,169,59,0.06)"/>
+            <rect x="38" y="41" width="10" height="10" rx=".5"/>
+            <rect x="52" y="41" width="10" height="10" rx=".5"/>
+            <rect x="66" y="41" width="10" height="10" rx=".5"/>
+            <!-- Ports -->
+            <rect x="100" y="38" width="7" height="5" rx=".5"/>
+            <rect x="100" y="46" width="7" height="5" rx=".5"/>
+            <!-- Status LED -->
+            <circle cx="16" cy="46" r="2.5" fill="#F0A93B" opacity=".8"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <p class="product-cat" style="color:var(--accent)" data-i18n="rtx-cat">Enterprise AI</p>
+          <h3 class="product-name">RTX PRO 6000 Hub</h3>
+          <p class="product-hw">NVIDIA RTX PRO 6000 · Windows</p>
+          <p class="product-desc" data-i18n="rtx-desc">High-throughput on-premise AI workstation. Multi-user chat, document RAG, image generation, and long-term memory.</p>
+          <div class="product-chips">
+            <span class="chip" data-i18n="rtx-c1">Multi-user</span><span class="chip" data-i18n="rtx-c2">RAG</span>
+            <span class="chip" data-i18n="rtx-c3">Image Gen</span><span class="chip" data-i18n="rtx-c4">Memory</span>
+          </div>
+          <div class="product-tops">
+            <span class="tops-num">~4,000</span>
+            <span class="tops-lbl">TOPS · INT8</span>
+          </div>
+          <span class="product-cta">Explore <span>→</span></span>
+        </div>
+      </a>
+
+      <!-- Giga Mini NUC -->
+      <a class="product-card" href="Giga Mini NUC.html">
+        <div class="card-visual" style="background:#0b0c10;">
+          <div class="card-visual-glow" style="background:radial-gradient(ellipse at 50% 60%,rgba(240,169,59,0.12) 0%,rgba(88,198,214,0.06) 50%,transparent 70%);"></div>
+          <svg class="card-visual-icon" width="90" height="80" viewBox="0 0 90 80" fill="none" stroke="#E7E4DC" stroke-width="1.2" stroke-linecap="round" opacity=".5">
+            <!-- Mini PC box -->
+            <rect x="20" y="14" width="50" height="50" rx="4"/>
+            <!-- Power button -->
+            <circle cx="45" cy="26" r="5"/>
+            <path d="M45 21 v-4"/>
+            <!-- Vents -->
+            <line x1="30" y1="40" x2="30" y2="54"/><line x1="36" y1="40" x2="36" y2="54"/>
+            <line x1="42" y1="40" x2="42" y2="54"/><line x1="48" y1="40" x2="48" y2="54"/>
+            <line x1="54" y1="40" x2="54" y2="54"/><line x1="60" y1="40" x2="60" y2="54"/>
+            <!-- Ports on bottom -->
+            <line x1="28" y1="64" x2="28" y2="68"/><line x1="34" y1="64" x2="34" y2="68"/>
+            <line x1="44" y1="64" x2="56" y2="64"/>
+            <!-- 3 engine LED dots -->
+            <circle cx="34" cy="33" r="2" fill="#F0A93B" stroke="none" opacity=".9"/>
+            <circle cx="42" cy="33" r="2" fill="#F0A93B" stroke="none" opacity=".6"/>
+            <circle cx="50" cy="33" r="2" fill="#58C6D6" stroke="none" opacity=".8"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <p class="product-cat" style="color:var(--muted)" data-i18n="nuc-cat">Desk AI</p>
+          <h3 class="product-name">Giga Mini NUC</h3>
+          <p class="product-hw">Intel Core Ultra 5 225H · Ubuntu</p>
+          <p class="product-desc" data-i18n="nuc-desc">Compact always-on AI box with three compute engines. Runs 7B models locally with a local API any tool can call.</p>
+          <div class="product-chips">
+            <span class="chip" data-i18n="nuc-c1">3 Engines</span><span class="chip" data-i18n="nuc-c2">Local API</span>
+            <span class="chip" data-i18n="nuc-c3">Code Assist</span><span class="chip" data-i18n="nuc-c4">28 GB</span>
+          </div>
+          <div class="product-tops">
+            <span class="tops-num">~67</span>
+            <span class="tops-lbl">TOPS · SoC</span>
+          </div>
+          <span class="product-cta">Explore <span>→</span></span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- Comparison -->
+<section class="compare-section reveal" id="compare">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="compare-eye">Compare Platforms</p>
+    <h2 class="section-h" data-i18n="compare-h">Find the right fit.</h2>
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th></th><th>Hailo Hub</th><th>Giga Mini NUC</th><th>RTX PRO 6000</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-i18n="th-hardware">Hardware</td>
+            <td>ASUS UGen300<span class="td-sub">Hailo-10H NPU</span></td>
+            <td>Intel Core Ultra 5 225H<span class="td-sub">Arc GPU · NPU · Ubuntu</span></td>
+            <td>NVIDIA RTX PRO 6000<span class="td-sub">Blackwell · Windows</span></td>
+          </tr>
+          <tr>
+            <td data-i18n="th-perf">AI Performance</td>
+            <td><div class="tops-bar-wrap"><span class="tops-bar-num">40 TOPS</span><div class="tops-bar-track"><div class="tops-bar-fill" style="width:22%"></div></div></div></td>
+            <td><div class="tops-bar-wrap"><span class="tops-bar-num">~67 TOPS</span><div class="tops-bar-track"><div class="tops-bar-fill" style="width:31%"></div></div></div></td>
+            <td><div class="tops-bar-wrap"><span class="tops-bar-num">~4,000 TOPS</span><div class="tops-bar-track"><div class="tops-bar-fill" style="width:100%"></div></div></div></td>
+          </tr>
+          <tr><td data-i18n="th-memory">Memory</td><td>8 GB LPDDR4</td><td>28 GB shared</td><td>96 GB VRAM</td></tr>
+          <tr><td data-i18n="th-modes">AI Modes</td><td data-i18n="hailo-modes">Chat · Vision · Speech · Detection</td><td data-i18n="nuc-modes">Chat · Code · Local API</td><td data-i18n="rtx-modes">Chat · RAG · Image Gen · Memory</td></tr>
+          <tr><td data-i18n="th-users">Users</td><td data-i18n="hailo-users">Single</td><td data-i18n="nuc-users">Single / Team via API</td><td data-i18n="rtx-users">Multi-user</td></tr>
+          <tr>
+            <td data-i18n="th-bestfor">Best For</td>
+            <td><div class="best-chips"><span class="best-chip" data-i18n="hailo-b1">Low-cost edge</span><span class="best-chip" data-i18n="hailo-b2">Vision tasks</span></div></td>
+            <td><div class="best-chips"><span class="best-chip" data-i18n="nuc-b1">Always-on desk</span><span class="best-chip" data-i18n="nuc-b2">Developers</span></div></td>
+            <td><div class="best-chips"><span class="best-chip" data-i18n="rtx-b1">Enterprise</span><span class="best-chip" data-i18n="rtx-b2">Large models</span></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note" data-i18n="table-note">* AI Performance bars use a logarithmic scale across a 100× range.</p>
+  </div>
+</section>
+
+<!-- Decision Helper -->
+<section class="decision-section reveal" id="finder">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="finder-eye">Platform Finder</p>
+    <h2 class="section-h" data-i18n="finder-h">Not sure where to start?</h2>
+    <div class="decision-box">
+
+      <div class="decision-group">
+        <p class="decision-group-label" data-i18n="finder-uc">Primary use case — pick all that apply</p>
+        <div class="filter-row">
+          <button class="filter-btn" data-group="usecase" data-key="vision" data-i18n="btn-vision">Vision &amp; Detection</button>
+          <button class="filter-btn" data-group="usecase" data-key="speech" data-i18n="btn-speech">Speech Transcription</button>
+          <button class="filter-btn" data-group="usecase" data-key="rag" data-i18n="btn-rag">Document Q&amp;A / RAG</button>
+          <button class="filter-btn" data-group="usecase" data-key="imagegen" data-i18n="btn-imagegen">Image Generation</button>
+          <button class="filter-btn" data-group="usecase" data-key="code" data-i18n="btn-code">Code Assistance</button>
+          <button class="filter-btn" data-group="usecase" data-key="chat" data-i18n="btn-chat">Conversational Chat</button>
+        </div>
+      </div>
+
+      <div class="decision-group" style="margin-bottom:24px">
+        <p class="decision-group-label" data-i18n="finder-sz">Team size</p>
+        <div class="filter-row">
+          <button class="filter-btn" data-group="users" data-key="solo" data-i18n="btn-solo">Just me</button>
+          <button class="filter-btn" data-group="users" data-key="team" data-i18n="btn-team">Small team (2–10)</button>
+          <button class="filter-btn" data-group="users" data-key="dept" data-i18n="btn-dept">Department (10+)</button>
+        </div>
+      </div>
+
+      <div class="finder-scores">
+        <div class="fscore" id="fsc-hailo">
+          <div class="fscore-head">
+            <span class="fscore-name">Hailo Hub</span>
+            <span class="fscore-pts" id="pts-hailo">—</span>
+          </div>
+          <div class="fscore-track"><div class="fscore-fill" id="bar-hailo"></div></div>
+        </div>
+        <div class="fscore" id="fsc-nuc">
+          <div class="fscore-head">
+            <span class="fscore-name">Giga Mini NUC</span>
+            <span class="fscore-pts" id="pts-nuc">—</span>
+          </div>
+          <div class="fscore-track"><div class="fscore-fill" id="bar-nuc"></div></div>
+        </div>
+        <div class="fscore" id="fsc-rtx">
+          <div class="fscore-head">
+            <span class="fscore-name">RTX PRO 6000</span>
+            <span class="fscore-pts" id="pts-rtx">—</span>
+          </div>
+          <div class="fscore-track"><div class="fscore-fill" id="bar-rtx"></div></div>
+        </div>
+      </div>
+
+      <hr class="decision-divider">
+
+      <div class="decision-result">
+        <p class="result-empty" id="resultEmpty" data-i18n="result-empty">Select your needs above to get a recommendation.</p>
+        <div class="result-card" id="resultCard">
+          <div style="flex:1">
+            <p class="result-rec-label" id="resultLabel"></p>
+            <p class="result-rec-name" id="resultName"></p>
+            <p class="result-rec-reason" id="resultReason"></p>
+            <p class="result-runner" id="resultRunner"></p>
+          </div>
+          <a class="result-rec-link" id="resultLink">Explore →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Support -->
+<section class="support-section reveal" id="support">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="support-eye">Support</p>
+    <h2 class="section-h" style="margin-bottom:32px" data-i18n="support-h">We're here to help.</h2>
+    <div class="support-card" style="max-width:560px;">
+      <p class="support-card-eye" data-i18n="support-eye-1">Documentation</p>
+      <h3 data-i18n="support-h-1">Setup guides coming soon.</h3>
+      <p data-i18n="support-p-1">Step-by-step documentation for setting up each platform will be available on our support page. Check back soon.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="wrap">
+    <span class="footer-meta" data-i18n-html="footer-meta"><b>Newegg</b> AI Solutions · Private AI for Enterprise</span>
+    <div class="footer-links">
+      <a href="#products" data-i18n="footer-nav-1">Platforms</a>
+      <a href="#compare" data-i18n="footer-nav-2">Compare</a>
+      <a href="#support" data-i18n="footer-nav-3">Support</a>
+    </div>
+  </div>
+</footer>
+
+<script src="theme.js"></script>
+<script src="home.js"></script>
+</body>
+</html>

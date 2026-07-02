@@ -1,0 +1,63 @@
+/* home-specific overrides — all component styles live in style.css */
+body { overflow-x: hidden; }
+.wrap { padding: 0 32px; }
+
+/* Topbar: fixed on home, sticky on product pages */
+.topbar { position: fixed; top: 0; left: 0; right: 0; background: rgba(20,22,27,0.75); backdrop-filter: blur(12px) saturate(1.4); }
+[data-theme="light"] .topbar { background: rgba(242,239,231,0.82); }
+.topbar .wrap { height: 58px; }
+.mark .glyph { animation: glyph-pulse 3s ease-in-out infinite; }
+@keyframes glyph-pulse { 0%,100% { box-shadow: 0 0 10px rgba(240,169,59,0.5); } 50% { box-shadow: 0 0 18px rgba(240,169,59,0.8); } }
+.topbar nav a { padding: 6px 14px; }
+.theme-toggle { margin-left: 8px; }
+
+/* Hero: layout additions (bg/border-bottom already in style.css) */
+.hero { min-height: 92vh; display: flex; align-items: center; position: relative; overflow: hidden; padding-top: 58px; }
+.hero::before { content: ''; position: absolute; width: 900px; height: 600px; top: 50%; left: 30%; transform: translate(-50%,-55%); background: radial-gradient(ellipse,rgba(240,169,59,0.1) 0%,transparent 65%); pointer-events: none; }
+.hero::after { content: ''; position: absolute; width: 500px; height: 500px; top: 10%; right: -5%; background: radial-gradient(ellipse,rgba(88,198,214,0.07) 0%,transparent 60%); pointer-events: none; }
+
+/* Hero headline: home sizing overrides product-page scale */
+.hero h1 { font-size: clamp(56px,9vw,114px); line-height: 0.92; letter-spacing: -0.04em; font-weight: 260; margin-bottom: 36px; opacity: 0; animation: slidein .7s .25s forwards; }
+.hero h1 .line2 { display: block; font-weight: 820; color: var(--accent); letter-spacing: -0.045em; }
+.hero-sub { font-size: clamp(15px,1.7vw,18px); color: var(--muted); max-width: 50ch; margin-bottom: 52px; line-height: 1.75; opacity: 0; animation: fadein .7s .4s forwards; }
+.hero-badges { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 48px; opacity: 0; animation: fadein .7s .5s forwards; }
+
+/* Hero badge: home amber variant (style.css has a teal version for product pages) */
+.hero-badge { font-family: var(--mono); font-size: 11.5px; letter-spacing: .5px; color: var(--muted); background: rgba(231,228,220,0.04); border: 1px solid var(--line); padding: 8px 14px; border-radius: 999px; display: inline-flex; align-items: center; gap: 8px; }
+[data-theme="light"] .hero-badge { background: rgba(26,29,36,0.04); }
+.hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+/* Footer: home overrides (bg/base styles in style.css) */
+footer { border-top: 1px solid var(--line); padding: 22px 0; box-shadow: 0 -8px 40px rgba(0,0,0,0.45),0 -1px 0 rgba(240,169,59,0.08); }
+[data-theme="light"] footer { box-shadow: 0 -6px 30px rgba(0,0,0,0.07); }
+footer .wrap { gap: 12px; }
+
+/* Chinese: bump small text up for readability — headings/titles unchanged */
+:lang(zh-CN) .hero-tag,
+:lang(zh-CN) .eyebrow,
+:lang(zh-CN) .product-hw,
+:lang(zh-CN) .product-cta,
+:lang(zh-CN) .result-runner,
+:lang(zh-CN) .footer-links a { font-size: 13px; }
+
+:lang(zh-CN) .hero-badge,
+:lang(zh-CN) .filter-btn,
+:lang(zh-CN) .result-empty,
+:lang(zh-CN) .support-contact { font-size: 13.5px; }
+
+:lang(zh-CN) .product-cat,
+:lang(zh-CN) .chip,
+:lang(zh-CN) .best-chip,
+:lang(zh-CN) .table-note,
+:lang(zh-CN) .tops-lbl,
+:lang(zh-CN) .decision-group-label,
+:lang(zh-CN) .support-card-eye,
+:lang(zh-CN) .scroll-hint,
+:lang(zh-CN) .compare-table td:first-child { font-size: 12px; }
+
+:lang(zh-CN) .product-desc,
+:lang(zh-CN) .result-rec-reason,
+:lang(zh-CN) .support-card p { font-size: 15px; }
+
+:lang(zh-CN) .hero-sub { font-size: clamp(16px, 1.9vw, 20px); }
+:lang(zh-CN) .footer-meta { font-size: 13.5px; }

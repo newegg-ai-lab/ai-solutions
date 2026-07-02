@@ -1,0 +1,146 @@
+﻿(function () {
+  var LANG = 'en';
+  var T = {
+    en: {
+      'nav-1':'Capabilities','nav-2':'Where it fits','nav-3':'How it works','nav-4':'Under the hood',
+      'hero-tag':'On-prem personal AI · Giga Mini NUC',
+      'nuc-h1':'Your own AI, running on <em>one small machine.</em>',
+      'hero-sub':'A Core Ultra mini-box that runs language models entirely on-device — three compute engines, no cloud, no subscription, nothing leaving the desk.',
+      'badge-1':'Fully private','badge-2':'Always on','badge-3':'No subscription','badge-4':'Three engines',
+      'stat-1':'Compute Engines','stat-2':'Shared Memory','stat-3':'On-Device & Private','stat-4':'Cloud Dependencies',
+      'eye-1':'What you get',
+      'h2-1':'Everything for a private assistant, on the box.',
+      'lede-1':'No accounts to create, no keys to manage, no usage meter. You pull a model once and it runs locally from then on.',
+      'card-chat-h':'Local chat assistant',
+      'card-chat-p':'Talk to a 7B model running on the machine. Answers stream into your browser — none of it is sent to a server.',
+      'card-ui-h':'Built-in web interface',
+      'card-ui-p':'A clean chat page at <span style="font-family:var(--mono);color:var(--accent-2)">localhost:8080</span> with a model picker and a live engine selector.',
+      'card-gpu-h':'GPU-accelerated',
+      'card-gpu-p':'The Arc integrated GPU runs your everyday model over Vulkan, keeping all 14 CPU cores free for everything else.',
+      'card-npu-h':'An efficiency lane',
+      'card-npu-p':'A second, sip-power engine runs smaller models on the NPU through OpenVINO — built for always-on, background work.',
+      'card-priv-h':'Fully private',
+      'card-priv-p':'Every model and conversation stays on the machine. It works with the network unplugged.',
+      'card-scale-h':'Room to grow',
+      'card-scale-p':'28 GB of shared memory fits models up to ~14B. Add a new one with a single command.',
+      'eye-2':'Where it fits',
+      'h2-2':'Built for small teams that want AI without the cloud bill.',
+      'lede-2':'Three engines handle different jobs at the same time — nothing waits in line.',
+      'cpu-role':'· Runs the show','gpu-role':'· Does the heavy lifting','npu-role':'· Always on, barely sips power',
+      'uc-1-tag':'Document Q&A','uc-1-title':'Ask questions about your own files',
+      'uc-1-desc':'Staff get answers from contracts, invoices, and policies in plain English — no digging through folders, no uploading files to a third party.',
+      'uc-2-tag':'Help Desk','uc-2-title':"An internal assistant that's always on",
+      'uc-2-desc':'Answer HR, IT, and operations questions around the clock. Staff get answers in seconds without pulling someone away from their work.',
+      'uc-3-tag':'Finance & Admin','uc-3-title':'Invoice and receipt processing',
+      'uc-3-desc':'Drop scanned documents in a folder and get the vendor, amount, and key details pulled out automatically. No manual entry, no sending financials to the cloud.',
+      'uc-4-tag':'Development','uc-4-title':'Private code assistant',
+      'uc-4-desc':'Completions, reviews, and explanations from a model running entirely on the box. Your codebase never touches an external server.',
+      'uc-5-tag':'Meetings','uc-5-title':'Transcription and summaries',
+      'uc-5-desc':'Drop a recording in and get a clean summary with action items. No third-party transcription service, no audio leaving the building.',
+      'uc-6-tag':'Whole Team','uc-6-title':'One box for the whole office',
+      'uc-6-desc':'Everyone on the local network shares the same private AI. No per-seat subscriptions, no rack, no IT overhead — just a quiet box on a shelf.',
+      'eye-3':'How it works',
+      'h2-3':'Ask, route, stream — all on-device.',
+      'lede-3':'A request never leaves the machine. It picks an engine, runs, and streams the answer straight back to you.',
+      'step-1-h':'Ask','step-1-p':'Type in the web UI, or call the local API from your own code.',
+      'step-2-h':'Route','step-2-p':'Your request goes to the right engine — the GPU for fast chat, the NPU for efficient small-model work.',
+      'step-3-h':'Stream','step-3-p':'Tokens come back to your screen in real time, generated entirely on the box.',
+      'eye-4':'Under the hood','h2-4':'The actual stack.',
+      'panel-head-l':'Compute engines','panel-head-r':'Heterogeneous SoC · shared 28 GB',
+      'eng-cpu':'<b>14 cores</b> · orchestration &amp; fallback',
+      'eng-gpu':'<b>Arc · 21.7 GB</b> · Vulkan · fast chat',
+      'eng-npu':'<b>~13 TOPS</b> · OpenVINO · low-power lane',
+      'spec-mem':'28 GB, shared across all three engines',
+      'stack-h':'Software services','svc-ui-sub':'chat + engine select',
+      'pipe-html':'<b>request flow</b><br>browser → web UI <b>:8080</b><br>→ <b>:11434</b> Ollama → GPU  <span style="color:var(--faint)">|</span>  <b>:11435</b> OpenVINO → NPU<br>→ stream tokens back',
+      'footer-meta':'Runs on <b>Intel Core Ultra 5 225H</b> · Ubuntu 24.04 · built local',
+      'footer-note':'The compact, low-power counterpart to the rack-scale RTX hub.'
+    },
+    zh: {
+      'nav-1':'功能介绍','nav-2':'适用场景','nav-3':'工作原理','nav-4':'技术详情',
+      'hero-tag':'本地专属 AI · Giga Mini NUC',
+      'nuc-h1':'您的专属 AI，运行在<em>一台小巧的机器上。</em>',
+      'hero-sub':'搭载 Core Ultra 的迷你主机，完全在本地运行语言模型——三个计算引擎，无云端，无订阅费，数据不离桌面。',
+      'badge-1':'完全私密','badge-2':'全天候在线','badge-3':'无需订阅','badge-4':'三引擎协同',
+      'stat-1':'计算引擎','stat-2':'共享内存','stat-3':'本地 · 私密','stat-4':'云端依赖',
+      'eye-1':'您将获得',
+      'h2-1':'私人助手所需的一切，尽在这台主机。',
+      'lede-1':'无需注册账号，无需管理密钥，无使用计量。模型下载一次，从此在本地永久运行。',
+      'card-chat-h':'本地对话助手',
+      'card-chat-p':'与运行在本机的 7B 模型对话，答案直接流式传输到浏览器——不经过任何服务器。',
+      'card-ui-h':'内置网页界面',
+      'card-ui-p':'简洁的对话页面，访问 <span style="font-family:var(--mono);color:var(--accent-2)">localhost:8080</span>，支持模型选择和实时引擎切换。',
+      'card-gpu-h':'GPU 加速',
+      'card-gpu-p':'Arc 集成 GPU 通过 Vulkan 运行日常模型，14 个 CPU 核心得以专注于其他任务。',
+      'card-npu-h':'高效能专用通道',
+      'card-npu-p':'第二个低功耗引擎通过 OpenVINO 在 NPU 上运行轻量模型，专为常驻后台任务设计。',
+      'card-priv-h':'完全私密',
+      'card-priv-p':'所有模型和对话数据均留在本机，断网状态下同样正常运行。',
+      'card-scale-h':'可扩展空间',
+      'card-scale-p':'28 GB 共享内存可容纳最高约 14B 参数的模型，一条命令即可新增。',
+      'eye-2':'适用场景',
+      'h2-2':'专为不想支付云端订阅费的小型团队打造。',
+      'lede-2':'三个引擎同时处理不同任务——没有等待，没有排队。',
+      'cpu-role':'· 统筹调度','gpu-role':'· 承担重任','npu-role':'· 常驻运行，极低功耗',
+      'uc-1-tag':'文档问答','uc-1-title':'直接询问您自己的文件',
+      'uc-1-desc':'员工用自然语言从合同、发票和政策文件中获取答案——无需翻找文件夹，无需上传至第三方。',
+      'uc-2-tag':'内部帮助台','uc-2-title':'全天候在线的内部助手',
+      'uc-2-desc':'全天候解答 HR、IT 和运营问题，员工秒获答案，无需打扰任何人。',
+      'uc-3-tag':'财务与行政','uc-3-title':'发票与收据自动处理',
+      'uc-3-desc':'将扫描文件放入文件夹，自动提取供应商、金额和关键信息，无需手动录入，财务数据不上云。',
+      'uc-4-tag':'开发辅助','uc-4-title':'专属代码助手',
+      'uc-4-desc':'补全、审查和解释代码，完全在本机运行，您的代码库不接触外部服务器。',
+      'uc-5-tag':'会议记录','uc-5-title':'转录与摘要',
+      'uc-5-desc':'放入录音文件，自动生成清晰的摘要和待办事项，无需第三方转录服务，音频不离开公司。',
+      'uc-6-tag':'全团队共用','uc-6-title':'一台主机，服务整个办公室',
+      'uc-6-desc':'局域网内所有人共享同一专属 AI，无需按座位订阅，无需机架，无需 IT 运维。',
+      'eye-3':'工作原理',
+      'h2-3':'提问、路由、流式输出——全在本地完成。',
+      'lede-3':'请求从不离开本机，系统选择合适的引擎，运行后将答案实时流式传回。',
+      'step-1-h':'提问','step-1-p':'在网页界面输入，或通过本地 API 从您的代码中调用。',
+      'step-2-h':'路由','step-2-p':'请求被分配至合适的引擎——GPU 负责快速对话，NPU 负责高效的轻量模型任务。',
+      'step-3-h':'流式输出','step-3-p':'答案实时逐字传回您的屏幕，完全在本机生成。',
+      'eye-4':'技术详情','h2-4':'真实的技术栈。',
+      'panel-head-l':'计算引擎','panel-head-r':'异构 SoC · 共享 28 GB',
+      'eng-cpu':'<b>14 核</b> · 统筹调度与备用',
+      'eng-gpu':'<b>Arc · 21.7 GB</b> · Vulkan · 快速对话',
+      'eng-npu':'<b>~13 TOPS</b> · OpenVINO · 低功耗通道',
+      'spec-mem':'28 GB，三引擎共享',
+      'stack-h':'软件服务','svc-ui-sub':'对话 + 引擎选择',
+      'pipe-html':'<b>请求流程</b><br>browser → web UI <b>:8080</b><br>→ <b>:11434</b> Ollama → GPU  <span style="color:var(--faint)">|</span>  <b>:11435</b> OpenVINO → NPU<br>→ 流式返回',
+      'footer-meta':'搭载 <b>Intel Core Ultra 5 225H</b> · Ubuntu 24.04 · 本地构建',
+      'footer-note':'RTX Hub 的紧凑低功耗替代方案。'
+    }
+  };
+
+  function t(key) { var d = T[LANG] || T.en; return d[key] !== undefined ? d[key] : (T.en[key] || key); }
+
+  function applyLang(lang) {
+    LANG = lang;
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var v = t(el.getAttribute('data-i18n'));
+      if (v !== undefined) el.textContent = v;
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+      var v = t(el.getAttribute('data-i18n-html'));
+      if (v !== undefined) el.innerHTML = v;
+    });
+  }
+
+  var LANG_MAP = { 'EN': 'en', '中文': 'zh' };
+  var langSel = document.querySelector('.lang-select');
+  if (langSel) {
+    var saved = localStorage.getItem('lang') || 'en';
+    var match = Array.from(langSel.options).find(function(o) { return LANG_MAP[o.value] === saved; });
+    if (match) langSel.value = match.value;
+    applyLang(saved);
+    langSel.addEventListener('change', function() {
+      var lang = LANG_MAP[this.value] || 'en';
+      localStorage.setItem('lang', lang);
+      applyLang(lang);
+    });
+  } else {
+    applyLang(localStorage.getItem('lang') || 'en');
+  }
+})();

@@ -43,40 +43,135 @@
       </div>
     </div>
     <div class="hero-mockup">
-      <div class="mock-window">
-        <div class="mock-titlebar">
-          <span class="mock-dot"></span>
-          <span class="mock-dot"></span>
-          <span class="mock-dot"></span>
-          <span class="mock-title">Onyx · Private AI</span>
-        </div>
-        <div class="mock-body">
-          <div class="mock-sidebar">
-            <div class="mock-nav-item active">💬 Chat</div>
-            <div class="mock-nav-item">🗂️ Docs</div>
-            <div class="mock-nav-item">🎨 Images</div>
-            <div class="mock-nav-item">👤 Profile</div>
-          </div>
-          <div class="mock-chat">
-            <div class="mock-msg mock-msg-user">
-              <div class="mock-bubble mock-bubble-user">What's our refund policy for vendor returns?</div>
+      <div class="mock-carousel" id="heroCarousel">
+
+        <!-- Slide 1: Upload documents -->
+        <div class="mock-slide active" data-slide="0">
+          <div class="mock-window mock-onyx">
+            <div class="mock-titlebar">
+              <span class="mock-dot"></span>
+              <span class="mock-dot"></span>
+              <span class="mock-dot"></span>
+              <span class="mock-title">onyx · Add Connector</span>
             </div>
-            <div class="mock-msg">
-              <div class="mock-avatar">AI</div>
-              <div>
-                <div class="mock-bubble mock-bubble-ai">Based on your uploaded policies, vendor refunds must be requested within 30 days. Orders over $500 require manager approval. Damaged items fall under the RMA process.<span class="mock-cursor"></span></div>
-                <div class="mock-sources">
-                  <span class="mock-source">📄 Vendor-Policy-2024</span>
-                  <span class="mock-source">📄 RMA-Handbook</span>
-                </div>
+            <div class="mock-body mock-body-stack">
+              <div class="mock-onyx-label">Connector Name</div>
+              <div class="mock-onyx-hint">A descriptive name for the connector.</div>
+              <div class="mock-onyx-input">ABS_AI</div>
+              <div class="mock-onyx-label" style="margin-top:12px;">Files</div>
+              <div class="mock-onyx-dropzone">
+                <div class="mock-upload-text-bold">Drag and drop some files here</div>
+                <div class="mock-upload-text">or click to select files</div>
+              </div>
+              <button class="mock-onyx-btn">Create Connector <span>&#8853;</span></button>
+            </div>
+          </div>
+          <div class="mock-caption">1. Upload your documents</div>
+        </div>
+
+        <!-- Slide 2: Add to knowledge base -->
+        <div class="mock-slide" data-slide="1">
+          <div class="mock-window mock-onyx">
+            <div class="mock-titlebar">
+              <span class="mock-dot"></span>
+              <span class="mock-dot"></span>
+              <span class="mock-dot"></span>
+              <span class="mock-title">onyx · Document Sets</span>
+            </div>
+            <div class="mock-body mock-body-stack">
+              <div class="mock-onyx-table-header">
+                <span style="flex:0 0 60px;">Name</span>
+                <span style="flex:1;">Connectors</span>
+                <span>Status</span>
+              </div>
+              <div class="mock-onyx-row">
+                <span class="mock-onyx-name">ABS_AI</span>
+                <span class="mock-onyx-links">
+                  <span class="mock-onyx-link">ABS_AI</span>
+                  <span class="mock-onyx-link">abs_user_manual</span>
+                </span>
+                <span class="mock-onyx-pill mock-onyx-pill-green">&#10003; Up to Date</span>
+              </div>
+              <div class="mock-onyx-row" style="border-bottom:none;">
+                <span class="mock-onyx-name" style="color:#c7cbd1;">—</span>
+                <span class="mock-onyx-links"></span>
+                <span class="mock-onyx-pill mock-onyx-pill-gray">&#128274; Public</span>
               </div>
             </div>
           </div>
+          <div class="mock-caption">2. Added to your private knowledge base</div>
         </div>
-        <div class="mock-input-bar">
-          <span class="mock-input-placeholder">Ask anything about your documents…</span>
-          <span class="mock-send-btn">↑</span>
+
+        <!-- Slide 3: Ask questions -->
+        <div class="mock-slide" data-slide="2">
+          <div class="mock-window mock-onyx">
+            <div class="mock-titlebar">
+              <span class="mock-dot"></span>
+              <span class="mock-dot"></span>
+              <span class="mock-dot"></span>
+              <span class="mock-title">onyx</span>
+            </div>
+            <div class="mock-body">
+              <div class="mock-sidebar mock-onyx-sidebar">
+                <div class="mock-onyx-navlabel">Agents</div>
+                <div class="mock-nav-item active">&#9678; ABS_AI</div>
+                <div class="mock-onyx-navlabel">Recents</div>
+                <div class="mock-nav-item">ABS KB Solutions</div>
+                <div class="mock-nav-item">telegram-bot</div>
+              </div>
+              <div class="mock-chat mock-onyx-chat">
+                <div class="mock-msg mock-msg-user">
+                  <div class="mock-bubble mock-onyx-bubble-user">What is the ABS KB Solution?</div>
+                </div>
+                <div class="mock-onyx-response">
+                  <strong>ABS KB Solutions</strong> refers to <strong>ABS AI</strong>, an enterprise-grade, on-premises AI system built to provide secure, compliant, and cost-effective AI capabilities.<span class="mock-cursor"></span>
+                  <div class="mock-onyx-source-chip">&#128196; user-manual.md</div>
+                </div>
+              </div>
+            </div>
+            <div class="mock-input-bar mock-onyx-inputbar">
+              <span class="mock-input-placeholder">How can I help you today?</span>
+              <span class="mock-onyx-model-tag">Qwen On Premise</span>
+              <span class="mock-send-btn mock-onyx-send">↑</span>
+            </div>
+          </div>
+          <div class="mock-caption">3. Ask questions, get sourced answers</div>
         </div>
+
+        <!-- Slide 4: Mobile access -->
+        <div class="mock-slide" data-slide="3">
+          <div class="mock-phone">
+            <div class="mock-phone-statusbar">
+              <span>9:41</span>
+              <span class="mock-phone-signal">●●● 5G 🔋</span>
+            </div>
+            <div class="mock-phone-header">
+              <span class="mock-phone-back">&#8249;</span>
+              <span class="mock-phone-avatar">A</span>
+              <div>
+                <div class="mock-phone-name">ABS_AI</div>
+                <div class="mock-phone-status">bot</div>
+              </div>
+            </div>
+            <div class="mock-phone-chat">
+              <div class="mock-phone-bubble mock-phone-bubble-user">What is the ABS AI Personal KB Solution?</div>
+              <div class="mock-phone-bubble mock-phone-bubble-ai">An enterprise-grade, on-premises AI system for a private, secure knowledge base.<span class="mock-cursor"></span></div>
+            </div>
+            <div class="mock-phone-input">
+              <span class="mock-phone-icon">📎</span>
+              <span class="mock-phone-placeholder">Message</span>
+              <span class="mock-phone-icon">🎤</span>
+            </div>
+          </div>
+          <div class="mock-caption">4. Access from anywhere via Telegram</div>
+        </div>
+
+      </div>
+      <div class="mock-dots" id="heroCarouselDots">
+        <button class="mock-nav-dot active" data-goto="0" aria-label="Slide 1"></button>
+        <button class="mock-nav-dot" data-goto="1" aria-label="Slide 2"></button>
+        <button class="mock-nav-dot" data-goto="2" aria-label="Slide 3"></button>
+        <button class="mock-nav-dot" data-goto="3" aria-label="Slide 4"></button>
       </div>
     </div>
   </div>
@@ -100,7 +195,20 @@
     </div>
   </div>
 
+<!-- Overview graphic -->
+<section class="band" style="padding-bottom:0;">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">00</span><span data-i18n="eye-0">Why You Need This</span></div>
+    <h2 data-i18n="h2-0" style="margin-bottom:32px;">Your private AI — wherever life happens.</h2>
+    <img src="images/rtx-overview-hero.png" alt="Your Private AI, Your Knowledge, Your Data — the RTX PRO 6000 Hub running Qwen LLM and the Onyx knowledge base, accessible from school, office, home, and park while all data stays on-premises." class="overview-hero-img" />
+  </div>
+</section>
+
 <!-- Benefits -->
+<!--
+  ROLLBACK: original text/grid version of this section, kept for easy revert.
+  To restore: delete the "hub-diagram" section below and uncomment this block.
+
 <section class="band" id="get">
   <div class="wrap">
     <div class="eyebrow"><span class="num">01</span><span data-i18n="eye-1">What You Get</span></div>
@@ -135,15 +243,146 @@
       <div class="benefit-card" style="--card-glow:rgba(56,189,248,0.10);--card-bar:rgba(56,189,248,0.6);">
         <div class="watermark">📡</div>
         <div class="benefit-title" data-i18n="b5-title">Mobile Access Anytime</div>
-        <div class="benefit-desc" data-i18n="b5-desc">Chat with your AI through Telegram, a free messaging app. It is just like texting a contact. Available 24/7 from any mobile device anywhere.</div>
+        <div class="benefit-desc" data-i18n="b5-desc">Chat with your AI through Telegram, a free messaging app. Just like texting a contact, available 24/7 from any device. (Messages relay through Telegram's servers, the same as any Telegram chat, but the AI itself only ever runs on your hardware.)</div>
       </div>
 
       <div class="benefit-card" style="--card-glow:rgba(34,197,94,0.10);--card-bar:rgba(34,197,94,0.6);">
         <div class="watermark">🪪</div>
         <div class="benefit-title" data-i18n="b6-title">Data Stays Private</div>
-        <div class="benefit-desc" data-i18n="b6-desc">Unlike ChatGPT or Copilot, nothing you ask or upload ever touches a third-party cloud. Everything only runs on your hardware and under your control.</div>
+        <div class="benefit-desc" data-i18n="b6-desc">Unlike ChatGPT or Copilot, your AI model runs entirely on your own hardware — not a third-party AI service. Your documents and conversations are never sent to an external AI provider.</div>
       </div>
 
+    </div>
+  </div>
+</section>
+-->
+
+<section class="band" id="get">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">01</span><span data-i18n="eye-1">What You Get</span></div>
+    <h2 data-i18n="h2-1">Six AI services, running entirely on your own hardware.</h2>
+    <p class="lede" data-i18n="lede-1">No cloud accounts to set up, no subscription fee. Models run locally the moment you turn it on.</p>
+
+    <div class="hub-diagram" id="hubDiagram">
+      <div class="hub-col hub-col-left">
+        <div class="hub-node" data-scene="assistant" tabindex="0" role="button" style="--node-glow:rgba(240,169,59,0.16);--node-bar:rgba(240,169,59,0.55);">
+          <div class="hub-node-icon">💬</div>
+          <div class="hub-node-label" data-i18n="b1-title">Personal AI Assistant ran locally</div>
+        </div>
+        <div class="hub-node" data-scene="docs" tabindex="0" role="button" style="--node-glow:rgba(88,198,214,0.16);--node-bar:rgba(88,198,214,0.55);">
+          <div class="hub-node-icon">🗂️</div>
+          <div class="hub-node-label" data-i18n="b2-title">Chat about your own documents</div>
+        </div>
+        <div class="hub-node" data-scene="memory" tabindex="0" role="button" style="--node-glow:rgba(139,92,246,0.16);--node-bar:rgba(139,92,246,0.55);">
+          <div class="hub-node-icon">⚡</div>
+          <div class="hub-node-label" data-i18n="b3-title">Remembers preferences &amp; history</div>
+        </div>
+      </div>
+
+      <div class="hub-center">
+        <div class="hub-center-stage">
+
+          <div class="hub-scene hub-scene-default active" data-scene="default">
+            <div class="hub-tower">
+              <svg viewBox="0 0 64 82" class="hub-tower-svg">
+                <rect x="6" y="4" width="52" height="74" rx="7"/>
+                <rect x="15" y="15" width="34" height="9" rx="2" class="hub-tower-slot"/>
+                <circle cx="32" cy="42" r="10" class="hub-tower-fan"/>
+                <path d="M32 32v20M22 42h20" class="hub-tower-fan-blade"/>
+                <rect x="15" y="60" width="34" height="9" rx="2" class="hub-tower-plate"/>
+              </svg>
+              <span class="hub-badge hub-badge-lock">&#128274;</span>
+              <span class="hub-badge hub-badge-shield">&#128737;</span>
+            </div>
+            <div class="hub-tower-name">RTX PRO 6000 Hub</div>
+            <div class="hub-tagline" data-i18n="hub-tagline">100% Local — Nothing Ever Leaves Your Building</div>
+          </div>
+
+          <div class="hub-scene" data-scene="assistant">
+            <div class="hub-scene-art">
+              <svg viewBox="0 0 100 82" class="hub-scene-svg">
+                <rect x="10" y="8" width="80" height="52" rx="4"/>
+                <rect x="16" y="14" width="68" height="40" rx="2" class="hub-scene-screen"/>
+                <line x1="22" y1="23" x2="58" y2="23" class="hub-scene-line-thick"/>
+                <line x1="22" y1="31" x2="72" y2="31" class="hub-scene-line"/>
+                <line x1="22" y1="39" x2="64" y2="39" class="hub-scene-line"/>
+                <line x1="22" y1="47" x2="70" y2="47" class="hub-scene-line"/>
+                <rect x="42" y="60" width="16" height="6" rx="1"/>
+                <rect x="30" y="66" width="40" height="4" rx="2"/>
+              </svg>
+              <div class="hub-scene-badge hub-scene-nocloud" title="No cloud">
+                <span>&#9729;</span><span class="hub-scene-x">&#10005;</span>
+              </div>
+            </div>
+            <div class="hub-scene-caption" data-i18n="scene-assistant">Qwen3.6 runs entirely on the RTX PRO 6000 — no cloud, no API calls.</div>
+          </div>
+
+          <div class="hub-scene" data-scene="docs">
+            <div class="hub-scene-art hub-scene-row">
+              <span class="hub-scene-emoji">📄</span>
+              <span class="hub-scene-emoji">📄</span>
+              <span class="hub-scene-arrow">&#8594;</span>
+              <span class="hub-scene-emoji hub-scene-emoji-big">🗂️</span>
+            </div>
+            <div class="hub-scene-caption" data-i18n="scene-docs">Upload manuals, policies, and reports — indexed straight into your private knowledge base.</div>
+          </div>
+
+          <div class="hub-scene" data-scene="memory">
+            <div class="hub-scene-art hub-scene-brain">
+              <div class="hub-scene-brain-icon">🧠</div>
+              <span class="hub-scene-chip" style="--cx:-88px;--cy:-34px;" data-i18n="scene-chip-1">Past Chats</span>
+              <span class="hub-scene-chip" style="--cx:78px;--cy:-40px;" data-i18n="scene-chip-2">Preferences</span>
+              <span class="hub-scene-chip" style="--cx:-78px;--cy:40px;" data-i18n="scene-chip-3">Work Notes</span>
+              <span class="hub-scene-chip" style="--cx:82px;--cy:36px;" data-i18n="scene-chip-4">History</span>
+            </div>
+            <div class="hub-scene-caption" data-i18n="scene-memory">Recalls context across sessions — like a second brain that never forgets.</div>
+          </div>
+
+          <div class="hub-scene" data-scene="image">
+            <div class="hub-scene-art hub-scene-imagegen">
+              <div class="hub-scene-prompt">&#10024; <span data-i18n="scene-image-prompt">"a mountain sunset"</span></div>
+              <span class="hub-scene-arrow hub-scene-arrow-down">&#8595;</span>
+              <div class="hub-scene-frame">🏞️</div>
+            </div>
+            <div class="hub-scene-caption" data-i18n="scene-image">Type a prompt, get a finished image — rendered locally, no per-image fees.</div>
+          </div>
+
+          <div class="hub-scene" data-scene="mobile">
+            <div class="hub-scene-art hub-scene-triple">
+              <div class="hub-scene-mini"><span class="hub-scene-mini-loc">🏫</span><span class="hub-scene-mini-phone">📱</span></div>
+              <div class="hub-scene-mini"><span class="hub-scene-mini-loc">🏢</span><span class="hub-scene-mini-phone">📱</span></div>
+              <div class="hub-scene-mini"><span class="hub-scene-mini-loc">🌳</span><span class="hub-scene-mini-phone">📱</span></div>
+            </div>
+            <div class="hub-scene-caption" data-i18n="scene-mobile">Reach your AI the same way at school, at work, or in the park.</div>
+          </div>
+
+          <div class="hub-scene" data-scene="private">
+            <div class="hub-scene-art hub-scene-stack">
+              <span class="hub-scene-doc-stack" style="--r:-8deg;--x:-14px;">📄</span>
+              <span class="hub-scene-doc-stack" style="--r:8deg;--x:14px;">📄</span>
+              <span class="hub-scene-doc-stack" style="--r:0deg;--x:0px;">📄</span>
+              <span class="hub-scene-lock">🔒</span>
+            </div>
+            <div class="hub-scene-caption" data-i18n="scene-private">Every document and every answer stays sealed inside your own hardware.</div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="hub-col hub-col-right">
+        <div class="hub-node" data-scene="image" tabindex="0" role="button" style="--node-glow:rgba(249,115,22,0.16);--node-bar:rgba(249,115,22,0.55);">
+          <div class="hub-node-icon">🎨</div>
+          <div class="hub-node-label" data-i18n="b4-title">On-demand Image Generation</div>
+        </div>
+        <div class="hub-node" data-scene="mobile" tabindex="0" role="button" style="--node-glow:rgba(56,189,248,0.16);--node-bar:rgba(56,189,248,0.55);">
+          <div class="hub-node-icon">📡</div>
+          <div class="hub-node-label" data-i18n="b5-title">Mobile Access Anytime</div>
+        </div>
+        <div class="hub-node" data-scene="private" tabindex="0" role="button" style="--node-glow:rgba(34,197,94,0.16);--node-bar:rgba(34,197,94,0.55);">
+          <div class="hub-node-icon">🪪</div>
+          <div class="hub-node-label" data-i18n="b6-title">Data Stays Private</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -196,7 +435,7 @@
       <div class="uc-panel-body">
         <div class="uc-panel-tag" data-i18n="uc4-tag">Legal &amp; Contracts</div>
         <div class="uc-panel-title" data-i18n="uc4-title">Search contracts &amp; policies in seconds</div>
-        <div class="uc-panel-desc" data-i18n="uc4-desc">Ask "what's the termination clause in vendor X's agreement?" and get the exact answer. No need to read through 40 pages hunting for the answer.</div>
+        <div class="uc-panel-desc" data-i18n="uc4-desc">Ask what the termination clause in a vendor agreement is and get a fast, sourced answer pulled straight from the document. No need to read through 40 pages hunting for it.</div>
       </div>
     </div>
 
@@ -234,7 +473,7 @@
   <div class="wrap">
     <div class="eyebrow"><span class="num">03</span><span data-i18n="eye-3">How It Works</span></div>
     <h2 data-i18n="h2-3">Ask, reason, respond — all on your machine.</h2>
-    <p class="lede" data-i18n="lede-3">A question goes in, the AI reasons through it, and a private answer streams back. Nothing leaves the box.</p>
+    <p class="lede" data-i18n="lede-3">A question goes in, the AI reasons through it, and a private answer streams back — the reasoning happens entirely on your hardware.</p>
     <div class="flow-box">
       <div class="flow-row flow-row-buyer">
 
@@ -264,10 +503,10 @@
     <div class="callout" style="margin-top:40px;margin-bottom:0;">
       <div class="callout-title" data-i18n="callout-title">Complete Privacy — No Cloud, No Compromise</div>
       <p data-i18n="callout-p">
-        Every question you ask, every document you upload, every conversation you have — all of it
-        stays on your machine. There are no third-party servers, no data agreements, and no monthly
-        AI subscriptions. The RTX Pro 6000 handles everything locally, giving you the power of
-        a top-tier AI system without giving up control of your data.
+        Every question you ask and every document you upload is processed entirely on your machine —
+        never sent to an external AI provider, no data-sharing agreement, no monthly AI subscription.
+        The RTX Pro 6000 handles all reasoning, retrieval, and generation locally, giving you the power
+        of a top-tier AI system without giving up control of your data.
       </p>
     </div>
   </div>
@@ -391,6 +630,59 @@
       panels.forEach(function(p){ p.classList.remove('active'); });
       tab.classList.add('active');
       document.querySelector('.uc-panel[data-panel="'+tab.dataset.tab+'"]').classList.add('active');
+    });
+  });
+})();
+
+(function () {
+  var carousel = document.getElementById('heroCarousel');
+  if (!carousel) return;
+  var slides = carousel.querySelectorAll('.mock-slide');
+  var dots = document.querySelectorAll('#heroCarouselDots .mock-nav-dot');
+  var current = 0;
+  var timer = null;
+
+  function goTo(i) {
+    current = (i + slides.length) % slides.length;
+    slides.forEach(function (s, idx) { s.classList.toggle('active', idx === current); });
+    dots.forEach(function (d, idx) { d.classList.toggle('active', idx === current); });
+  }
+
+  function next() { goTo(current + 1); }
+
+  function start() { timer = setInterval(next, 4000); }
+  function stop() { clearInterval(timer); }
+
+  dots.forEach(function (d) {
+    d.addEventListener('click', function () {
+      goTo(parseInt(d.dataset.goto, 10));
+      stop(); start();
+    });
+  });
+
+  carousel.addEventListener('mouseenter', stop);
+  carousel.addEventListener('mouseleave', start);
+
+  start();
+})();
+
+(function () {
+  var diagram = document.getElementById('hubDiagram');
+  if (!diagram) return;
+  var nodes = diagram.querySelectorAll('.hub-node[data-scene]');
+  var scenes = diagram.querySelectorAll('.hub-scene');
+
+  function showScene(key) {
+    scenes.forEach(function (s) { s.classList.toggle('active', s.dataset.scene === key); });
+    nodes.forEach(function (n) { n.classList.toggle('active', n.dataset.scene === key); });
+  }
+
+  nodes.forEach(function (n) {
+    n.addEventListener('click', function () {
+      showScene(n.classList.contains('active') ? 'default' : n.dataset.scene);
+    });
+    n.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); n.click(); }
     });
   });
 })();

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Filmmaking — Day-to-Day Use</title>
+  <link rel="stylesheet" href="setup-styles.css" />
+  <script>(function(){var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t||'dark');})();</script>
+</head>
+<body>
+
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="19.78" y1="4.22" x2="17.66" y2="6.34"/><line x1="6.34" y1="17.66" x2="4.22" y2="19.78"/></svg>
+</button>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-row">
+        <h1 data-i18n="brand-title">AI Filmmaking</h1>
+        <select class="lang-select" aria-label="Language">
+          <option value="EN">EN</option>
+          <option value="中文">中文</option>
+        </select>
+      </div>
+      <p data-i18n="side-sub">Daily Use · ComfyUI</p>
+    </div>
+    <a href="setup-rtx.html" class="back-link" data-i18n="back-link">&larr; Back to Setup Guides</a>
+    <nav>
+      <div class="nav-group" data-i18n="nav-g1">Daily Use</div>
+      <a href="#starting" data-i18n="nav-starting">Starting Up</a>
+      <a href="#ui" data-i18n="nav-ui">The Basic UI</a>
+      <a href="#workflows" data-i18n="nav-workflows">Starting a Workflow</a>
+      <a href="#loop" data-i18n="nav-loop">Generation Loop</a>
+      <a href="#tools" data-i18n="nav-tools">Using Installed Tools</a>
+      <a href="#batching" data-i18n="nav-batching">Batching Shots</a>
+      <a href="#shutdown" data-i18n="nav-shutdown">Shutting Down</a>
+      <div class="nav-group" data-i18n="nav-g2">Reference</div>
+      <a href="#upgrade" data-i18n="nav-upgrade">Upgrade Path</a>
+      <a href="setup-rtx-film.html" class="nav-external" data-i18n="nav-install-guide">Installation Guide</a>
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+
+    <!-- Header -->
+    <div class="page-header">
+      <div class="badge" data-i18n="hdr-badge">AI Filmmaking · Day-to-Day Use</div>
+      <h1 data-i18n="hdr-h1">Using ComfyUI Day to Day</h1>
+      <p data-i18n="hdr-p">Once everything is installed, this is what a normal session actually looks like — as opposed to the one-time setup and validation.</p>
+    </div>
+
+    <!-- Starting Up -->
+    <section id="starting">
+      <h2 data-i18n="h2-starting">Starting Up</h2>
+      <div class="step-card">
+        <div class="step-title" data-i18n="starting-title">Every Session</div>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">PowerShell</span>
+            <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre><code>cd <span class="cmd-path">&lt;INSTALL_DIR&gt;\ComfyUI</span>
+python main.py --listen 127.0.0.1 --port 8188</code></pre>
+        </div>
+        <p style="margin-top:10px;" data-i18n-html="starting-note">Leave that window open, then open <code>http://127.0.0.1:8188</code> in a browser. This is the one manual step every session — ComfyUI doesn't auto-start as a background service by default.</p>
+      </div>
+    </section>
+
+    <!-- The Basic UI -->
+    <section id="ui">
+      <h2 data-i18n="h2-ui">The Basic UI</h2>
+      <ul style="list-style:disc; padding-left:20px; color:var(--text-muted); font-size:14px; line-height:1.8;">
+        <li data-i18n-html="ui-li1"><strong style="color:var(--text);">Center canvas:</strong> the node graph — boxes connected by lines representing the pipeline (load model &rarr; encode prompt &rarr; sample &rarr; decode &rarr; save).</li>
+        <li data-i18n-html="ui-li2"><strong style="color:var(--text);">Queue button</strong> (bottom right): runs the current graph.</li>
+        <li data-i18n-html="ui-li3"><strong style="color:var(--text);">Queue panel</strong> (left or via the menu): shows pending/running/completed jobs and thumbnails of finished outputs.</li>
+        <li data-i18n-html="ui-li4">Nodes are added via <strong style="color:var(--text);">right-click &rarr; Add Node</strong>, or double-click on empty canvas to search by name.</li>
+      </ul>
+    </section>
+
+    <!-- Starting a Workflow -->
+    <section id="workflows">
+      <h2 data-i18n="h2-workflows">Starting a Workflow — Three Ways</h2>
+
+      <div class="step-card">
+        <div class="step-num" data-i18n="opt1-num">Option 1 · Easiest</div>
+        <div class="step-title" data-i18n="opt1-title">Built-in templates</div>
+        <p data-i18n-html="opt1-p">ComfyUI ships with template workflows already installed on this machine — go to the menu (top-left icon) &rarr; <strong>Workflow &rarr; Browse Templates</strong>. There are ready-made SDXL, ControlNet, and video templates you can load directly without building anything from scratch.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num" data-i18n="opt2-num">Option 2</div>
+        <div class="step-title" data-i18n="opt2-title">Reload a previous workflow</div>
+        <p data-i18n-html="opt2-p">Every image/gif ComfyUI saves has the workflow embedded in it — drag any file from <code>ComfyUI\output\</code> onto the canvas and it rebuilds the exact graph that made it. This is the fastest way to pick up where a previous session left off.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num" data-i18n="opt3-num">Option 3</div>
+        <div class="step-title" data-i18n="opt3-title">Save your own as a starting point</div>
+        <p data-i18n-html="opt3-p">Once you've built or tweaked a graph you like, <strong>Workflow &rarr; Save</strong> (or <code>Ctrl+S</code>) stores it as a <code>.json</code> in <code>ComfyUI\user\default\workflows\</code> — from then on it shows up in the workflow browser alongside the built-in templates.</p>
+      </div>
+    </section>
+
+    <!-- Normal Generation Loop -->
+    <section id="loop">
+      <h2 data-i18n="h2-loop">Normal Generation Loop</h2>
+      <div class="step-card">
+        <ol class="steps-list">
+          <li data-n="1" data-i18n="loop-li1">Load or open a workflow.</li>
+          <li data-n="2" data-i18n-html="loop-li2">Click into the prompt text box (the <code>CLIPTextEncode</code> node) and type/edit what you want.</li>
+          <li data-n="3" data-i18n-html="loop-li3">Adjust seed/steps/resolution if needed (in the <code>KSampler</code> and <code>EmptyLatentImage</code> nodes).</li>
+          <li data-n="4" data-i18n-html="loop-li4">Click <strong>Queue Prompt</strong>.</li>
+          <li data-n="5" data-i18n-html="loop-li5">Watch the progress bar on the running node; when done, the result appears in the Queue panel and saves to <code>ComfyUI\output\</code>.</li>
+          <li data-n="6" data-i18n="loop-li6">Don't like it? Change the seed or prompt and queue again — this is the fast iteration loop, seconds per image on this GPU.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Using Installed Tools -->
+    <section id="tools">
+      <h2 data-i18n="h2-tools">Using the Specific Tools Already Installed</h2>
+      <ul style="list-style:disc; padding-left:20px; color:var(--text-muted); font-size:14px; line-height:1.8;">
+        <li data-i18n-html="tools-li1">ControlNet / AnimateDiff / upscaling nodes don't appear until you add them: <strong style="color:var(--text);">right-click &rarr; Add Node</strong> &rarr; browse to categories like "ControlNet Preprocessors," "Animate Diff," or search by name (e.g. type "RIFE" or "Upscale"). The templates from the previous section already have these wired up correctly if you'd rather start from a working example than assemble one node-by-node.</li>
+        <li data-i18n="tools-li2">Model dropdowns (checkpoint, ControlNet model, motion module) auto-populate from what's already downloaded on this machine — everything from setup shows up there.</li>
+      </ul>
+    </section>
+
+    <!-- Batching -->
+    <section id="batching">
+      <h2 data-i18n="h2-batching">Batching Multiple Shots</h2>
+      <p data-i18n="batching-p">Queue Prompt can be clicked repeatedly to stack jobs — each queues behind the last and runs in order, so you can queue several prompt variations and walk away while the GPU works through them, then review the Queue panel's thumbnails afterward.</p>
+    </section>
+
+    <!-- Shutting Down -->
+    <section id="shutdown">
+      <h2 data-i18n="h2-shutdown">Shutting Down</h2>
+      <div class="info-box">
+        <span class="icon">⏹️</span>
+        <div data-i18n-html="shutdown-info"><code>Ctrl+C</code> in the PowerShell window running <code>main.py</code>, or just close that window — there's no persistent background service to separately stop.</div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- Upgrade Path (populated by upgrade-path.js — shared with setup-rtx-film.html) -->
+    <section id="upgrade"></section>
+
+  </main>
+</div>
+
+<script src="theme.js"></script>
+<script src="guide-common.js"></script>
+<script src="upgrade-path.js"></script>
+<script src="setup-rtx-film-usage.js"></script>
+
+</body>
+</html>

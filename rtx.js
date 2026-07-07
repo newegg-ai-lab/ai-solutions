@@ -1,14 +1,25 @@
 ﻿(function () {
-  var LANG = 'en';
   var T = {
     en: {
-      'nav-1':'What You Get','nav-2':'Use Cases','nav-3':'How It Works','nav-4':'Under the Hood',
+      'nav-1':'What You Get','nav-2':'Use Cases','nav-3':'How It Works','nav-4':'Under the Hood','nav-5':'Setup Guide',
       'hero-badge':'Included with Your Purchase',
       'hero-sub-1':'Your own private AI — no subscriptions, no data leaks, always on.',
       'hero-sub-2':'Multi-user · Remembers Everything · Fully private · Always on',
       'stat-lbl-1':'AI Services Included','stat-lbl-2':'Private & On-Premise','stat-lbl-3':'Long-Term Memory',
       'eye-1':'What You Get','eye-2':'Real-World Use Cases','eye-3':'How It Works',
       'eye-4':'Under the Hood','eye-5':'Request Flow','eye-6':'Architecture Details',
+      'h2-1':'Six AI services, running entirely on your own hardware.',
+      'h2-2':'Where your private AI earns its place.',
+      'h2-3':'Ask, reason, respond — all on your machine.',
+      'h2-4':'The actual stack.',
+      'h2-5':'From your phone to a finished answer.',
+      'h2-6':'The full system, laid out.',
+      'lede-1':'No cloud accounts to set up, no subscription fee. Models run locally the moment you turn it on.',
+      'lede-2':'Common workflows that benefit from an always-on AI that never sends data outside your building.',
+      'lede-3':'A question goes in, the AI reasons through it, and a private answer streams back. Nothing leaves the box.',
+      'lede-4':'The hardware and software stack behind every response.',
+      'lede-5':'Every hop traced step by step — Telegram, the hub, the model, and back.',
+      'lede-6':'Service boundaries, message paths, and every component in one diagram.',
       'b1-title':'Personal AI Assistant ran locally',
       'b1-desc':'Ask questions, get answers, draft content, and brainstorm ideas. Powered by an advanced AI model running entirely on your own hardware — not a distant server.',
       'b2-title':'Chat about your own documents',
@@ -33,11 +44,14 @@
       'uc5-desc':'Sales and support teams query product manuals, datasheets, and release notes conversationally. No expertise required.',
       'uc6-tag':'Training','uc6-title':'Make training materials interactive',
       'uc6-desc':'Upload course content, safety guides, or certification materials and let learners ask follow-up questions at their own pace.',
+      'uc7-tag':'AI Filmmaking','uc7-title':'Generate and animate film shots on your own GPU',
+      'uc7-desc':'Run a full local pipeline in ComfyUI — SDXL generates the still frames, ControlNet locks in poses and composition, AnimateDiff brings each shot to life, then upscaling and frame interpolation prep the clip before it lands in DaVinci Resolve. No render farm, no per-clip cloud fees.',
       'how-node1':'Ask Anything','how-sub1':'Type a question, request a summary, or start a conversation from any device',
       'how-node2':'Your AI Gets to Work','how-sub2':'Searches your documents, recalls your history, and reasons through the answer',
       'how-node3':'Instant, Private Response','how-sub3':'A personalized answer delivered entirely on your hardware — no cloud, no wait',
       'callout-title':'Complete Privacy — No Cloud, No Compromise',
       'callout-p':'Every question you ask, every document you upload, every conversation you have — all of it stays on your machine. There are no third-party servers, no data agreements, and no monthly AI subscriptions. The RTX Pro 6000 handles everything locally, giving you the power of a top-tier AI system without giving up control of your data.',
+      'spec-hw':'Hardware',
       'hood-h3':'Software services',
       'svc-sub-llm':'reasoning · chat','svc-sub-kb':'knowledge base','svc-sub-rnk':'result scoring',
       'svc-sub-vec':'semantic vector search','svc-sub-mem':'long-term memory','svc-sub-bot':'mobile gateway',
@@ -50,13 +64,25 @@
       'footer-note':'Powered by NVIDIA RTX Pro 6000',
     },
     zh: {
-      'nav-1':'功能介绍','nav-2':'应用场景','nav-3':'工作原理','nav-4':'技术细节',
+      'nav-1':'功能介绍','nav-2':'应用场景','nav-3':'工作原理','nav-4':'技术细节','nav-5':'安装指南',
       'hero-badge':'随硬件附赠',
       'hero-sub-1':'您的专属私有 AI——无订阅费、无数据泄露、全天候在线。',
       'hero-sub-2':'多用户 · 永久记忆 · 完全私密 · 全天候在线',
       'stat-lbl-1':'内置 AI 服务','stat-lbl-2':'私有本地部署','stat-lbl-3':'长期记忆',
       'eye-1':'功能介绍','eye-2':'真实应用场景','eye-3':'工作原理',
       'eye-4':'技术细节','eye-5':'请求流程','eye-6':'架构详情',
+      'h2-1':'六项 AI 服务，完全运行在您的硬件上。',
+      'h2-2':'私有 AI 发挥实际价值的场景。',
+      'h2-3':'提问、推理、响应——全部在您的机器上。',
+      'h2-4':'实际的技术栈。',
+      'h2-5':'从手机消息到最终答案。',
+      'h2-6':'完整的系统架构图。',
+      'lede-1':'无需创建账户，无需管理密钥，无使用计量。模型一次拉取，此后全部本地运行。',
+      'lede-2':'受益于全天候在线 AI 的常见工作流——数据永不离开您的建筑。',
+      'lede-3':'提问后，AI 进行推理，私密答案流式返回。所有内容均不离开设备。',
+      'lede-4':'每次响应背后的硬件与软件技术栈。',
+      'lede-5':'逐步追踪每个环节——Telegram、中枢、模型，再到返回结果。',
+      'lede-6':'包含服务边界、消息路径与每个组件的完整架构图。',
       'b1-title':'本地运行的个人 AI 助手',
       'b1-desc':'提问、获取答案、起草内容、头脑风暴——完全由运行在您自己硬件上的先进 AI 模型驱动，无需连接远程服务器。',
       'b2-title':'与您的私有文档对话',
@@ -68,24 +94,27 @@
       'b5-title':'随时随地移动访问',
       'b5-desc':'通过 Telegram 与您的 AI 对话，就像给联系人发短信一样简单。全天候 24/7 可从任意移动设备访问。',
       'b6-title':'数据完全私密',
-      'b6-desc':'与 ChatGPT 或 Copilot 不同，您提问或上传的任何内容都不会接触第三方云端。一切仅在您的硬件上运行，由您掉揧控。',
+      'b6-desc':'与 ChatGPT 或 Copilot 不同，您提问或上传的任何内容都不会接触第三方云端。一切仅在您的硬件上运行，由您掌控。',
       'uc1-tag':'员工入职','uc1-title':'新员工即时获得答案',
       'uc1-desc':'上传员工手册、政策和福利文件。新员工可直接向 RTX PRO 6000 Hub 提问，无需等待人事部门回复。',
       'uc2-tag':'IT 支持','uc2-title':'自助式故障排查',
       'uc2-desc':'将内部操作手册和帮助文章建立索引。员工可自行解决常见问题，无需联系 IT 或提交工单。',
       'uc3-tag':'事故处理','uc3-title':'记录事故以便未来快速修复',
       'uc3-desc':'问题解决后，记录解决方案、错误代码和预防措施。下次遇到类似问题时，您的 AI 会立即给出修复方案。',
-      'uc4-tag':'法律与合同','uc4-title':'秒汽搜索合同与政策',
+      'uc4-tag':'法律与合同','uc4-title':'秒速搜索合同与政策',
       'uc4-desc':'直接问“供应商 X 协议中的终止条款是什么？”即可获得精确答案，无需翻阅 40 页文件。',
       'uc5-tag':'产品文档','uc5-title':'将规格表转化为专家助手',
       'uc5-desc':'销售和支持团队可用自然语言查询产品手册、数据表和发布说明，无需专业知识。',
       'uc6-tag':'培训','uc6-title':'让培训材料具有互动性',
       'uc6-desc':'上传课程内容、安全指南或认证材料，让学员按自己的节奏提出后续问题。',
+      'uc7-tag':'AI 影视制作','uc7-title':'在自有 GPU 上生成并动画化影视镜头',
+      'uc7-desc':'在本地 ComfyUI 中运行完整流水线——SDXL 生成静态画面，ControlNet 锁定姿态与构图，AnimateDiff 让每个镜头动起来，再经过放大与补帧处理后导入 DaVinci Resolve。无需渲染农场，也无需按镜头付费的云服务。',
       'how-node1':'随时提问','how-sub1':'从任意设备输入问题、请求摘要或开始对话',
       'how-node2':'AI 开始工作','how-sub2':'搜索您的文档、调取历史记录并推理出答案',
       'how-node3':'即时私密响应','how-sub3':'完全在您的硬件上生成个性化答案——无云端、无等待',
       'callout-title':'完全私密——无云端、零妥协',
       'callout-p':'您提出的每个问题、上传的每份文档、进行的每次对话——全部留在您的设备上。没有第三方服务器，没有数据协议，也没有月度 AI 订阅费。RTX Pro 6000 在本地处理一切，让您拥有顶级 AI 系统的能力，同时完全掌控自己的数据。',
+      'spec-hw':'硬件',
       'hood-h3':'软件服务',
       'svc-sub-llm':'推理 · 对话','svc-sub-kb':'知识库','svc-sub-rnk':'结果评分',
       'svc-sub-vec':'语义向量搜索','svc-sub-mem':'长期记忆','svc-sub-bot':'移动端入口',
@@ -99,25 +128,5 @@
     }
   };
 
-  function t(key) { var d=T[LANG]||T.en; return d[key]!==undefined?d[key]:(T.en[key]||key); }
-
-  function applyLang(lang) {
-    LANG = lang;
-    document.documentElement.lang = lang==='zh'?'zh-CN':'en';
-    document.querySelectorAll('[data-i18n]').forEach(function(el){
-      var v=t(el.getAttribute('data-i18n')); if(v!==undefined) el.textContent=v;
-    });
-    document.querySelectorAll('[data-i18n-html]').forEach(function(el){
-      var v=t(el.getAttribute('data-i18n-html')); if(v!==undefined) el.innerHTML=v;
-    });
-  }
-
-  var LANG_MAP={'EN':'en','中文':'zh'};
-  var langSel=document.querySelector('.lang-select');
-  if(langSel){
-    var saved=localStorage.getItem('lang')||'en';
-    Array.from(langSel.options).find(function(o){ if(LANG_MAP[o.value]===saved){langSel.value=o.value;return true;} });
-    applyLang(saved);
-    langSel.addEventListener('change',function(){ var l=LANG_MAP[this.value]||'en'; localStorage.setItem('lang',l); applyLang(l); });
-  } else { applyLang(localStorage.getItem('lang')||'en'); }
+  window.ProductI18n.init(T);
 })();

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ABS AI 用户手册</title>
+  <link rel="stylesheet" href="setup-styles.css" />
+  <script>(function(){var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t||'dark');})();</script>
+</head>
+<body>
+
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="19.78" y1="4.22" x2="17.66" y2="6.34"/><line x1="6.34" y1="17.66" x2="4.22" y2="19.78"/></svg>
+</button>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-row">
+        <h1>ABS AI</h1>
+        <select class="lang-select" aria-label="Language">
+          <option value="EN">EN</option>
+          <option value="中文">中文</option>
+        </select>
+      </div>
+      <p data-i18n="side-sub">用户手册 · User Manual</p>
+    </div>
+    <a href="setup-rtx.html" class="back-link" data-i18n="back-link">&larr; Back to Setup Guides</a>
+    <nav>
+      <div class="nav-group" data-i18n="nav-g1">快速启动</div>
+      <a href="#prerequisites" data-i18n="nav-prereq">准备工作</a>
+      <a href="#step1" data-i18n="nav-step1">第一步 · LLM</a>
+      <a href="#step2" data-i18n="nav-step2">第二步 · Rerank</a>
+      <a href="#step3" data-i18n="nav-step3">第三步 · Embedding</a>
+      <a href="#step4" data-i18n="nav-step4">第四步 · Mem0</a>
+      <a href="#step5" data-i18n="nav-step5">第五步 · Onyx</a>
+      <a href="#step6" data-i18n="nav-step6">第六步 · Telegram Bot</a>
+      <a href="#step7" data-i18n="nav-step7">第七步 · 使用示例</a>
+      <div class="nav-group" data-i18n="nav-g2">运维参考</div>
+      <a href="#debug" data-i18n="nav-debug">调试命令</a>
+      <a href="#services" data-i18n="nav-services">服务管理</a>
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+
+    <!-- Header -->
+    <div class="page-header">
+      <div class="badge">ABS AI · Private AI Stack</div>
+      <h1 data-i18n="hdr-h1">ABS AI 用户手册</h1>
+      <p data-i18n="hdr-p">本地化企业私有 AI 解决方案 — 完整部署与使用指南</p>
+    </div>
+
+    <!-- Prerequisites -->
+    <section id="prerequisites">
+      <h2 data-i18n="h2-prereq">准备工作</h2>
+      <p data-i18n="prereq-p">以下所有服务均通过 WSL（Windows Subsystem for Linux）在 Ubuntu 下执行。</p>
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">Windows CMD</span>
+          <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">复制</button>
+        </div>
+        <pre><code><span class="cmd-comment" data-i18n="cmt-wsl"># 打开 Windows 命令提示符，进入 WSL</span>
+wsl</code></pre>
+      </div>
+    </section>
+
+    <!-- Step 1 -->
+    <section id="step1">
+      <h2>
+        <span style="background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:28px;font-weight:800;">01</span>
+        <span data-i18n="h2-step1">启动 LLM 模型</span>
+      </h2>
+      <div class="step-card">
+        <div class="step-num">Step 1</div>
+        <div class="step-title">Qwen3.6-35b-a3b</div>
+        <div class="step-model">vllm.service</div>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">bash</span>
+            <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">复制</button>
+          </div>
+          <pre><code><span class="cmd-keyword">systemctl</span> status vllm.service
+<span class="cmd-keyword">systemctl</span> start vllm.service</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 2 -->
+    <section id="step2">
+      <h2>
+        <span style="background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:28px;font-weight:800;">02</span>
+        <span data-i18n="h2-step2">启动 Rerank 模型</span>
+      </h2>
+      <div class="step-card">
+        <div class="step-num">Step 2</div>
+        <div class="step-title">bge-reranker-large</div>
+        <div class="step-model">rerank.service</div>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">bash</span>
+            <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">复制</button>
+          </div>
+          <pre><code>sudo <span class="cmd-keyword">systemctl</span> start rerank.service</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3 -->
+    <section id="step3">
+      <h2>
+        <span style="background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:28px;font-weight:800;">03</span>
+        <span data-i18n="h2-step3">启动 Embedding 模型</span>
+      </h2>
+      <div class="step-card">
+        <div class="step-num">Step 3</div>
+        <div class="step-title">multilingual-e5-large</div>
+        <div class="step-model">embedding.service</div>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">bash</span>
+            <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">复制</button>
+          </div>
+          <pre><code><span class="cmd-keyword">systemctl</span> start embedding.service</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4 -->
+    <section id="step4">
+      <h2>
+        <span style="background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:28px;font-weight:800;">04</span>
+        <span data-i18n="h2-step4">启动 Mem0</span>
+      </h2>
+      <div class="step-card">
+        <div class="step-num">Step 4</div>
+        <div class="step-title" data-i18n="step4-title">Mem0 记忆层</div>
+        <div class="step-model">mem0.service</div>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">bash</span>
+            <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">复制</button>
+          </div>
+          <pre><code><span class="cmd-keyword">systemctl</span> start mem0.service</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 5 -->
+    <section id="step5">
+      <h2>
+        <span style="background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:28px;font-weight:800;">05</span>
+        <span data-i18n="h2-step5">启动 Onyx</span>
+      </h2>
+
+      <div class="step-card">
+        <div class="step-num">Step 5</div>
+        <div class="step-title" data-i18n="step5-title">企业知识库 · Onyx</div>
+        <ol class="steps-list" style="margin-bottom:16px;">
+          <li data-n="1" data-i18n-html="step5-li1">在 Windows 中启动 <strong>Docker Desktop</strong></li>
+          <li data-n="2" data-i18n-html="step5-li2">启动 <strong>Onyx</strong></li>
+        </ol>
+
+        <table>
+          <tr>
+            <th data-i18n="th-field">字段</th>
+            <th data-i18n="th-value">值</th>
+          </tr>
+          <tr>
+            <td data-i18n="lbl-url">访问地址</td>
+            <td><code>http://localhost:3000/app</code></td>
+          </tr>
+          <tr>
+            <td data-i18n="lbl-email">管理员邮箱</td>
+            <td><code>admin@newegg.com</code></td>
+          </tr>
+          <tr>
+            <td data-i18n="lbl-pass">密码</td>
+            <td><code>admin@1234</code></td>
+          </tr>
+        </table>
+
+        <div class="info-box" style="margin-top:14px;">
+          <span class="icon">🔑</span>
+          <div data-i18n-html="step5-info">获取 API Key：进入 <strong>Admin Panel</strong> → <strong>API Keys</strong> → 点击 <strong>New</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6 -->
+    <section id="step6">
+      <h2>
+        <span style="background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:28px;font-weight:800;">06</span>
+        <span data-i18n="h2-step6">启动并配置 Telegram Bot</span>
+      </h2>
+
+      <div class="step-card">
+        <div class="step-num">Step 6</div>
+        <div class="step-title" data-i18n="step6-title">启动服务</div>
+        <div class="step-model">telegram-bot.service</div>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">bash</span>
+            <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">复制</button>
+          </div>
+          <pre><code><span class="cmd-keyword">systemctl</span> start telegram-bot.service</code></pre>
+        </div>
+      </div>
+
+      <h3 data-i18n="h3-envvars">配置环境变量</h3>
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">bash</span>
+          <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">复制</button>
+        </div>
+        <pre><code>vim <span class="cmd-path">/usr/local/abs-ai/telegram-bot/.env</span></code></pre>
+      </div>
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">.env</span>
+          <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">复制</button>
+        </div>
+        <pre><code><span class="env-var">ALLOWED_USER_IDS</span>=<span class="env-val">Your_ALLOWED_USER_IDS</span>
+<span class="env-var">TELEGRAM_BOT_TOKEN</span>=<span class="env-val">Your_TELEGRAM_BOT_TOKEN</span>
+<span class="env-var">ONYX_BASE_URL</span>=<span class="env-val">http://localhost:3000</span>
+<span class="env-var">ONYX_SERVICE_ACCOUNT_TOKEN</span>=<span class="env-val">Your_ONYX_SERVICE_ACCOUNT_TOKEN</span>
+<span class="env-var">ONYX_PERSONA_ID</span>=<span class="env-val">1</span>
+<span class="env-var">ONYX_TIMEOUT</span>=<span class="env-val">180</span></code></pre>
+      </div>
+
+      <h3 data-i18n="h3-telegram-params">如何获取 Telegram 配置参数</h3>
+
+      <div class="step-card">
+        <div class="step-num" data-i18n="sc1-num">获取 TELEGRAM_BOT_TOKEN</div>
+        <div class="step-title" data-i18n="sc1-title">通过 @BotFather 创建 Bot</div>
+        <ol class="steps-list">
+          <li data-n="1" data-i18n-html="tg1-li1">打开 Telegram，搜索 <strong>@BotFather</strong></li>
+          <li data-n="2" data-i18n-html="tg1-li2">发送 <code>/newbot</code></li>
+          <li data-n="3" data-i18n-html="tg1-li3">输入 Bot 名称（如 <code>My AI Bot</code>）</li>
+          <li data-n="4" data-i18n-html="tg1-li4">输入 Bot 用户名，必须以 <code>bot</code> 结尾（如 <code>myai_bot</code>）</li>
+          <li data-n="5" data-i18n-html="tg1-li5">BotFather 回复您的 <strong>Token</strong>，复制保存</li>
+        </ol>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num" data-i18n="sc2-num">获取 ALLOWED_USER_IDS</div>
+        <div class="step-title" data-i18n="sc2-title">获取您的 Telegram 数字用户 ID</div>
+        <ol class="steps-list">
+          <li data-n="1" data-i18n-html="tg2-li1">搜索 <strong>@userinfobot</strong></li>
+          <li data-n="2" data-i18n-html="tg2-li2">发送 <code>/start</code></li>
+          <li data-n="3" data-i18n-html="tg2-li3">机器人将回复您的数字 <strong>User ID</strong>，复制保存</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Step 7 -->
+    <section id="step7">
+      <h2>
+        <span style="background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:28px;font-weight:800;">07</span>
+        <span data-i18n="h2-step7">使用示例</span>
+      </h2>
+
+      <p data-i18n="step8-p">在 Telegram 中向 Bot 发送消息：</p>
+
+      <div class="chat-demo">
+        <div class="chat-message">
+          <div class="chat-avatar user">👤</div>
+          <div class="chat-bubble user" data-i18n="chat-user">ABS_AI 四个核心</div>
+        </div>
+        <div class="chat-message">
+          <div class="chat-avatar bot">🤖</div>
+          <div class="chat-bubble" data-i18n="chat-bot">
+            根据 ABS AI 的相关资料，其"四个核心"是指构建企业私有 AI 解决方案的四大关键组件，缺一不可。具体如下：
+          </div>
+        </div>
+      </div>
+
+      <h3 data-i18n="h3-core">四个核心组件</h3>
+
+      <div class="core-grid">
+        <div class="core-card">
+          <div class="core-icon">🧠</div>
+          <div class="core-badge">vllm.service</div>
+          <div class="core-title" data-i18n="core1-title">1. 本地 LLM</div>
+          <div class="core-desc" data-i18n="core1-desc">
+            运行 Qwen 3.6 35B 模型，部署在 NVIDIA RTX PRO 6000 Blackwell 96GB 显卡上。采用 MoE 架构，推理时仅激活约 3B 参数。所有数据全程本地，无第三方留存，无 API 账单。
+          </div>
+        </div>
+        <div class="core-card">
+          <div class="core-icon">📚</div>
+          <div class="core-badge">Onyx RAG</div>
+          <div class="core-title" data-i18n="core2-title">2. Onyx 企业知识库</div>
+          <div class="core-desc" data-i18n="core2-desc">
+            将公司 SOP、产品手册、内部文件注入系统。AI 基于"你的资料"回答（RAG 技术），确保准确性和相关性，适用于新人上手、查规范、找答案。
+          </div>
+        </div>
+        <div class="core-card">
+          <div class="core-icon">💾</div>
+          <div class="core-badge">mem0.service</div>
+          <div class="core-title" data-i18n="core3-title">3. Mem0 记忆层</div>
+          <div class="core-desc" data-i18n="core3-desc">
+            AI 记住每次对话、用户偏好及项目脉络。无需每次重新交代背景，AI 越用越懂团队，提供个性化且连贯的交互体验。
+          </div>
+        </div>
+        <div class="core-card">
+          <div class="core-icon">💬</div>
+          <div class="core-badge">telegram-bot.service</div>
+          <div class="core-title" data-i18n="core4-title">4. Telegram Bot 接口</div>
+          <div class="core-desc" data-i18n="core4-desc">
+            通过熟悉的 Telegram 聊天窗口与 AI 交互。无需学习新工具，支持随时随地（含移动端）发问，降低使用门槛。
+          </div>
+        </div>
+      </div>
+
+      <h3 data-i18n="h3-why">为什么选择这套架构？</h3>
+      <table>
+        <tr>
+          <th data-i18n="th-adv">优势</th>
+          <th data-i18n="th-desc">说明</th>
+        </tr>
+        <tr class="benefit-good">
+          <td data-i18n="adv1">合规无虞</td>
+          <td data-i18n="adv1-desc">敏感数据（MNPI、客户资料、财务数字）不出机房，满足严格信息安全要求</td>
+        </tr>
+        <tr class="benefit-good">
+          <td data-i18n="adv2">零边际成本</td>
+          <td data-i18n="adv2-desc">一次硬件投资，后续无限次使用，不按 Token 计费</td>
+        </tr>
+        <tr class="benefit-good">
+          <td data-i18n="adv3">开箱即用</td>
+          <td data-i18n="adv3-desc">硬件、软件、模型、配置一体化交付，节省自建技术栈工程成本</td>
+        </tr>
+        <tr class="benefit-good">
+          <td data-i18n="adv4">可成长</td>
+          <td data-i18n="adv4-desc">模块化架构预留升级空间，可随团队规模扩展</td>
+        </tr>
+      </table>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- Debug -->
+    <section id="debug">
+      <h2 data-i18n="h2-debug">调试命令</h2>
+
+      <h3 data-i18n="h3-logs">实时查看服务日志</h3>
+      <div class="debug-grid">
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">vllm</span>
+            <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">复制</button>
+          </div>
+          <pre><code>journalctl -u vllm.service -f</code></pre>
+        </div>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">rerank</span>
+            <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">复制</button>
+          </div>
+          <pre><code>journalctl -u rerank.service -f</code></pre>
+        </div>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">embedding</span>
+            <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">复制</button>
+          </div>
+          <pre><code>journalctl -u embedding.service -f</code></pre>
+        </div>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">mem0</span>
+            <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">复制</button>
+          </div>
+          <pre><code>journalctl -u mem0.service -f</code></pre>
+        </div>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">telegram-bot</span>
+            <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">复制</button>
+          </div>
+          <pre><code>journalctl -u telegram-bot.service -f</code></pre>
+        </div>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang" data-i18n="lbl-portcheck">端口检查</span>
+            <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">复制</button>
+          </div>
+          <pre><code>netstat | grep 8880</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- Services -->
+    <section id="services">
+      <h2 data-i18n="h2-services">服务管理参考</h2>
+
+      <!-- vllm -->
+      <div class="service-section">
+        <div class="service-header">
+          <span class="service-name">vllm.service</span>
+          <span class="service-model">Qwen3.6-35b-a3b</span>
+        </div>
+        <div class="service-body">
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">复制</button>
+            </div>
+            <pre><code>sudo vim <span class="cmd-path">/etc/systemd/system/vllm.service</span>
+
+sudo <span class="cmd-keyword">systemctl</span> daemon-reload
+<span class="cmd-keyword">systemctl</span> status vllm.service
+<span class="cmd-keyword">systemctl</span> start vllm.service
+<span class="cmd-keyword">systemctl</span> stop vllm.service
+<span class="cmd-keyword">systemctl</span> enable vllm.service
+<span class="cmd-keyword">systemctl</span> disable vllm.service</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- rerank -->
+      <div class="service-section">
+        <div class="service-header">
+          <span class="service-name">rerank.service</span>
+          <span class="service-model">bge-reranker-large</span>
+        </div>
+        <div class="service-body">
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">复制</button>
+            </div>
+            <pre><code>sudo vim <span class="cmd-path">/etc/systemd/system/rerank.service</span>
+
+<span class="cmd-comment" data-i18n="cmt-chmod"># 确保启动脚本有执行权限</span>
+chmod +x <span class="cmd-path">/usr/local/abs-ai/bge-reranker-api/start.sh</span>
+
+sudo <span class="cmd-keyword">systemctl</span> daemon-reload
+sudo <span class="cmd-keyword">systemctl</span> enable rerank.service
+sudo <span class="cmd-keyword">systemctl</span> start rerank.service
+sudo <span class="cmd-keyword">systemctl</span> status rerank.service</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- embedding -->
+      <div class="service-section">
+        <div class="service-header">
+          <span class="service-name">embedding.service</span>
+          <span class="service-model">multilingual-e5-large</span>
+        </div>
+        <div class="service-body">
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">复制</button>
+            </div>
+            <pre><code>sudo vim <span class="cmd-path">/etc/systemd/system/embedding.service</span>
+
+sudo <span class="cmd-keyword">systemctl</span> daemon-reload
+<span class="cmd-keyword">systemctl</span> status embedding.service
+<span class="cmd-keyword">systemctl</span> start embedding.service
+<span class="cmd-keyword">systemctl</span> stop embedding.service
+<span class="cmd-keyword">systemctl</span> enable embedding.service
+<span class="cmd-keyword">systemctl</span> disable embedding.service</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- mem0 -->
+      <div class="service-section">
+        <div class="service-header">
+          <span class="service-name">mem0.service</span>
+          <span class="service-model">Memory Layer</span>
+        </div>
+        <div class="service-body">
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">复制</button>
+            </div>
+            <pre><code>sudo vim <span class="cmd-path">/etc/systemd/system/mem0.service</span>
+
+sudo <span class="cmd-keyword">systemctl</span> daemon-reload
+<span class="cmd-keyword">systemctl</span> status mem0.service
+<span class="cmd-keyword">systemctl</span> start mem0.service
+<span class="cmd-keyword">systemctl</span> stop mem0.service
+<span class="cmd-keyword">systemctl</span> enable mem0.service
+<span class="cmd-keyword">systemctl</span> disable mem0.service</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- telegram-bot -->
+      <div class="service-section">
+        <div class="service-header">
+          <span class="service-name">telegram-bot.service</span>
+          <span class="service-model">Telegram Bot</span>
+        </div>
+        <div class="service-body">
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">bash</span>
+              <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">复制</button>
+            </div>
+            <pre><code>sudo vim <span class="cmd-path">/etc/systemd/system/telegram-bot.service</span>
+
+sudo <span class="cmd-keyword">systemctl</span> daemon-reload
+<span class="cmd-keyword">systemctl</span> status telegram-bot.service
+<span class="cmd-keyword">systemctl</span> start telegram-bot.service
+<span class="cmd-keyword">systemctl</span> stop telegram-bot.service
+<span class="cmd-keyword">systemctl</span> enable telegram-bot.service
+<span class="cmd-keyword">systemctl</span> disable telegram-bot.service</code></pre>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+</div>
+
+<script src="theme.js"></script>
+<script src="guide-common.js"></script>
+<script src="setup-rtx-kb.js"></script>
+
+</body>
+</html>

@@ -33,8 +33,9 @@
       'result-empty':'Select your needs above to get a recommendation.',
       'result-link':'Explore →','also-consider':'Also consider:',
       'support-eye':'Support','support-h':"We're here to help.",
-      'support-eye-1':'Documentation','support-h-1':'Setup guides coming soon.',
-      'support-p-1':'Step-by-step documentation for setting up each platform will be available on our support page. Check back soon.',
+      'support-eye-1':'Documentation','support-h-1':'Step-by-step setup guides for every platform.',
+      'support-p-1':'Get your platform running — from unboxing to your first working AI service.',
+      'support-cta-1':'View Setup Guides <span>&rarr;</span>',
       'footer-meta':'<b>Newegg</b> AI Solutions · Private AI for Enterprise',
       'footer-nav-1':'Platforms','footer-nav-2':'Compare','footer-nav-3':'Support',
     },
@@ -66,42 +67,18 @@
       'result-empty':'请在上方选择需求，以获取推荐方案。',
       'result-link':'探索 →','also-consider':'也可考虑：',
       'support-eye':'支持服务','support-h':'我们随时为您服务。',
-      'support-eye-1':'文档资料','support-h-1':'安装指南即将上线。',
-      'support-p-1':'各平台的安装配置文档将在支持页面提供，敬请关注。',
+      'support-eye-1':'文档资料','support-h-1':'各平台的安装配置文档。',
+      'support-p-1':'从开箱到运行您的第一项 AI 服务，助您顺利完成部署。',
+      'support-cta-1':'查看安装指南 <span>&rarr;</span>',
       'footer-meta':'<b>Newegg</b> AI 解决方案 · 企业私有 AI',
       'footer-nav-1':'平台','footer-nav-2':'对比','footer-nav-3':'支持',
     },
   };
 
-  function t(key) {
-    var d = T[LANG] || T.en;
-    return d[key] !== undefined ? d[key] : (T.en[key] || key);
-  }
+  var t; // assigned once ProductI18n.init() below fires its first callback
 
   function loc(obj) {
     return typeof obj === 'object' ? (obj[LANG] || obj.en) : obj;
-  }
-
-  function applyLang(lang) {
-    LANG = lang;
-    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
-    document.querySelectorAll('[data-i18n]').forEach(function (el) {
-      var v = t(el.getAttribute('data-i18n'));
-      if (v !== undefined) el.textContent = v;
-    });
-    document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
-      var v = t(el.getAttribute('data-i18n-html'));
-      if (v !== undefined) el.innerHTML = v;
-    });
-    /* h1 first-text-node swap — avoids a wrapper span caught by .hero h1 span { color: accent } */
-    document.querySelectorAll('[data-i18n-h1]').forEach(function (el) {
-      var v = t(el.getAttribute('data-i18n-h1'));
-      if (v === undefined) return;
-      var node = el.firstChild;
-      while (node && node.nodeType !== 3) node = node.nextSibling;
-      if (node) node.nodeValue = v;
-    });
-    updateRec();
   }
 
   /* ---- Platform Finder ---- */
@@ -241,22 +218,11 @@
 
   /* ---- Language select ---- */
 
-  var LANG_MAP = { 'EN': 'en', '中文': 'zh' };
-  var langSel  = document.querySelector('.lang-select');
-
-  if (langSel) {
-    var saved = localStorage.getItem('lang') || 'en';
-    Array.from(langSel.options).forEach(function (o) {
-      if (LANG_MAP[o.value] === saved) langSel.value = o.value;
-    });
-    applyLang(saved);
-
-    langSel.addEventListener('change', function () {
-      var lang = LANG_MAP[this.value] || 'en';
-      localStorage.setItem('lang', lang);
-      applyLang(lang);
-    });
-  }
+  window.ProductI18n.init(T, function (lang, sharedT) {
+    LANG = lang;
+    t = sharedT;
+    updateRec();
+  });
 
   /* ---- Scroll reveal ---- */
 

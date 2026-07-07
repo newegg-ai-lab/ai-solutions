@@ -17,6 +17,7 @@
       <a href="#usecases" data-i18n="nav-2">Use Cases</a>
       <a href="#how" data-i18n="nav-3">How It Works</a>
       <a href="#hood" data-i18n="nav-4">Under the Hood</a>
+      <a href="setup-rtx.html" class="nav-cta" data-i18n="nav-5">Setup Guide</a>
     </nav>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="19.78" y1="4.22" x2="17.66" y2="6.34"/><line x1="6.34" y1="17.66" x2="4.22" y2="19.78"/></svg>
@@ -103,11 +104,13 @@
 <section class="band" id="get">
   <div class="wrap">
     <div class="eyebrow"><span class="num">01</span><span data-i18n="eye-1">What You Get</span></div>
+    <h2 data-i18n="h2-1">Six AI services, running entirely on your own hardware.</h2>
+    <p class="lede" data-i18n="lede-1">No cloud accounts to set up, no subscription fee. Models run locally the moment you turn it on.</p>
     <div class="benefits-grid">
 
       <div class="benefit-card" style="--card-glow:rgba(240,169,59,0.10);--card-bar:rgba(240,169,59,0.6);">
         <div class="watermark">💬</div>
-        <div class="benefit-title" data-i18n="b1-title">Personal AI Asistant ran locally</div>
+        <div class="benefit-title" data-i18n="b1-title">Personal AI Assistant ran locally</div>
         <div class="benefit-desc" data-i18n="b1-desc">Ask questions, get answers, draft content, and brainstorm ideas. Powered by an advanced AI model running entirely on your own hardware — not a distant server.</div>
       </div>
 
@@ -119,7 +122,7 @@
 
       <div class="benefit-card" style="--card-glow:rgba(139,92,246,0.10);--card-bar:rgba(139,92,246,0.6);">
         <div class="watermark">⚡</div>
-        <div class="benefit-title" data-i18n="b3-title">Remembers preferences & history</div>
+        <div class="benefit-title" data-i18n="b3-title">Remembers preferences &amp; history</div>
         <div class="benefit-desc" data-i18n="b3-desc">Your AI recalls past conversations and learns your preferences over time. No need to re-explain yourself every session. It picks up right where you left off.</div>
       </div>
 
@@ -149,39 +152,42 @@
 <section class="band" id="usecases">
   <div class="wrap">
     <div class="eyebrow"><span class="num">02</span><span data-i18n="eye-2">Real-World Use Cases</span></div>
+    <h2 data-i18n="h2-2">Where your private AI earns its place.</h2>
+    <p class="lede" data-i18n="lede-2">Common workflows that benefit from an always-on AI that never sends data outside your building.</p>
     <div class="uc-tab-list">
-      <button class="uc-tab active" data-tab="0" data-i18n="uc1-tag">Onboarding</button>
-      <button class="uc-tab" data-tab="1" data-i18n="uc2-tag">IT Support</button>
-      <button class="uc-tab" data-tab="2" data-i18n="uc3-tag">Incident Resolution</button>
+      <button class="uc-tab active" data-tab="0" data-i18n="uc7-tag">AI Filmmaking</button>
+      <button class="uc-tab" data-tab="1" data-i18n="uc3-tag">Incident Resolution</button>
+      <button class="uc-tab" data-tab="2" data-i18n="uc2-tag">IT Support</button>
       <button class="uc-tab" data-tab="3" data-i18n="uc4-tag">Legal &amp; Contracts</button>
-      <button class="uc-tab" data-tab="4" data-i18n="uc5-tag">Product Docs</button>
-      <button class="uc-tab" data-tab="5" data-i18n="uc6-tag">Training</button>
+      <button class="uc-tab" data-tab="4" data-i18n="uc1-tag">Onboarding</button>
+      <button class="uc-tab" data-tab="5" data-i18n="uc5-tag">Product Docs</button>
+      <button class="uc-tab" data-tab="6" data-i18n="uc6-tag">Training</button>
     </div>
 
-    <div class="uc-panel active" data-panel="0" style="--card-glow:rgba(240,169,59,0.10);--card-bar:rgba(240,169,59,0.5);">
-      <div class="uc-panel-icon">🧑‍💼</div>
+    <div class="uc-panel active" data-panel="0" style="--card-glow:rgba(236,72,153,0.10);--card-bar:rgba(236,72,153,0.5);">
+      <div class="uc-panel-icon">🎬</div>
       <div class="uc-panel-body">
-        <div class="uc-panel-tag" data-i18n="uc1-tag">Onboarding</div>
-        <div class="uc-panel-title" data-i18n="uc1-title">New hires get answers instantly</div>
-        <div class="uc-panel-desc" data-i18n="uc1-desc">Upload your employee handbook, policies, and benefits docs. New staff can ask questions through the RTX PRO 6000 Hub instead of waiting on HR.</div>
+        <div class="uc-panel-tag" data-i18n="uc7-tag">AI Filmmaking</div>
+        <div class="uc-panel-title" data-i18n="uc7-title">Generate and animate film shots on your own GPU</div>
+        <div class="uc-panel-desc" data-i18n="uc7-desc">Run a full local pipeline in ComfyUI — SDXL generates the still frames, ControlNet locks in poses and composition, AnimateDiff brings each shot to life, then upscaling and frame interpolation prep the clip before it lands in DaVinci Resolve. No render farm, no per-clip cloud fees.</div>
       </div>
     </div>
 
-    <div class="uc-panel" data-panel="1" style="--card-glow:rgba(88,198,214,0.10);--card-bar:rgba(88,198,214,0.5);">
-      <div class="uc-panel-icon">🖥️</div>
-      <div class="uc-panel-body">
-        <div class="uc-panel-tag" data-i18n="uc2-tag">IT Support</div>
-        <div class="uc-panel-title" data-i18n="uc2-title">Self service troubleshooting</div>
-        <div class="uc-panel-desc" data-i18n="uc2-desc">Index your internal runbooks and help articles. Staff resolve common issues on their own without having to ask IT or open a ticket.</div>
-      </div>
-    </div>
-
-    <div class="uc-panel" data-panel="2" style="--card-glow:rgba(139,92,246,0.10);--card-bar:rgba(139,92,246,0.5);">
+    <div class="uc-panel" data-panel="1" style="--card-glow:rgba(139,92,246,0.10);--card-bar:rgba(139,92,246,0.5);">
       <div class="uc-panel-icon">🚨</div>
       <div class="uc-panel-body">
         <div class="uc-panel-tag" data-i18n="uc3-tag">Incident Resolution</div>
         <div class="uc-panel-title" data-i18n="uc3-title">Log incidents for easy future fixes</div>
         <div class="uc-panel-desc" data-i18n="uc3-desc">After resolving an incident, document the solution, error codes, and prevention steps. The next time a similar issue hits, your AI surfaces the fix instantly.</div>
+      </div>
+    </div>
+
+    <div class="uc-panel" data-panel="2" style="--card-glow:rgba(88,198,214,0.10);--card-bar:rgba(88,198,214,0.5);">
+      <div class="uc-panel-icon">🖥️</div>
+      <div class="uc-panel-body">
+        <div class="uc-panel-tag" data-i18n="uc2-tag">IT Support</div>
+        <div class="uc-panel-title" data-i18n="uc2-title">Self service troubleshooting</div>
+        <div class="uc-panel-desc" data-i18n="uc2-desc">Index your internal runbooks and help articles. Staff resolve common issues on their own without having to ask IT or open a ticket.</div>
       </div>
     </div>
 
@@ -194,7 +200,16 @@
       </div>
     </div>
 
-    <div class="uc-panel" data-panel="4" style="--card-glow:rgba(56,189,248,0.10);--card-bar:rgba(56,189,248,0.5);">
+    <div class="uc-panel" data-panel="4" style="--card-glow:rgba(240,169,59,0.10);--card-bar:rgba(240,169,59,0.5);">
+      <div class="uc-panel-icon">🧑‍💼</div>
+      <div class="uc-panel-body">
+        <div class="uc-panel-tag" data-i18n="uc1-tag">Onboarding</div>
+        <div class="uc-panel-title" data-i18n="uc1-title">New hires get answers instantly</div>
+        <div class="uc-panel-desc" data-i18n="uc1-desc">Upload your employee handbook, policies, and benefits docs. New staff can ask questions through the RTX PRO 6000 Hub instead of waiting on HR.</div>
+      </div>
+    </div>
+
+    <div class="uc-panel" data-panel="5" style="--card-glow:rgba(56,189,248,0.10);--card-bar:rgba(56,189,248,0.5);">
       <div class="uc-panel-icon">📖</div>
       <div class="uc-panel-body">
         <div class="uc-panel-tag" data-i18n="uc5-tag">Product Docs</div>
@@ -203,7 +218,7 @@
       </div>
     </div>
 
-    <div class="uc-panel" data-panel="5" style="--card-glow:rgba(34,197,94,0.10);--card-bar:rgba(34,197,94,0.5);">
+    <div class="uc-panel" data-panel="6" style="--card-glow:rgba(34,197,94,0.10);--card-bar:rgba(34,197,94,0.5);">
       <div class="uc-panel-icon">🎓</div>
       <div class="uc-panel-body">
         <div class="uc-panel-tag" data-i18n="uc6-tag">Training</div>
@@ -218,6 +233,8 @@
 <section class="band" id="how">
   <div class="wrap">
     <div class="eyebrow"><span class="num">03</span><span data-i18n="eye-3">How It Works</span></div>
+    <h2 data-i18n="h2-3">Ask, reason, respond — all on your machine.</h2>
+    <p class="lede" data-i18n="lede-3">A question goes in, the AI reasons through it, and a private answer streams back. Nothing leaves the box.</p>
     <div class="flow-box">
       <div class="flow-row flow-row-buyer">
 
@@ -260,9 +277,11 @@
 <section class="band" id="hood">
   <div class="wrap">
     <div class="eyebrow"><span class="num">04</span><span data-i18n="eye-4">Under the Hood</span></div>
+    <h2 data-i18n="h2-4">The actual stack.</h2>
+    <p class="lede" data-i18n="lede-4">The hardware and software stack behind every response.</p>
     <div class="hood">
       <table class="spec">
-        <thead><tr><th colspan="2">Hardware</th></tr></thead>
+        <thead><tr><th colspan="2" data-i18n="spec-hw">Hardware</th></tr></thead>
         <tbody>
           <tr><td class="k">GPU</td><td class="v">NVIDIA RTX PRO 6000 Blackwell</td></tr>
           <tr><td class="k">VRAM</td><td class="v">96 GB GDDR7</td></tr>
@@ -289,6 +308,8 @@
 <section class="band">
   <div class="wrap">
     <div class="eyebrow"><span class="num">05</span><span data-i18n="eye-5">Request Flow</span></div>
+    <h2 data-i18n="h2-5">From your phone to a finished answer.</h2>
+    <p class="lede" data-i18n="lede-5">Every hop traced step by step — Telegram, the hub, the model, and back.</p>
     <div class="flow-box">
       <div class="flow-row flow-row-sm">
         <div class="flow-node">
@@ -329,6 +350,8 @@
 <section class="band">
   <div class="wrap">
     <div class="eyebrow"><span class="num">06</span><span data-i18n="eye-6">Architecture Details</span></div>
+    <h2 data-i18n="h2-6">The full system, laid out.</h2>
+    <p class="lede" data-i18n="lede-6">Service boundaries, message paths, and every component in one diagram.</p>
     <a href="flow-diagram.html" class="mobile-section">
       <div style="display:flex;align-items:center;gap:16px;flex:1;">
         <div style="width:52px;height:52px;border-radius:6px;background:rgba(240,169,59,0.1);border:1px solid rgba(240,169,59,0.2);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">📊</div>
@@ -356,6 +379,7 @@
 </footer>
 
 <script src="theme.js"></script>
+<script src="product-i18n.js"></script>
 <script src="rtx.js"></script>
 <script>
 (function(){

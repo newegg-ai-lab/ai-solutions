@@ -1,5 +1,4 @@
 ﻿(function () {
-  var LANG = 'en';
   var T = {
     en: {
       'nav-1':'Use Cases','nav-2':'Features','nav-3':'How It Works','nav-4':'Benefits','nav-5':'Hardware',
@@ -9,6 +8,16 @@
       'stat-lbl-1':'AI Modes','stat-lbl-2':'On-Device / Private',
       'stat-val-3':'Low Cost','stat-lbl-3':'No Cloud Fees · Low Total Hardware Cost','stat-lbl-4':'Cloud Dependencies',
       'eye-1':'Real-World Use Cases','eye-2':'What You Get','eye-3':'How It Works','eye-4':'Key Benefits','eye-5':'Hardware & Models',
+      'h2-1':'Six ways Hailo Hub earns its place.',
+      'h2-2':'Four modes. One app. Zero cloud.',
+      'h2-3':'Input in, answer out — all on the NPU.',
+      'h2-4':'Private by design. No compromise.',
+      'h2-5':'Everything bundled inside the box.',
+      'lede-1':'On-device vision, speech, and chat solving real operational problems — no cloud required.',
+      'lede-2':'Chat, vision, object detection, and speech transcription — all bundled, all on-device.',
+      'lede-3':'Your request routes through the Hailo-10H NPU and streams back instantly, without touching a server.',
+      'lede-4':'No API keys, no cloud subscriptions, no monthly bill. Everything runs inside your Windows PC.',
+      'lede-5':'The accelerator chip, runtime stack, and every model — preloaded and ready.',
       'uc1-title':'Touchless Returns Triage',
       'uc1-desc':'A returned item arrives and gets automatically scanned for damage, labeled, and routed — all before a human touches it. Damage is detected visually, the RMA number is read off the label, and the system decides where it goes.',
       'uc2-title':'Package Integrity Gate',
@@ -48,6 +57,16 @@
       'stat-lbl-1':'AI 模式','stat-lbl-2':'本地 / 私有',
       'stat-val-3':'低成本','stat-lbl-3':'无云端费用 · 极低硬件成本','stat-lbl-4':'云端依赖',
       'eye-1':'真实应用场景','eye-2':'功能介绍','eye-3':'工作原理','eye-4':'核心优势','eye-5':'硬件与模型',
+      'h2-1':'Hailo Hub 发挥价值的六种方式。',
+      'h2-2':'四种模式，一个应用，零云端。',
+      'h2-3':'输入进，答案出——全部在 NPU 上处理。',
+      'h2-4':'私密设计，不妥协。',
+      'h2-5':'盒子内置的一切。',
+      'lede-1':'本地视觉、语音与对话 AI 解决实际运营问题——无需云端。',
+      'lede-2':'对话、视觉、目标检测与语音转录——全部内置，全部本地运行。',
+      'lede-3':'您的请求经 Hailo-10H NPU 处理后即时流式返回，无需触及服务器。',
+      'lede-4':'无 API 密钥，无云端订阅，无月费。一切在您的 Windows PC 内部运行。',
+      'lede-5':'加速器芯片、运行时栈与每个模型——预装就绪。',
       'uc1-title':'退货无人化分拣',
       'uc1-desc':'退回商品自动扫描损坏情况、贴标并路由分流——全程无需人工介入。视觉检测损坏、读取 RMA 标签编号，系统自动决定商品去向。',
       'uc2-title':'包裹完整性检测关卡',
@@ -81,25 +100,5 @@
     }
   };
 
-  function t(key) { var d=T[LANG]||T.en; return d[key]!==undefined?d[key]:(T.en[key]||key); }
-
-  function applyLang(lang) {
-    LANG = lang;
-    document.documentElement.lang = lang==='zh'?'zh-CN':'en';
-    document.querySelectorAll('[data-i18n]').forEach(function(el){
-      var v=t(el.getAttribute('data-i18n')); if(v!==undefined) el.textContent=v;
-    });
-    document.querySelectorAll('[data-i18n-html]').forEach(function(el){
-      var v=t(el.getAttribute('data-i18n-html')); if(v!==undefined) el.innerHTML=v;
-    });
-  }
-
-  var LANG_MAP={'EN':'en','中文':'zh'};
-  var langSel=document.querySelector('.lang-select');
-  if(langSel){
-    var saved=localStorage.getItem('lang')||'en';
-    Array.from(langSel.options).find(function(o){ if(LANG_MAP[o.value]===saved){langSel.value=o.value;return true;} });
-    applyLang(saved);
-    langSel.addEventListener('change',function(){ var l=LANG_MAP[this.value]||'en'; localStorage.setItem('lang',l); applyLang(l); });
-  } else { applyLang(localStorage.getItem('lang')||'en'); }
+  window.ProductI18n.init(T);
 })();

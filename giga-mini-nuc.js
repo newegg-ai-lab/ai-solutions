@@ -1,5 +1,4 @@
 ﻿(function () {
-  var LANG = 'en';
   var T = {
     en: {
       'nav-1':'Capabilities','nav-2':'Where it fits','nav-3':'How it works','nav-4':'Under the hood',
@@ -51,6 +50,7 @@
       'eng-gpu':'<b>Arc · 21.7 GB</b> · Vulkan · fast chat',
       'eng-npu':'<b>~13 TOPS</b> · OpenVINO · low-power lane',
       'spec-mem':'28 GB, shared across all three engines',
+      'spec-hw':'Hardware',
       'stack-h':'Software services','svc-ui-sub':'chat + engine select',
       'pipe-html':'<b>request flow</b><br>browser → web UI <b>:8080</b><br>→ <b>:11434</b> Ollama → GPU  <span style="color:var(--faint)">|</span>  <b>:11435</b> OpenVINO → NPU<br>→ stream tokens back',
       'footer-meta':'Runs on <b>Intel Core Ultra 5 225H</b> · Ubuntu 24.04 · built local',
@@ -106,6 +106,7 @@
       'eng-gpu':'<b>Arc · 21.7 GB</b> · Vulkan · 快速对话',
       'eng-npu':'<b>~13 TOPS</b> · OpenVINO · 低功耗通道',
       'spec-mem':'28 GB，三引擎共享',
+      'spec-hw':'硬件',
       'stack-h':'软件服务','svc-ui-sub':'对话 + 引擎选择',
       'pipe-html':'<b>请求流程</b><br>browser → web UI <b>:8080</b><br>→ <b>:11434</b> Ollama → GPU  <span style="color:var(--faint)">|</span>  <b>:11435</b> OpenVINO → NPU<br>→ 流式返回',
       'footer-meta':'搭载 <b>Intel Core Ultra 5 225H</b> · Ubuntu 24.04 · 本地构建',
@@ -113,34 +114,5 @@
     }
   };
 
-  function t(key) { var d = T[LANG] || T.en; return d[key] !== undefined ? d[key] : (T.en[key] || key); }
-
-  function applyLang(lang) {
-    LANG = lang;
-    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
-    document.querySelectorAll('[data-i18n]').forEach(function(el) {
-      var v = t(el.getAttribute('data-i18n'));
-      if (v !== undefined) el.textContent = v;
-    });
-    document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
-      var v = t(el.getAttribute('data-i18n-html'));
-      if (v !== undefined) el.innerHTML = v;
-    });
-  }
-
-  var LANG_MAP = { 'EN': 'en', '中文': 'zh' };
-  var langSel = document.querySelector('.lang-select');
-  if (langSel) {
-    var saved = localStorage.getItem('lang') || 'en';
-    var match = Array.from(langSel.options).find(function(o) { return LANG_MAP[o.value] === saved; });
-    if (match) langSel.value = match.value;
-    applyLang(saved);
-    langSel.addEventListener('change', function() {
-      var lang = LANG_MAP[this.value] || 'en';
-      localStorage.setItem('lang', lang);
-      applyLang(lang);
-    });
-  } else {
-    applyLang(localStorage.getItem('lang') || 'en');
-  }
+  window.ProductI18n.init(T);
 })();

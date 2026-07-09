@@ -108,7 +108,7 @@
     },
     rtx: {
       label:  { en: 'Enterprise AI · Recommended', zh: '企业 AI · 推荐方案' },
-      name:   'RTX PRO 6000 Hub',
+      name:   'Private AI & KB',
       reason: { en: 'Your workload needs serious compute — multi-user access, 70B+ models, RAG pipelines, and image generation, all on-premise.',
                 zh: '您的工作负载需要强力算力——多用户访问、70B+ 大模型、RAG 管道与图像生成，全部本地运行。' },
       href:   'rtx.html',

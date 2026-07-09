@@ -1,6 +1,7 @@
 window.GuideI18n = {
-  init: function (T) {
-    var LANG = 'en';
+  init: function (T, defaultLang) {
+    defaultLang = defaultLang || 'en';
+    var LANG = defaultLang;
 
     function t(key) { var d = T[LANG] || T.en; return d[key] !== undefined ? d[key] : (T.en[key] || key); }
 
@@ -15,23 +16,28 @@ window.GuideI18n = {
       });
     }
 
-    window.copyCode = function (btn) {
+    function copyCode(btn) {
       var pre = btn.closest('.code-block').querySelector('pre');
       var text = pre.innerText;
       navigator.clipboard.writeText(text).then(function () {
         btn.textContent = t('copied');
         setTimeout(function () { btn.textContent = t('copy'); }, 1500);
       });
-    };
+    }
+
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('.copy-btn');
+      if (btn) copyCode(btn);
+    });
 
     var LANG_MAP = { 'EN': 'en', '中文': 'zh' };
     var langSel = document.querySelector('.lang-select');
     if (langSel) {
-      var saved = localStorage.getItem('lang') || 'en';
+      var saved = localStorage.getItem('lang') || defaultLang;
       Array.from(langSel.options).find(function (o) { if (LANG_MAP[o.value] === saved) { langSel.value = o.value; return true; } });
       applyLang(saved);
       langSel.addEventListener('change', function () { var l = LANG_MAP[this.value] || 'en'; localStorage.setItem('lang', l); applyLang(l); });
-    } else { applyLang(localStorage.getItem('lang') || 'en'); }
+    } else { applyLang(localStorage.getItem('lang') || defaultLang); }
 
     var sections = document.querySelectorAll('section[id]');
     var navLinks = document.querySelectorAll('.sidebar nav a');

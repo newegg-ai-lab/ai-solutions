@@ -3,7 +3,7 @@
   var T = {
     en: {
       'nav-back':'← All Setup Guides',
-      'hero-h1':'RTX PRO 6000 <span>Setup Guides</span>',
+      'hero-h1':'Private AI & KB <span>Setup Guides</span>',
       'hero-sub-1':'Pick your use case, then the path that matches how your unit shipped.',
       'pill-preloaded':'Pre-Loaded — everything installed',
       'pill-fresh':'Fresh Hardware — manual install',
@@ -18,6 +18,7 @@
       'fresh-title':'Manual install from a bare machine',
       'kb-fresh-desc':'Setting up the LLM, Onyx, reranker, embedding, and memory services from scratch on unconfigured hardware.',
       'kb-fresh-cta':'Open Guide <span>&rarr;</span>',
+      'kb-installer-sublink':'Quick Download Guide →',
       'coming-soon':'Coming Soon',
       'g2-eyebrow':'AI Filmmaking',
       'g2-title':'The ComfyUI pipeline — SDXL, ControlNet, and AnimateDiff',
@@ -27,11 +28,11 @@
       'film-pre-cta':'Open Guide <span>&rarr;</span>',
       'film-fresh-desc':'Install PyTorch, ComfyUI, ControlNet, AnimateDiff, and the upscaling/interpolation nodes from scratch.',
       'film-fresh-cta':'Open Guide <span>&rarr;</span>',
-      'footer-meta':'<b>RTX PRO 6000 Hub</b> &middot; Setup Guides',
+      'footer-meta':'<b>Private AI & KB</b> &middot; Setup Guides',
     },
     zh: {
       'nav-back':'← 全部安装指南',
-      'hero-h1':'RTX PRO 6000 <span>安装指南</span>',
+      'hero-h1':'Private AI & KB <span>安装指南</span>',
       'hero-sub-1':'先选择您的使用场景，再选择与设备到货方式匹配的安装路径。',
       'pill-preloaded':'预装机型 — 已完成安装',
       'pill-fresh':'全新硬件 — 需手动安装',
@@ -46,6 +47,7 @@
       'fresh-title':'在裸机上手动安装',
       'kb-fresh-desc':'在未配置的硬件上从零搭建 LLM、Onyx、重排序、向量嵌入与记忆服务。',
       'kb-fresh-cta':'查看指南 <span>&rarr;</span>',
+      'kb-installer-sublink':'快速下载指南 →',
       'coming-soon':'即将上线',
       'g2-eyebrow':'AI 影视制作',
       'g2-title':'ComfyUI 流水线——SDXL、ControlNet 与 AnimateDiff',
@@ -55,7 +57,7 @@
       'film-pre-cta':'查看指南 <span>&rarr;</span>',
       'film-fresh-desc':'从零安装 PyTorch、ComfyUI、ControlNet、AnimateDiff 及放大补帧节点。',
       'film-fresh-cta':'查看指南 <span>&rarr;</span>',
-      'footer-meta':'<b>RTX PRO 6000 Hub</b> &middot; 安装指南',
+      'footer-meta':'<b>Private AI & KB</b> &middot; 安装指南',
     }
   };
 

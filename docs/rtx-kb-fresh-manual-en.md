@@ -255,7 +255,7 @@ git clone https://github.com/onyx-dot-app/onyx.git
 cd onyx/deployment/docker_compose
 cp env.template .env
 vim .env   # at minimum set USER_AUTH_SECRET (a random string)
-docker compose -f docker-compose.prod.yml up -d
+docker compose -f docker-compose.yml up -d
 ```
 
 Visiting `http://<host-ip>:3000` should show the Onyx login/setup page.

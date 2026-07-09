@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RTX PRO 6000 Hub — Your Private AI, Always On</title>
-<link rel="stylesheet" href="style.css" />
+<title>Private AI & KB — Your Private AI, Always On</title>
+<link rel="stylesheet" href="css/style.css" />
 <script>(function(){var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t||'dark');})();</script>
 </head>
 <body>
@@ -34,7 +34,7 @@
   <div class="wrap hero-split">
     <div class="hero-content">
       <div class="hero-badge" data-i18n="hero-badge">Included with Your Purchase</div>
-      <h1>RTX PRO <span>6000 Hub</span></h1>
+      <h1>Private <span>AI &amp; KB</span></h1>
       <div class="hero-sub" data-i18n="hero-sub-1">Your own private AI — no subscriptions, no data leaks, always on.</div>
       <div class="hero-sub" style="font-size:0.9rem;margin-top:6px;" data-i18n="hero-sub-2">Multi-user · Remembers Everything · Fully private · Always on</div>
       <div class="hero-hardware">
@@ -166,6 +166,8 @@
           <div class="mock-caption">4. Access from anywhere via Telegram</div>
         </div>
 
+        <button class="mock-arrow mock-arrow-prev" id="heroPrev" aria-label="Previous slide">&#8249;</button>
+        <button class="mock-arrow mock-arrow-next" id="heroNext" aria-label="Next slide">&#8250;</button>
       </div>
       <div class="mock-dots" id="heroCarouselDots">
         <button class="mock-nav-dot active" data-goto="0" aria-label="Slide 1"></button>
@@ -196,11 +198,164 @@
   </div>
 
 <!-- Overview graphic -->
-<section class="band" style="padding-bottom:0;">
+<section class="band">
   <div class="wrap">
     <div class="eyebrow"><span class="num">00</span><span data-i18n="eye-0">Why You Need This</span></div>
     <h2 data-i18n="h2-0" style="margin-bottom:32px;">Your private AI — wherever life happens.</h2>
-    <img src="images/rtx-overview-hero.png" alt="Your Private AI, Your Knowledge, Your Data — the RTX PRO 6000 Hub running Qwen LLM and the Onyx knowledge base, accessible from school, office, home, and park while all data stays on-premises." class="overview-hero-img" />
+    <img src="images/rtx-overview-hero.png" alt="Your Private AI, Your Knowledge, Your Data — the Private AI & KB running Qwen LLM and the Onyx knowledge base, accessible from school, office, home, and park while all data stays on-premises." class="overview-hero-img" />
+  </div>
+</section>
+
+<!-- Our Story -->
+<section class="story-section">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">★</span><span data-i18n="story-eyebrow">Our Story</span></div>
+    <h2 data-i18n="story-title">How a private AI knowledge base grew, built on the NVIDIA RTX PRO 6000.</h2>
+    <p class="lede" data-i18n="story-intro">Many successful AI projects don't start with a grand architecture diagram — they start with a small problem that happens every single day. Ours is one of those stories.</p>
+
+    <div class="story-carousel-wrap">
+      <div class="story-carousel" id="storyCarousel">
+
+        <div class="story-slide active" data-slide="0">
+          <div class="story-slide-head">
+            <div class="story-slide-num">01</div>
+            <h3 data-i18n="story-ch1-h">Why did a simple question take fifteen minutes to answer?</h3>
+          </div>
+          <div class="story-slide-body">
+            <p data-i18n="story-ch1-p1">Every day, our Customer Service (CS) team fielded a steady stream of customer questions. The workflow was always the same: open the internal Wiki, search for keywords, open a few different documents, compare versions, find the answer, then reply.</p>
+            <p data-i18n="story-ch1-p2">None of it was technically hard — it just ate up a huge amount of time. Worse, the same question could turn up different answers depending on who went looking, and as the company's knowledge kept growing, the Wiki kept growing right along with it.</p>
+            <p data-i18n-html="story-ch1-p3">So we asked ourselves: <strong style="color:var(--text);">what if AI could search our internal knowledge for us, instead of making people dig through the Wiki?</strong> We didn't need a chatbot that knew everything — we needed one that only knew our company.</p>
+          </div>
+        </div>
+
+        <div class="story-slide" data-slide="1">
+          <div class="story-slide-head">
+            <div class="story-slide-num">02</div>
+            <h3 data-i18n="story-ch2-h">Looking for an AI Search built for the enterprise</h3>
+          </div>
+          <div class="story-slide-body">
+            <p data-i18n-html="story-ch2-p1">With that in mind, we went looking for a solution — and found an excellent open-source project, <a href="https://github.com/onyx-dot-app/onyx" target="_blank" rel="noopener">Onyx</a>: an AI Search + Knowledge Base platform built for enterprises. It indexes internal documents and uses RAG (Retrieval-Augmented Generation) to answer questions grounded in company knowledge. It was almost exactly what we'd been looking for.</p>
+            <p data-i18n="story-ch2-p2">But a new problem came up fast: our Wiki, product materials, design docs, and business workflows are all core company assets, and none of it could ever go to a public cloud.</p>
+            <p data-i18n-html="story-ch2-p3">So we made a decision: <strong style="color:var(--text);">the entire AI system had to run 100% inside the company.</strong></p>
+          </div>
+        </div>
+
+        <div class="story-slide" data-slide="2">
+          <div class="story-slide-head">
+            <div class="story-slide-num">03</div>
+            <h3 data-i18n="story-ch3-h">Why we landed on the NVIDIA RTX PRO 6000</h3>
+          </div>
+          <div class="story-slide-body">
+            <p data-i18n-html="story-ch3-p1">If the data couldn't leave the company, the LLM couldn't either. After several rounds of testing, we settled on <a href="https://huggingface.co/Qwen/Qwen3.6-35B-A3B" target="_blank" rel="noopener">Qwen 3.6 35B</a>, for a few simple reasons:</p>
+            <ul style="list-style:disc; padding-left:20px; color:var(--muted); font-size:0.9rem; line-height:1.8; margin-bottom:16px;">
+              <li data-i18n="story-ch3-li1">Excellent Chinese-language ability</li>
+              <li data-i18n="story-ch3-li2">Multimodal support</li>
+              <li data-i18n="story-ch3-li3">Roughly 250K tokens of long context</li>
+              <li data-i18n="story-ch3-li4">A strong fit for enterprise knowledge Q&amp;A</li>
+            </ul>
+            <p data-i18n-html="story-ch3-p2">But once we actually tried to deploy it, the real challenge turned out to be bigger than expected — running a 35B model at FP16 precision with very long context needs a huge amount of VRAM to cache both the model and the context, more than an ordinary GPU can hold. After evaluating our options, we landed on the <a href="https://www.newegg.com/p/pl?d=RTX+PRO+6000" target="_blank" rel="noopener">NVIDIA RTX PRO 6000</a>. Its large VRAM capacity and strong AI inference performance run Qwen 35B smoothly, while still supporting long context, multiple concurrent users, and enterprise-grade retrieval.</p>
+            <p data-i18n-html="story-ch3-p3">For us, the RTX PRO 6000 wasn't just about faster compute — <strong style="color:var(--text);">it's what actually made enterprise-grade private AI something we could ship.</strong> Every piece of data, every model, every inference run — all inside our own servers. Truly 100% on-premises.</p>
+          </div>
+        </div>
+
+        <div class="story-slide" data-slide="3">
+          <div class="story-slide-head">
+            <div class="story-slide-num">04</div>
+            <h3 data-i18n="story-ch4-h">The AI was smart — but it kept forgetting</h3>
+          </div>
+          <div class="story-slide-body">
+            <p data-i18n="story-ch4-p1">Once the system launched, the CS team started using it every day, and feedback was strong overall. Then one day, a teammate told us something:</p>
+            <p class="story-quote" data-i18n="story-ch4-q1">"The AI's answers are great, but it doesn't remember what we already talked about."</p>
+            <p data-i18n="story-ch4-p2">The model supported roughly 250K tokens of context, but context is always finite. As conversations got longer, important early details quietly got pushed out and forgotten — users had to keep re-explaining background, the AI kept re-learning the same question, and retrieval accuracy started slipping.</p>
+            <p data-i18n-html="story-ch4-p3">What was actually missing wasn't a bigger model. <strong style="color:var(--text);">It was long-term memory.</strong></p>
+          </div>
+        </div>
+
+        <div class="story-slide" data-slide="4">
+          <div class="story-slide-head">
+            <div class="story-slide-num">05</div>
+            <h3 data-i18n="story-ch5-h">Giving the AI long-term memory</h3>
+          </div>
+          <div class="story-slide-body">
+            <p data-i18n-html="story-ch5-p1">To make the AI a real work assistant, we went looking for a long-term memory solution and settled on the open-source project <a href="https://github.com/mem0ai/mem0" target="_blank" rel="noopener">Mem0</a>. Instead of depending on a limited context window, Mem0 holds onto what actually matters for the long run, like:</p>
+            <ul style="list-style:disc; padding-left:20px; color:var(--muted); font-size:0.9rem; line-height:1.8; margin-bottom:16px;">
+              <li data-i18n="story-ch5-li1">Project background</li>
+              <li data-i18n="story-ch5-li2">User preferences</li>
+              <li data-i18n="story-ch5-li3">Common business workflows</li>
+              <li data-i18n="story-ch5-li4">Past discussions and decisions</li>
+            </ul>
+            <p data-i18n="story-ch5-p2">After integrating Mem0, the whole knowledge-base experience changed noticeably. Users no longer had to re-explain project background every time — the AI understood what had already been discussed, and knew which information mattered most to this team. Answer accuracy improved clearly.</p>
+            <p class="story-quote" data-i18n="story-ch5-q1">"It really does feel more and more like a coworker who's been working alongside us the whole time."</p>
+            <p data-i18n="story-ch5-p3">That's the exact phrase a lot of CS teammates started using to describe it.</p>
+          </div>
+        </div>
+
+        <div class="story-slide" data-slide="5">
+          <div class="story-slide-head">
+            <div class="story-slide-num">06</div>
+            <h3 data-i18n="story-ch6-h">From the office, to anywhere</h3>
+          </div>
+          <div class="story-slide-body">
+            <p data-i18n="story-ch6-p1">Just when it seemed like the system was already working well, another CS teammate raised a new idea:</p>
+            <p class="story-quote" data-i18n="story-ch6-q1">"If I'm away from my desk, can I still reach our AI knowledge base?"</p>
+            <p data-i18n="story-ch6-p2">That question made us realize knowledge shouldn't be confined to the office. So we connected Telegram — now, whether at the office, at home, traveling, or on-site with a customer, a phone is all it takes to securely reach the company's internal AI.</p>
+            <p data-i18n-html="story-ch6-p3">Truly, <strong style="color:var(--text);">anywhere access.</strong></p>
+          </div>
+        </div>
+
+        <button class="story-arrow story-arrow-prev" id="storyPrev" aria-label="Previous chapter">&#8249;</button>
+        <button class="story-arrow story-arrow-next" id="storyNext" aria-label="Next chapter">&#8250;</button>
+      </div>
+
+      <div class="story-dots" id="storyDots">
+        <button class="story-dot active" data-goto="0" aria-label="Chapter 1"></button>
+        <button class="story-dot" data-goto="1" aria-label="Chapter 2"></button>
+        <button class="story-dot" data-goto="2" aria-label="Chapter 3"></button>
+        <button class="story-dot" data-goto="3" aria-label="Chapter 4"></button>
+        <button class="story-dot" data-goto="4" aria-label="Chapter 5"></button>
+        <button class="story-dot" data-goto="5" aria-label="Chapter 6"></button>
+      </div>
+    </div>
+
+    <h3 class="story-journey-heading" data-i18n="story-journey-h">From a knowledge base to an enterprise AI assistant</h3>
+    <p class="story-journey-lede" data-i18n="story-journey-p">Looking back, this project was never about chasing the newest AI technology — every upgrade came from a real need a user raised.</p>
+    <div class="story-journey">
+      <span class="story-journey-step" data-i18n="story-j1">Internal Wiki lookups</span>
+      <span class="story-journey-arrow">→</span>
+      <span class="story-journey-step" data-i18n="story-j2">AI Search</span>
+      <span class="story-journey-arrow">→</span>
+      <span class="story-journey-step" data-i18n="story-j3">Private KB</span>
+      <span class="story-journey-arrow">→</span>
+      <span class="story-journey-step" data-i18n="story-j4">Local LLM</span>
+      <span class="story-journey-arrow">→</span>
+      <span class="story-journey-step" data-i18n="story-j5">Long-term memory</span>
+      <span class="story-journey-arrow">→</span>
+      <span class="story-journey-step" data-i18n="story-j6">Mobile access</span>
+    </div>
+
+    <div class="story-closing">
+      <h3 data-i18n="story-closing-h">NVIDIA RTX PRO 6000 made all of this real</h3>
+      <p data-i18n="story-closing-p1">Today, our solution is no longer just an AI search system — it's grown into a complete, private enterprise AI platform. Running on the NVIDIA RTX PRO 6000, we've achieved:</p>
+      <ul class="story-achievements">
+        <li data-i18n="story-closing-li1">100% private deployment — company data never leaves the internal network</li>
+        <li data-i18n="story-closing-li2">Local LLM inference — Qwen 3.6 35B running stably for high-quality knowledge Q&amp;A</li>
+        <li data-i18n="story-closing-li3">An enterprise knowledge base (RAG) — a dedicated AI Search built on Onyx</li>
+        <li data-i18n="story-closing-li4">Long-term memory (Mem0) — the AI keeps hold of team knowledge and past experience</li>
+        <li data-i18n="story-closing-li5">Multi-user collaboration — many employees sharing one knowledge base</li>
+        <li data-i18n="story-closing-li6">Mobile access — reach the company AI anytime through Telegram</li>
+        <li data-i18n="story-closing-li7">Room to grow — a single foundation ready for whatever comes next</li>
+      </ul>
+    </div>
+
+    <div class="story-final">
+      <h3 data-i18n="story-final-h">One last thing</h3>
+      <p data-i18n="story-final-p1">If, at the start, all we wanted was to save the CS team a few minutes of digging through the Wiki —</p>
+      <p data-i18n="story-final-p2">then today, what we really want is to give every employee more time to solve problems, instead of hunting for answers.</p>
+      <p data-i18n-html="story-final-p3">AI's real value isn't just answering questions.<br>It's letting a company's knowledge actually stick, letting experience carry forward, and giving every employee an AI assistant they can actually trust.</p>
+      <p class="story-final-tagline" data-i18n="story-final-tagline">Our story isn't over yet.</p>
+      <p data-i18n="story-final-p4">We hope more companies join in — pushing private AI knowledge bases forward together, and helping AI become a real force behind enterprise digital transformation.</p>
+    </div>
+
   </div>
 </section>
 
@@ -294,7 +449,7 @@
               <span class="hub-badge hub-badge-lock">&#128274;</span>
               <span class="hub-badge hub-badge-shield">&#128737;</span>
             </div>
-            <div class="hub-tower-name">RTX PRO 6000 Hub</div>
+            <div class="hub-tower-name">Private AI & KB</div>
             <div class="hub-tagline" data-i18n="hub-tagline">100% Local — Nothing Ever Leaves Your Building</div>
           </div>
 
@@ -340,7 +495,7 @@
 
           <div class="hub-scene" data-scene="image">
             <div class="hub-scene-art hub-scene-imagegen">
-              <div class="hub-scene-prompt">&#10024; <span data-i18n="scene-image-prompt">"a mountain sunset"</span></div>
+              <div class="hub-scene-prompt">&#10024; <span data-i18n="scene-image-prompt">"a mountain lake"</span></div>
               <span class="hub-scene-arrow hub-scene-arrow-down">&#8595;</span>
               <div class="hub-scene-frame">🏞️</div>
             </div>
@@ -379,7 +534,7 @@
           <div class="hub-node-label" data-i18n="b5-title">Mobile Access Anytime</div>
         </div>
         <div class="hub-node" data-scene="private" tabindex="0" role="button" style="--node-glow:rgba(34,197,94,0.16);--node-bar:rgba(34,197,94,0.55);">
-          <div class="hub-node-icon">🪪</div>
+          <div class="hub-node-icon"><span style="display:inline-block;transform:translateY(-4px);">🪪</span></div>
           <div class="hub-node-label" data-i18n="b6-title">Data Stays Private</div>
         </div>
       </div>
@@ -444,7 +599,7 @@
       <div class="uc-panel-body">
         <div class="uc-panel-tag" data-i18n="uc1-tag">Onboarding</div>
         <div class="uc-panel-title" data-i18n="uc1-title">New hires get answers instantly</div>
-        <div class="uc-panel-desc" data-i18n="uc1-desc">Upload your employee handbook, policies, and benefits docs. New staff can ask questions through the RTX PRO 6000 Hub instead of waiting on HR.</div>
+        <div class="uc-panel-desc" data-i18n="uc1-desc">Upload your employee handbook, policies, and benefits docs. New staff can ask questions through Private AI & KB instead of waiting on HR.</div>
       </div>
     </div>
 
@@ -524,7 +679,7 @@
         <tbody>
           <tr><td class="k">GPU</td><td class="v">NVIDIA RTX PRO 6000 Blackwell</td></tr>
           <tr><td class="k">VRAM</td><td class="v">96 GB GDDR7</td></tr>
-          <tr><td class="k">Context</td><td class="v">128K tokens</td></tr>
+          <tr><td class="k">Context</td><td class="v">150K tokens</td></tr>
           <tr><td class="k">OS</td><td class="v">Windows</td></tr>
           <tr><td class="k">Access</td><td class="v">Browser · Telegram mobile</td></tr>
           <tr><td class="k">Users</td><td class="v">Multi-user · isolated memory per user</td></tr>
@@ -612,80 +767,13 @@
 
 <footer>
   <div class="wrap">
-    <span class="meta" data-i18n-html="footer-meta"><b>RTX PRO 6000 Hub</b> · Private AI · On-Premise</span>
+    <span class="meta" data-i18n-html="footer-meta"><b>Private AI & KB</b> · Private AI · On-Premise</span>
     <span class="note" data-i18n="footer-note">Powered by NVIDIA RTX Pro 6000</span>
   </div>
 </footer>
 
-<script src="theme.js"></script>
-<script src="product-i18n.js"></script>
-<script src="rtx.js"></script>
-<script>
-(function(){
-  var tabs = document.querySelectorAll('.uc-tab');
-  var panels = document.querySelectorAll('.uc-panel');
-  tabs.forEach(function(tab){
-    tab.addEventListener('click', function(){
-      tabs.forEach(function(t){ t.classList.remove('active'); });
-      panels.forEach(function(p){ p.classList.remove('active'); });
-      tab.classList.add('active');
-      document.querySelector('.uc-panel[data-panel="'+tab.dataset.tab+'"]').classList.add('active');
-    });
-  });
-})();
-
-(function () {
-  var carousel = document.getElementById('heroCarousel');
-  if (!carousel) return;
-  var slides = carousel.querySelectorAll('.mock-slide');
-  var dots = document.querySelectorAll('#heroCarouselDots .mock-nav-dot');
-  var current = 0;
-  var timer = null;
-
-  function goTo(i) {
-    current = (i + slides.length) % slides.length;
-    slides.forEach(function (s, idx) { s.classList.toggle('active', idx === current); });
-    dots.forEach(function (d, idx) { d.classList.toggle('active', idx === current); });
-  }
-
-  function next() { goTo(current + 1); }
-
-  function start() { timer = setInterval(next, 4000); }
-  function stop() { clearInterval(timer); }
-
-  dots.forEach(function (d) {
-    d.addEventListener('click', function () {
-      goTo(parseInt(d.dataset.goto, 10));
-      stop(); start();
-    });
-  });
-
-  carousel.addEventListener('mouseenter', stop);
-  carousel.addEventListener('mouseleave', start);
-
-  start();
-})();
-
-(function () {
-  var diagram = document.getElementById('hubDiagram');
-  if (!diagram) return;
-  var nodes = diagram.querySelectorAll('.hub-node[data-scene]');
-  var scenes = diagram.querySelectorAll('.hub-scene');
-
-  function showScene(key) {
-    scenes.forEach(function (s) { s.classList.toggle('active', s.dataset.scene === key); });
-    nodes.forEach(function (n) { n.classList.toggle('active', n.dataset.scene === key); });
-  }
-
-  nodes.forEach(function (n) {
-    n.addEventListener('click', function () {
-      showScene(n.classList.contains('active') ? 'default' : n.dataset.scene);
-    });
-    n.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); n.click(); }
-    });
-  });
-})();
-</script>
+<script src="js/theme.js"></script>
+<script src="js/product-i18n.js"></script>
+<script src="js/rtx.js"></script>
 </body>
 </html>

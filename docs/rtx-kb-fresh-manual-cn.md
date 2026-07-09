@@ -239,7 +239,7 @@ git clone https://github.com/onyx-dot-app/onyx.git
 cd onyx/deployment/docker_compose
 cp env.template .env
 vim .env   # 至少设置 USER_AUTH_SECRET（随机字符串）
-docker compose -f docker-compose.prod.yml up -d
+docker compose -f docker-compose.yml up -d
 ```
 
 访问 `http://<主机IP>:3000` 应能看到 Onyx 登录/初始化页面。

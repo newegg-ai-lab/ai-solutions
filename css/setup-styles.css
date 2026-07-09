@@ -188,7 +188,7 @@ body {
 /* Main content */
 .main {
   flex: 1;
-  max-width: 900px;
+  max-width: 1040px;
   margin: 0 auto;
   padding: 48px 56px;
 }
@@ -263,6 +263,9 @@ section h3 {
   background: linear-gradient(180deg, var(--accent), var(--accent2));
   border-radius: 3px 0 0 3px;
 }
+
+.step-card-link:hover { border-color: var(--accent); }
+.step-card-link .step-title, .step-card-link p { color: var(--text); }
 
 .step-card .step-num {
   font-size: 11px;
@@ -350,6 +353,27 @@ section h3 {
 .cmd-keyword { color: #89b4fa; }
 .cmd-path { color: #fab387; }
 .cmd-comment { color: #6c7086; font-style: italic; }
+
+/* GUI Installer callout */
+.installer-callout {
+  display: flex; align-items: center; gap: 24px;
+  background: var(--surface); border: 1px solid var(--accent2);
+  border-radius: 14px; padding: 28px 32px; margin: 20px 0 36px;
+  text-decoration: none; transition: border-color .2s, transform .2s;
+}
+.installer-callout:hover { border-color: var(--accent); transform: translateY(-1px); }
+.installer-callout-badge {
+  flex-shrink: 0; background: var(--accent2); color: #fff;
+  font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  padding: 6px 16px; border-radius: 20px;
+}
+.installer-callout-body { flex: 1; min-width: 0; }
+.installer-callout-title { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.installer-callout-desc { font-size: 15px; color: var(--text-muted); line-height: 1.55; margin: 0; }
+.installer-callout-cta {
+  flex-shrink: 0; font-family: var(--mono); font-size: 14px; font-weight: 600;
+  color: var(--accent2); white-space: nowrap;
+}
 
 /* Info box */
 .info-box {

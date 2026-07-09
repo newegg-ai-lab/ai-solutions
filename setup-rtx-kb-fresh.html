@@ -4,11 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ABS AI User Manual — Customer Self-Deployment Edition</title>
-  <link rel="stylesheet" href="setup-styles.css" />
-  <style>
-    .step-card-link:hover { border-color: var(--accent); }
-    .step-card-link .step-title, .step-card-link p { color: var(--text); }
-  </style>
+  <link rel="stylesheet" href="css/setup-styles.css" />
   <script>(function(){var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t||'dark');})();</script>
 </head>
 <body>
@@ -55,10 +51,20 @@
 
     <!-- Header -->
     <div class="page-header">
-      <div class="badge" data-i18n="hdr-badge">RTX PRO 6000 Hub · Fresh Hardware</div>
+      <div class="badge" data-i18n="hdr-badge">Private AI & KB · Fresh Hardware</div>
       <h1 data-i18n="hdr-h1">ABS AI User Manual</h1>
       <p data-i18n="hdr-p">Customer Self-Deployment Edition — deploy the full private AI stack from scratch on a brand-new Ubuntu host, starting with just the NVIDIA RTX PRO 6000 Blackwell 96GB card.</p>
     </div>
+
+    <!-- GUI Installer callout -->
+    <a class="installer-callout" href="setup-rtx-kb-installer.html">
+      <div class="installer-callout-badge" data-i18n="installer-badge">New</div>
+      <div class="installer-callout-body">
+        <div class="installer-callout-title" data-i18n="installer-title">Prefer a guided installer?</div>
+        <p class="installer-callout-desc" data-i18n="installer-desc">Skip the manual steps below — a point-and-click installer walks you through setup with a simple form, then handles the rest automatically.</p>
+      </div>
+      <span class="installer-callout-cta" data-i18n-html="installer-cta">See the Guided Installer <span>&rarr;</span></span>
+    </a>
 
     <!-- Overview -->
     <section id="overview">
@@ -109,8 +115,8 @@
       <table>
         <tr><th data-i18n="th-component">Component</th><th data-i18n="th-model">Model</th><th data-i18n="th-deployment">Deployment</th><th data-i18n="th-port">Port</th></tr>
         <tr><td data-i18n="row1-c">Local LLM</td><td>Qwen3.6-35B-A3B</td><td data-i18n="row1-d">systemctl (bare metal + Python venv + vLLM)</td><td>8880</td></tr>
-        <tr><td data-i18n="row2-c">Rerank</td><td>bge-reranker-large</td><td>Docker</td><td>8883</td></tr>
-        <tr><td data-i18n="row3-c">Embedding</td><td>multilingual-e5-large</td><td>Docker</td><td>8881</td></tr>
+        <tr><td data-i18n="row2-c">Rerank</td><td>bge-reranker-large</td><td data-i18n="row2-d">Docker</td><td>8883</td></tr>
+        <tr><td data-i18n="row3-c">Embedding</td><td>multilingual-e5-large</td><td data-i18n="row3-d">Docker</td><td>8881</td></tr>
         <tr><td data-i18n="row4-c">Mem0 memory layer + vLLM proxy</td><td>—</td><td data-i18n-html="row4-d">Docker (<code>qwen3-model-api</code> container)</td><td>8888</td></tr>
         <tr><td data-i18n="row5-c">Enterprise knowledge base RAG</td><td>Onyx</td><td data-i18n="row5-d">Docker (official compose)</td><td>3000</td></tr>
         <tr><td data-i18n="row6-c">Mobile entry point</td><td>Telegram Bot</td><td data-i18n="row6-d">Docker (long polling, no inbound port)</td><td>—</td></tr>
@@ -134,7 +140,7 @@
         <div class="code-block">
           <div class="code-header">
             <span class="code-lang">bash</span>
-            <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">Copy</button>
+            <button class="copy-btn" data-i18n="copy">Copy</button>
           </div>
           <pre><code>curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
 curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
@@ -148,7 +154,7 @@ sudo systemctl restart docker</code></pre>
         <div class="code-block">
           <div class="code-header">
             <span class="code-lang">bash</span>
-            <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">Copy</button>
+            <button class="copy-btn" data-i18n="copy">Copy</button>
           </div>
           <pre><code>docker run --rm --gpus all nvidia/cuda:12.4.0-base-ubuntu22.04 nvidia-smi</code></pre>
         </div>
@@ -168,7 +174,7 @@ sudo systemctl restart docker</code></pre>
         <div class="code-block">
           <div class="code-header">
             <span class="code-lang">bash</span>
-            <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">Copy</button>
+            <button class="copy-btn" data-i18n="copy">Copy</button>
           </div>
           <pre><code>sudo mkdir -p /usr/local/vllm_env /models
 sudo chown $USER:$USER /usr/local/vllm_env /models
@@ -184,7 +190,7 @@ pip install --upgrade pip</code></pre>
         <div class="code-block">
           <div class="code-header">
             <span class="code-lang">bash</span>
-            <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">Copy</button>
+            <button class="copy-btn" data-i18n="copy">Copy</button>
           </div>
           <pre><code>curl -LsSf https://hf.co/cli/install.sh | bash
 hf download Qwen/Qwen3.6-35B-A3B --local-dir /models/qwen3.6-35b-a3b</code></pre>
@@ -196,7 +202,7 @@ hf download Qwen/Qwen3.6-35B-A3B --local-dir /models/qwen3.6-35b-a3b</code></pre
         <div class="code-block">
           <div class="code-header">
             <span class="code-lang">bash</span>
-            <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">Copy</button>
+            <button class="copy-btn" data-i18n="copy">Copy</button>
           </div>
           <pre><code>pip install torch torchvision torchaudio \
   --index-url https://download.pytorch.org/whl/cu128 \
@@ -212,7 +218,7 @@ pip install transformers==5.0.0</code></pre>
         <div class="code-block">
           <div class="code-header">
             <span class="code-lang">bash</span>
-            <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">Copy</button>
+            <button class="copy-btn" data-i18n="copy">Copy</button>
           </div>
           <pre><code>sudo tee /usr/local/bin/start_vllm.sh &gt; /dev/null &lt;&lt;'EOF'
 #!/bin/bash
@@ -244,7 +250,7 @@ sudo chmod +x /usr/local/bin/start_vllm.sh</code></pre>
         <div class="code-block">
           <div class="code-header">
             <span class="code-lang">bash</span>
-            <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">Copy</button>
+            <button class="copy-btn" data-i18n="copy">Copy</button>
           </div>
           <pre><code>sudo tee /etc/systemd/system/vllm.service &gt; /dev/null &lt;&lt;'EOF'
 [Unit]
@@ -276,7 +282,7 @@ sudo systemctl status vllm.service</code></pre>
         <div class="code-block">
           <div class="code-header">
             <span class="code-lang">bash</span>
-            <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">Copy</button>
+            <button class="copy-btn" data-i18n="copy">Copy</button>
           </div>
           <pre><code>curl http://localhost:8880/v1/models</code></pre>
         </div>
@@ -312,7 +318,7 @@ sudo systemctl status vllm.service</code></pre>
         <div class="code-block">
           <div class="code-header">
             <span class="code-lang">bash</span>
-            <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">Copy</button>
+            <button class="copy-btn" data-i18n="copy">Copy</button>
           </div>
           <pre><code>sudo mkdir -p /models/bge-reranker-large /models/multilingual-e5-large
 sudo chown $USER:$USER /models/bge-reranker-large /models/multilingual-e5-large
@@ -328,7 +334,7 @@ hf download intfloat/multilingual-e5-large --local-dir /models/multilingual-e5-l
         <div class="code-block">
           <div class="code-header">
             <span class="code-lang">bash</span>
-            <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">Copy</button>
+            <button class="copy-btn" data-i18n="copy">Copy</button>
           </div>
           <pre><code>cd docker-deploy/telegram-bot
 cp .env.example .env
@@ -343,7 +349,7 @@ vim .env   <span class="cmd-comment" data-i18n="step2-3-comment"># fill in TELEG
         <div class="code-block">
           <div class="code-header">
             <span class="code-lang">bash</span>
-            <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">Copy</button>
+            <button class="copy-btn" data-i18n="copy">Copy</button>
           </div>
           <pre><code>cd docker-deploy
 cp .env.example .env   <span class="cmd-comment" data-i18n="step2-4-comment"># if models aren't under /models, edit MODEL_DIR</span>
@@ -357,7 +363,7 @@ docker compose ps</code></pre>
         <div class="code-block">
           <div class="code-header">
             <span class="code-lang">bash</span>
-            <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">Copy</button>
+            <button class="copy-btn" data-i18n="copy">Copy</button>
           </div>
           <pre><code>curl http://localhost:8883/health   <span class="cmd-comment" data-i18n="step2-5-c1"># bge-reranker-api</span>
 curl http://localhost:8881/health   <span class="cmd-comment" data-i18n="step2-5-c2"># text-embedding-api</span>
@@ -382,13 +388,13 @@ docker compose logs -f telegram-bot</code></pre>
         <div class="code-block">
           <div class="code-header">
             <span class="code-lang">bash</span>
-            <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">Copy</button>
+            <button class="copy-btn" data-i18n="copy">Copy</button>
           </div>
           <pre><code>git clone https://github.com/onyx-dot-app/onyx.git
 cd onyx/deployment/docker_compose
 cp env.template .env
 vim .env   <span class="cmd-comment" data-i18n="step3-comment"># at minimum set USER_AUTH_SECRET (a random string)</span>
-docker compose -f docker-compose.prod.yml up -d</code></pre>
+docker compose -f docker-compose.yml up -d</code></pre>
         </div>
         <p style="margin-top:10px;" data-i18n-html="step3-p2">Visiting <code>http://&lt;host-ip&gt;:3000</code> should show the Onyx login/setup page.</p>
         <div class="info-box" style="margin-top:14px;">
@@ -408,7 +414,7 @@ docker compose -f docker-compose.prod.yml up -d</code></pre>
         <ol class="steps-list">
           <li data-n="1" data-i18n-html="step4-li1">On first visit to <code>http://&lt;host-ip&gt;:3000/app</code>, create an admin account.</li>
           <li data-n="2" data-i18n-html="step4-li2"><strong>Admin Panel &rarr; API Keys &rarr; New</strong>: generate a Service Account Token (prefixed <code>on_</code>) and note it down — you'll need it for the Telegram Bot's <code>.env</code> later.</li>
-          <li data-n="3"><strong data-i18n="step4-li3-h">Admin Panel &rarr; LLM Providers &rarr; Add</strong>:
+          <li data-n="3"><strong data-i18n="step4-li3-h">Admin Panel &rarr; LLM Providers &rarr; Add:</strong>
             <ul style="list-style:disc; padding-left:20px; color:var(--text-muted); margin-top:6px;">
               <li data-i18n="step4-li3-a">Provider type: "OpenAI API Compatible" (or an equivalent custom provider)</li>
               <li data-i18n-html="step4-li3-b">API Base URL: <code>http://host.docker.internal:8888/qwen3-model/v1</code></li>
@@ -416,20 +422,20 @@ docker compose -f docker-compose.prod.yml up -d</code></pre>
               <li data-i18n-html="step4-li3-d">API Key: any non-empty string (<code>qwen3-model-api</code> doesn't validate it — Onyx's form just requires a non-empty value)</li>
             </ul>
           </li>
-          <li data-n="4"><strong data-i18n="step4-li4-h">Admin Panel &rarr; Embedding &rarr; Add Provider</strong> (or Search Settings, depending on the Onyx version's UI):
+          <li data-n="4"><strong data-i18n="step4-li4-h">Admin Panel &rarr; Embedding &rarr; Add Provider (or Search Settings, depending on the Onyx version's UI):</strong>
             <ul style="list-style:disc; padding-left:20px; color:var(--text-muted); margin-top:6px;">
               <li data-i18n-html="step4-li4-a">API Base URL: <code>http://host.docker.internal:8881/v1</code></li>
               <li data-i18n-html="step4-li4-b">Model Name: <code>multilingual-e5-large</code></li>
               <li data-i18n-html="step4-li4-c">Dimensions: <code>1024</code></li>
             </ul>
           </li>
-          <li data-n="5"><strong data-i18n="step4-li5-h">Admin Panel &rarr; Document Sets &rarr; New</strong>:
+          <li data-n="5"><strong data-i18n="step4-li5-h">Admin Panel &rarr; Document Sets &rarr; New:</strong>
             <ul style="list-style:disc; padding-left:20px; color:var(--text-muted); margin-top:6px;">
               <li data-i18n-html="step4-li5-a">The name must be <code>ABS_AI</code> (matching <code>ONYX_DOCUMENT_SET</code> in <code>telegram-bot/.env</code> — otherwise the Bot won't retrieve any documents and will only reply "I don't know")</li>
               <li data-i18n="step4-li5-b">Attach one or more connectors and feed in company SOPs, product manuals, etc.</li>
             </ul>
           </li>
-          <li data-n="6"><strong data-i18n="step4-li6-h">Admin Panel &rarr; Assistants (Persona) &rarr; New</strong>:
+          <li data-n="6"><strong data-i18n="step4-li6-h">Admin Panel &rarr; Assistants (Persona) &rarr; New:</strong>
             <ul style="list-style:disc; padding-left:20px; color:var(--text-muted); margin-top:6px;">
               <li data-i18n-html="step4-li6-a">Bind it to the <code>ABS_AI</code> Document Set created above</li>
               <li data-i18n-html="step4-li6-b">Note this Persona's ID (visible in the URL or the list page) and put it into the Telegram Bot's <code>ONYX_PERSONA_ID</code></li>
@@ -460,7 +466,7 @@ docker compose -f docker-compose.prod.yml up -d</code></pre>
         <div class="code-block">
           <div class="code-header">
             <span class="code-lang">bash</span>
-            <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">Copy</button>
+            <button class="copy-btn" data-i18n="copy">Copy</button>
           </div>
           <pre><code>cd docker-deploy/telegram-bot
 vim .env</code></pre>
@@ -469,7 +475,7 @@ vim .env</code></pre>
         <div class="code-block">
           <div class="code-header">
             <span class="code-lang">.env</span>
-            <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">Copy</button>
+            <button class="copy-btn" data-i18n="copy">Copy</button>
           </div>
           <pre><code><span class="env-var">ONYX_SERVICE_ACCOUNT_TOKEN</span>=<span class="env-val">on_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>   <span class="env-comment" data-i18n="step5-c1"># token from Step 4.2</span>
 <span class="env-var">ONYX_PERSONA_ID</span>=<span class="env-val">1</span>                                                 <span class="env-comment" data-i18n="step5-c2"># ID from Step 4.6</span>
@@ -478,7 +484,7 @@ vim .env</code></pre>
         <div class="code-block">
           <div class="code-header">
             <span class="code-lang">bash</span>
-            <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">Copy</button>
+            <button class="copy-btn" data-i18n="copy">Copy</button>
           </div>
           <pre><code>cd docker-deploy
 docker compose up -d --build telegram-bot
@@ -496,7 +502,7 @@ docker compose logs -f telegram-bot</code></pre>
       <div class="code-block">
         <div class="code-header">
           <span class="code-lang">bash</span>
-          <button class="copy-btn" data-i18n="copy" onclick="copyCode(this)">Copy</button>
+          <button class="copy-btn" data-i18n="copy">Copy</button>
         </div>
         <pre><code><span class="cmd-comment" data-i18n="debug-c1"># vLLM (bare metal)</span>
 journalctl -u vllm.service -f
@@ -538,13 +544,13 @@ sudo ss -ltnp | grep -E '8880|8881|8883|8888|3000'</code></pre>
       <h2 data-i18n="h2-source">Source Files</h2>
       <p data-i18n="source-p">Prefer to read this as a plain document, or need to copy it elsewhere? Download the original manuals below.</p>
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px;">
-        <a class="step-card step-card-link" href="rtx-kb-fresh-manual-en.md" target="_blank" rel="noopener" style="text-decoration:none; display:block; transition:border-color .15s;">
+        <a class="step-card step-card-link" href="docs/rtx-kb-fresh-manual-en.md" target="_blank" rel="noopener" style="text-decoration:none; display:block; transition:border-color .15s;">
           <div class="step-num" data-i18n="source-en-label">English</div>
           <div class="step-title">USER_MANUAL_EN.md</div>
           <p style="margin:0;" data-i18n="source-en-desc">The full manual in Markdown, English.</p>
           <div style="margin-top:12px; font-family:var(--mono); font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--accent);" data-i18n="download">Open in New Tab &#8599;</div>
         </a>
-        <a class="step-card step-card-link" href="rtx-kb-fresh-manual-cn.md" target="_blank" rel="noopener" style="text-decoration:none; display:block; transition:border-color .15s;">
+        <a class="step-card step-card-link" href="docs/rtx-kb-fresh-manual-cn.md" target="_blank" rel="noopener" style="text-decoration:none; display:block; transition:border-color .15s;">
           <div class="step-num" data-i18n="source-cn-label">中文</div>
           <div class="step-title">USER_MANUAL_CN.md</div>
           <p style="margin:0;" data-i18n="source-cn-desc">完整的 Markdown 手册（中文版）。</p>
@@ -556,8 +562,8 @@ sudo ss -ltnp | grep -E '8880|8881|8883|8888|3000'</code></pre>
   </main>
 </div>
 
-<script src="guide-common.js"></script>
-<script src="setup-rtx-kb-fresh.js"></script>
-<script src="theme.js"></script>
+<script src="js/guide-common.js"></script>
+<script src="js/setup-rtx-kb-fresh.js"></script>
+<script src="js/theme.js"></script>
 </body>
 </html>

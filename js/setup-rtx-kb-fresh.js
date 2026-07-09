@@ -19,9 +19,14 @@
       'nav-troubleshooting': 'Troubleshooting',
       'nav-source': 'Source Files',
 
-      'hdr-badge': 'RTX PRO 6000 Hub · Fresh Hardware',
+      'hdr-badge': 'Private AI & KB · Fresh Hardware',
       'hdr-h1': 'ABS AI User Manual',
       'hdr-p': 'Customer Self-Deployment Edition — deploy the full private AI stack from scratch on a brand-new Ubuntu host, starting with just the NVIDIA RTX PRO 6000 Blackwell 96GB card.',
+
+      'installer-badge': 'New',
+      'installer-title': 'Prefer a guided installer?',
+      'installer-desc': 'Skip the manual steps below — a point-and-click installer walks you through setup with a simple form, then handles the rest automatically.',
+      'installer-cta': 'See the Guided Installer <span>&rarr;</span>',
 
       'h2-overview': 'Deployment Strategy',
       'overview-p1': 'Scenario: the customer has purchased only the hardware — an NVIDIA RTX PRO 6000 Blackwell 96GB card — and needs to deploy the full private AI stack from scratch on a brand-new Ubuntu host.',
@@ -35,8 +40,8 @@
       'h3-components': 'How the four core components are deployed',
       'th-component': 'Component', 'th-model': 'Model', 'th-deployment': 'Deployment', 'th-port': 'Port',
       'row1-c': 'Local LLM', 'row1-d': 'systemctl (bare metal + Python venv + vLLM)',
-      'row2-c': 'Rerank',
-      'row3-c': 'Embedding',
+      'row2-c': 'Rerank', 'row2-d': 'Docker',
+      'row3-c': 'Embedding', 'row3-d': 'Docker',
       'row4-c': 'Mem0 memory layer + vLLM proxy', 'row4-d': 'Docker (<code>qwen3-model-api</code> container)',
       'row5-c': 'Enterprise knowledge base RAG', 'row5-d': 'Docker (official compose)',
       'row6-c': 'Mobile entry point', 'row6-d': 'Docker (long polling, no inbound port)',
@@ -153,7 +158,7 @@
       'nav-troubleshooting': '故障排查',
       'nav-source': '原始文件',
 
-      'hdr-badge': 'RTX PRO 6000 Hub · 全新硬件',
+      'hdr-badge': 'Private AI & KB · 全新硬件',
       'hdr-h1': 'ABS AI 用户手册',
       'hdr-p': '客户自部署版 —— 在一台全新的 Ubuntu 主机上从零部署整套私有 AI 方案，起点仅是一张 NVIDIA RTX PRO 6000 Blackwell 96GB 显卡。',
 
@@ -169,8 +174,8 @@
       'h3-components': '四个核心组件的落地方式',
       'th-component': '组件', 'th-model': '模型', 'th-deployment': '部署方式', 'th-port': '端口',
       'row1-c': '本地 LLM', 'row1-d': 'systemctl（裸机 + Python venv + vLLM）',
-      'row2-c': 'Rerank',
-      'row3-c': 'Embedding',
+      'row2-c': 'Rerank', 'row2-d': 'Docker',
+      'row3-c': 'Embedding', 'row3-d': 'Docker',
       'row4-c': 'Mem0 记忆层 + vLLM 代理', 'row4-d': 'Docker（<code>qwen3-model-api</code> 容器）',
       'row5-c': '企业知识库 RAG', 'row5-d': 'Docker（官方 compose）',
       'row6-c': '移动端入口', 'row6-d': 'Docker（长轮询，无入站端口）',

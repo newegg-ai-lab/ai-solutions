@@ -31,10 +31,12 @@
     <nav>
       <div class="nav-group" data-i18n="nav-g1">Overview</div>
       <a href="#overview" data-i18n="nav-overview">What It Does</a>
-      <a href="#flow" data-i18n="nav-flow">Install Flow</a>
+      <div class="nav-group" data-i18n="nav-flow">Install Flow</div>
+      <a href="#step1" data-i18n="nav-step1">Step 1 · Download</a>
+      <a href="#step2" data-i18n="nav-step2">Step 2 · Run the Installer</a>
       <div class="nav-group" data-i18n="nav-g3">After the Installer</div>
-      <a href="#onyx-setup" data-i18n="nav-onyx">Configure Onyx</a>
-      <a href="#telegram-setup" data-i18n="nav-telegram">Telegram Bot</a>
+      <a href="#step3" data-i18n="nav-step3">Step 3 · Configure Onyx</a>
+      <a href="#step4" data-i18n="nav-step4">Step 4 · Telegram Bot</a>
       <div class="nav-group" data-i18n="nav-g2">Reference</div>
       <a href="setup-rtx-kb-fresh.html" class="nav-external" data-i18n="nav-manual">Full Manual Guide</a>
     </nav>
@@ -67,12 +69,13 @@
       </div>
     </section>
 
-    <!-- Flow -->
-    <section id="flow">
-      <h2 data-i18n="h2-flow">Install Flow</h2>
-
+    <!-- Step 1: Download -->
+    <section id="step1">
+      <h2>
+        <span style="background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:28px;font-weight:800;">01</span>
+        <span data-i18n="h2-download">Download the Installer</span>
+      </h2>
       <div class="step-card">
-        <div class="step-title" data-i18n="h2-download">Getting the Installer</div>
         <p data-i18n-html="download-p">Everything you need is bundled into one download — <code>install.sh</code>, the GUI wrapper, and the desktop launcher.</p>
         <div style="margin-top:16px;">
           <a class="step-card step-card-link" href="downloads/abs-ai-installer.zip" download style="text-decoration:none; display:block; transition:border-color .15s;">
@@ -87,7 +90,14 @@
           <div data-i18n-html="download-note">This zip doesn't include the rest of the <code>docker-deploy</code> package (docker-compose.yml, service folders, etc.) — get that from your account representative, then unzip these three files directly into that same folder before running the installer.</div>
         </div>
       </div>
+    </section>
 
+    <!-- Step 2: Run -->
+    <section id="step2">
+      <h2>
+        <span style="background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:28px;font-weight:800;">02</span>
+        <span data-i18n="h2-run">Run the Installer</span>
+      </h2>
       <div class="step-card">
         <ol class="steps-list">
           <li data-n="1" data-i18n="flow-li1">Double-click the installer icon on the desktop</li>
@@ -100,13 +110,16 @@
 
       <div class="info-box">
         <span class="icon">ℹ️</span>
-        <div data-i18n="scope-note">The installer automates the LLM, Docker services, and Onyx deployment. Two things still happen in your browser afterward: configuring Onyx itself, and finishing the Telegram Bot's connection to it — covered below.</div>
+        <div data-i18n="scope-note">The installer automates the LLM, Docker services, and Onyx deployment. Two things still happen in your browser afterward: configuring Onyx itself, and finishing the Telegram Bot's connection to it — covered in Steps 3 and 4 below.</div>
       </div>
     </section>
 
-    <!-- Onyx setup -->
-    <section id="onyx-setup">
-      <h2 data-i18n="h2-onyx">After the Installer: Configure Onyx</h2>
+    <!-- Step 3: Configure Onyx -->
+    <section id="step3">
+      <h2>
+        <span style="background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:28px;font-weight:800;">03</span>
+        <span data-i18n="h2-onyx">Configure Onyx</span>
+      </h2>
       <div class="step-card">
         <ol class="steps-list">
           <li data-n="1" data-i18n-html="step4-li1">On first visit to <code>http://&lt;host-ip&gt;:3000/app</code>, create an admin account.</li>
@@ -153,9 +166,12 @@
       </div>
     </section>
 
-    <!-- Telegram setup -->
-    <section id="telegram-setup">
-      <h2 data-i18n="h2-telegram">Finish the Telegram Bot Setup</h2>
+    <!-- Step 4: Telegram setup -->
+    <section id="step4">
+      <h2>
+        <span style="background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:28px;font-weight:800;">04</span>
+        <span data-i18n="h2-telegram">Finish the Telegram Bot Setup</span>
+      </h2>
       <div class="step-card">
         <div class="code-block">
           <div class="code-header">

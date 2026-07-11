@@ -7,9 +7,11 @@
       'nav-g1': 'Overview',
       'nav-overview': 'What It Does',
       'nav-flow': 'Install Flow',
+      'nav-step1': 'Step 1 · Download',
+      'nav-step2': 'Step 2 · Run the Installer',
       'nav-g3': 'After the Installer',
-      'nav-onyx': 'Configure Onyx',
-      'nav-telegram': 'Telegram Bot',
+      'nav-step3': 'Step 3 · Configure Onyx',
+      'nav-step4': 'Step 4 · Telegram Bot',
       'nav-g2': 'Reference',
       'nav-manual': 'Full Manual Guide',
 
@@ -26,16 +28,16 @@
       'feat-li4': 'Runs the full install with a live progress dialog — no need to babysit a terminal window',
       'feat-li5': 'Shows a clear success screen with your Onyx URL, or a failure screen pointing at the full log if something goes wrong',
 
-      'h2-flow': 'Install Flow',
+      'h2-run': 'Run the Installer',
       'flow-li1': 'Double-click the installer icon on the desktop',
       'flow-li2': 'Confirm the welcome dialog',
       'flow-li3': 'Fill in your Telegram bot token and allowed user ID(s)',
       'flow-li4': 'Watch the progress dialog while everything installs in the background',
       'flow-li5': 'Get a success screen with a link to your new private AI',
 
-      'scope-note': 'The installer automates the LLM, Docker services, and Onyx deployment. Two things still happen in your browser afterward: configuring Onyx itself, and finishing the Telegram Bot’s connection to it — covered below.',
+      'scope-note': 'The installer automates the LLM, Docker services, and Onyx deployment. Two things still happen in your browser afterward: configuring Onyx itself, and finishing the Telegram Bot’s connection to it — covered in Steps 3 and 4 below.',
 
-      'h2-onyx': 'After the Installer: Configure Onyx',
+      'h2-onyx': 'Configure Onyx',
       'copy': 'Copy',
       'copied': 'Copied',
       'step4-li1': 'On first visit to <code>http://&lt;host-ip&gt;:3000/app</code>, create an admin account.',
@@ -65,7 +67,7 @@
       'step5-c2': '# ID from the Onyx setup above',
       'step5-final': 'Deployment is complete once the log shows <code>Bot starting - allowed users: {...}</code> with no errors. Send <code>/start</code> to the Bot from a whitelisted Telegram account, then ask a question covered by the knowledge base to verify RAG is working.',
 
-      'h2-download': 'Getting the Installer',
+      'h2-download': 'Download the Installer',
       'download-p': 'Everything you need is bundled into one download — <code>install.sh</code>, the GUI wrapper, and the desktop launcher.',
       'download-file-label': 'ZIP Archive',
       'download-file1-desc': 'Contains install.sh, install-ui.sh, and ABS-AI-Install.desktop.',
@@ -79,9 +81,11 @@
       'nav-g1': '总览',
       'nav-overview': '功能说明',
       'nav-flow': '安装流程',
+      'nav-step1': '步骤 1 · 下载',
+      'nav-step2': '步骤 2 · 运行安装向导',
       'nav-g3': '安装向导完成之后',
-      'nav-onyx': '配置 Onyx',
-      'nav-telegram': 'Telegram Bot',
+      'nav-step3': '步骤 3 · 配置 Onyx',
+      'nav-step4': '步骤 4 · Telegram Bot',
       'nav-g2': '参考',
       'nav-manual': '完整手册指南',
 
@@ -98,16 +102,16 @@
       'feat-li4': '以实时进度对话框运行完整安装——无需守着终端窗口',
       'feat-li5': '安装成功后显示清晰的成功界面（含 Onyx 访问地址），若失败则显示指向完整日志的失败界面',
 
-      'h2-flow': '安装流程',
+      'h2-run': '运行安装向导',
       'flow-li1': '双击桌面上的安装向导图标',
       'flow-li2': '确认欢迎对话框',
       'flow-li3': '填写您的 Telegram Bot Token 与允许的用户 ID',
       'flow-li4': '等待进度对话框，后台自动完成全部安装',
       'flow-li5': '获得成功界面，其中含有您全新私有 AI 的访问链接',
 
-      'scope-note': '安装向导自动完成 LLM、Docker 服务与 Onyx 部署。之后仍有两件事需要在浏览器中完成：配置 Onyx 本身，以及完成 Telegram Bot 与它的连接——详见下方。',
+      'scope-note': '安装向导自动完成 LLM、Docker 服务与 Onyx 部署。之后仍有两件事需要在浏览器中完成：配置 Onyx 本身，以及完成 Telegram Bot 与它的连接——详见下方步骤 3 与步骤 4。',
 
-      'h2-onyx': '安装向导完成之后：配置 Onyx',
+      'h2-onyx': '配置 Onyx',
       'copy': '复制',
       'copied': '已复制',
       'step4-li1': '首次访问 <code>http://&lt;主机IP&gt;:3000/app</code>，创建管理员账号。',
@@ -142,7 +146,7 @@
       'download-file-cta': '下载 →',
       'download-note': '此压缩包不包含 <code>docker-deploy</code> 的其余部分（docker-compose.yml、各服务目录等）——请向您的客户代表获取，然后将这三个文件直接解压到同一个目录中，再运行安装向导。',
 
-      'h2-download': '获取安装向导',
+      'h2-download': '下载安装向导',
       'download-p': '所需的一切都打包在一个下载文件中——<code>install.sh</code>、图形化安装向导和桌面启动器。',
     }
   };

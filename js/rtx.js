@@ -56,26 +56,19 @@
       'story-ch6-p2':'That question made us realize knowledge shouldn\'t be confined to the office. So we connected Telegram — now, whether at the office, at home, traveling, or on-site with a customer, a phone is all it takes to securely reach the company\'s internal AI.',
       'story-ch6-p3':'Truly, <strong style="color:var(--text);">anywhere access.</strong>',
 
-      'story-j1':'Internal Wiki lookups','story-j2':'AI Search','story-j3':'Private KB',
-      'story-j4':'Local LLM','story-j5':'Long-term memory','story-j6':'Mobile access',
-
-      'story-journey-h':'From a knowledge base to an enterprise AI assistant',
-      'story-journey-p':'Looking back, this project was never about chasing the newest AI technology — every upgrade came from a real need a user raised.',
-
       'story-closing-h':'NVIDIA RTX PRO 6000 made all of this real',
       'story-closing-p1':'Today, our solution is no longer just an AI search system — it\'s grown into a complete, private enterprise AI platform. Running on the NVIDIA RTX PRO 6000, we\'ve achieved:',
       'story-closing-li1':'100% private deployment — company data never leaves the internal network',
-      'story-closing-li2':'Local LLM inference — Qwen 3.6 35B running stably for high-quality knowledge Q&A',
+      'story-closing-li2':'Local LLM inference — Qwen 3.6 35B running for high-quality Q&A',
       'story-closing-li3':'An enterprise knowledge base (RAG) — a dedicated AI Search built on Onyx',
-      'story-closing-li4':'Long-term memory (Mem0) — the AI keeps hold of team knowledge and past experience',
+      'story-closing-li4':'Long-term memory — AI keeps hold of team knowledge and past experience',
       'story-closing-li5':'Multi-user collaboration — many employees sharing one knowledge base',
       'story-closing-li6':'Mobile access — reach the company AI anytime through Telegram',
       'story-closing-li7':'Room to grow — a single foundation ready for whatever comes next',
 
-      'story-final-h':'One last thing',
-      'story-final-p1':'If, at the start, all we wanted was to save the CS team a few minutes of digging through the Wiki —',
-      'story-final-p2':'then today, what we really want is to give every employee more time to solve problems, instead of hunting for answers.',
-      'story-final-p3':'AI\'s real value isn\'t just answering questions.<br>It\'s letting a company\'s knowledge actually stick, letting experience carry forward, and giving every employee an AI assistant they can actually trust.',
+      'story-final-h':'One Last Note',
+      'story-final-p1':'If, at the start, all we wanted was to save the CS team a few minutes of digging through the Wiki — then today, what we really want is to give every employee more time to solve problems, instead of hunting for answers.',
+      'story-final-p3':'AI\'s real value isn\'t just answering questions. It\'s letting a company\'s knowledge actually stick, letting experience carry forward, and giving every employee an AI assistant they can actually trust.',
       'story-final-tagline':'Our story isn\'t over yet.',
       'story-final-p4':'We hope more companies join in — pushing private AI knowledge bases forward together, and helping AI become a real force behind enterprise digital transformation.',
 
@@ -124,8 +117,6 @@
       'uc5-desc':'Sales and support teams query product manuals, datasheets, and release notes conversationally. No expertise required.',
       'uc6-tag':'Training','uc6-title':'Make training materials interactive',
       'uc6-desc':'Upload course content, safety guides, or certification materials and let learners ask follow-up questions at their own pace.',
-      'uc7-tag':'AI Filmmaking','uc7-title':'Generate and animate film shots on your own GPU',
-      'uc7-desc':'Run a full local pipeline in ComfyUI — SDXL generates the still frames, ControlNet locks in poses and composition, AnimateDiff brings each shot to life, then upscaling and frame interpolation prep the clip before it lands in DaVinci Resolve. No render farm, no per-clip cloud fees.',
       'how-node1':'Ask Anything','how-sub1':'Type a question, request a summary, or start a conversation from any device',
       'how-node2':'Your AI Gets to Work','how-sub2':'Searches your documents, recalls your history, and reasons through the answer',
       'how-node3':'Instant, Private Response','how-sub3':'A personalized answer delivered entirely on your hardware — no cloud, no wait',
@@ -199,12 +190,6 @@
       'story-ch6-p2':'这个问题让我们意识到，知识不应该只存在办公室。于是，我们接入了 Telegram——现在，无论是在办公室、家里、出差途中，还是客户现场，只要拿起手机，就可以安全访问企业内部 AI。',
       'story-ch6-p3':'真正实现了：<strong style="color:var(--text);">Anywhere Access。</strong>',
 
-      'story-j1':'内部 Wiki 查询','story-j2':'AI Search','story-j3':'私有化知识库',
-      'story-j4':'本地大模型','story-j5':'长期记忆','story-j6':'移动端访问',
-
-      'story-journey-h':'从知识库，到企业 AI 助手',
-      'story-journey-p':'回头看，这个项目从来不是为了追逐最新的 AI 技术，每一次升级，都来自真实用户提出的新需求。',
-
       'story-closing-h':'NVIDIA RTX PRO 6000，让这一切成为现实',
       'story-closing-p1':'今天，我们的方案已经不仅仅是一个 AI 搜索系统，它已经成长为一个完整的企业私有 AI 平台。依托 NVIDIA RTX PRO 6000，我们实现了：',
       'story-closing-li1':'100% 私有化部署 —— 企业数据始终留在内部网络',
@@ -215,10 +200,9 @@
       'story-closing-li6':'移动办公 —— 通过 Telegram 随时随地访问企业 AI',
       'story-closing-li7':'可持续扩展 —— 为未来更多 AI 应用提供统一基础平台',
 
-      'story-final-h':'写在最后',
-      'story-final-p1':'如果说最初，我们只是希望帮助 CS 同事少花几分钟查 Wiki。',
-      'story-final-p2':'那么今天，我们更希望帮助每一位员工，把时间花在解决问题，而不是寻找答案。',
-      'story-final-p3':'AI 的价值，不只是回答问题。<br>而是让企业的知识真正沉淀下来，让经验能够传承，让每一位员工都拥有一位值得信赖的智能助手。',
+      'story-final-h':'最后',
+      'story-final-p1':'如果说最初，我们只是希望帮助 CS 同事少花几分钟查 Wiki——那么今天，我们更希望帮助每一位员工，把时间花在解决问题，而不是寻找答案。',
+      'story-final-p3':'AI 的价值，不只是回答问题，而是让企业的知识真正沉淀下来，让经验能够传承，让每一位员工都拥有一位值得信赖的智能助手。',
       'story-final-tagline':'我们的故事还在继续。',
       'story-final-p4':'也期待有更多企业，一起推动私有化 AI 知识库的发展，让 AI 真正成为企业数字化转型的重要力量。',
 
@@ -267,8 +251,6 @@
       'uc5-desc':'销售和支持团队可用自然语言查询产品手册、数据表和发布说明，无需专业知识。',
       'uc6-tag':'培训','uc6-title':'让培训材料具有互动性',
       'uc6-desc':'上传课程内容、安全指南或认证材料，让学员按自己的节奏提出后续问题。',
-      'uc7-tag':'AI 影视制作','uc7-title':'在自有 GPU 上生成并动画化影视镜头',
-      'uc7-desc':'在本地 ComfyUI 中运行完整流水线——SDXL 生成静态画面，ControlNet 锁定姿态与构图，AnimateDiff 让每个镜头动起来，再经过放大与补帧处理后导入 DaVinci Resolve。无需渲染农场，也无需按镜头付费的云服务。',
       'how-node1':'随时提问','how-sub1':'从任意设备输入问题、请求摘要或开始对话',
       'how-node2':'AI 开始工作','how-sub2':'搜索您的文档、调取历史记录并推理出答案',
       'how-node3':'即时私密响应','how-sub3':'完全在您的硬件上生成个性化答案——无云端、无等待',

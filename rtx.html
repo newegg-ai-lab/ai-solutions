@@ -317,44 +317,29 @@
       </div>
     </div>
 
-    <h3 class="story-journey-heading" data-i18n="story-journey-h">From a knowledge base to an enterprise AI assistant</h3>
-    <p class="story-journey-lede" data-i18n="story-journey-p">Looking back, this project was never about chasing the newest AI technology — every upgrade came from a real need a user raised.</p>
-    <div class="story-journey">
-      <span class="story-journey-step" data-i18n="story-j1">Internal Wiki lookups</span>
-      <span class="story-journey-arrow">→</span>
-      <span class="story-journey-step" data-i18n="story-j2">AI Search</span>
-      <span class="story-journey-arrow">→</span>
-      <span class="story-journey-step" data-i18n="story-j3">Private KB</span>
-      <span class="story-journey-arrow">→</span>
-      <span class="story-journey-step" data-i18n="story-j4">Local LLM</span>
-      <span class="story-journey-arrow">→</span>
-      <span class="story-journey-step" data-i18n="story-j5">Long-term memory</span>
-      <span class="story-journey-arrow">→</span>
-      <span class="story-journey-step" data-i18n="story-j6">Mobile access</span>
-    </div>
-
     <div class="story-closing">
       <h3 data-i18n="story-closing-h">NVIDIA RTX PRO 6000 made all of this real</h3>
       <p data-i18n="story-closing-p1">Today, our solution is no longer just an AI search system — it's grown into a complete, private enterprise AI platform. Running on the NVIDIA RTX PRO 6000, we've achieved:</p>
       <ul class="story-achievements">
         <li data-i18n="story-closing-li1">100% private deployment — company data never leaves the internal network</li>
-        <li data-i18n="story-closing-li2">Local LLM inference — Qwen 3.6 35B running stably for high-quality knowledge Q&amp;A</li>
+        <li data-i18n="story-closing-li2">Local LLM inference — Qwen 3.6 35B running for high-quality Q&amp;A</li>
         <li data-i18n="story-closing-li3">An enterprise knowledge base (RAG) — a dedicated AI Search built on Onyx</li>
-        <li data-i18n="story-closing-li4">Long-term memory (Mem0) — the AI keeps hold of team knowledge and past experience</li>
+        <li data-i18n="story-closing-li4">Long-term memory — AI keeps hold of team knowledge and past experience</li>
         <li data-i18n="story-closing-li5">Multi-user collaboration — many employees sharing one knowledge base</li>
         <li data-i18n="story-closing-li6">Mobile access — reach the company AI anytime through Telegram</li>
         <li data-i18n="story-closing-li7">Room to grow — a single foundation ready for whatever comes next</li>
       </ul>
     </div>
 
-    <div class="story-final">
-      <h3 data-i18n="story-final-h">One last thing</h3>
-      <p data-i18n="story-final-p1">If, at the start, all we wanted was to save the CS team a few minutes of digging through the Wiki —</p>
-      <p data-i18n="story-final-p2">then today, what we really want is to give every employee more time to solve problems, instead of hunting for answers.</p>
-      <p data-i18n-html="story-final-p3">AI's real value isn't just answering questions.<br>It's letting a company's knowledge actually stick, letting experience carry forward, and giving every employee an AI assistant they can actually trust.</p>
-      <p class="story-final-tagline" data-i18n="story-final-tagline">Our story isn't over yet.</p>
-      <p data-i18n="story-final-p4">We hope more companies join in — pushing private AI knowledge bases forward together, and helping AI become a real force behind enterprise digital transformation.</p>
-    </div>
+    <details class="story-final">
+      <summary data-i18n="story-final-h">One Last Note</summary>
+      <div class="story-final-body">
+        <p data-i18n="story-final-p1">If, at the start, all we wanted was to save the CS team a few minutes of digging through the Wiki — then today, what we really want is to give every employee more time to solve problems, instead of hunting for answers.</p>
+        <p data-i18n="story-final-p3">AI's real value isn't just answering questions. It's letting a company's knowledge actually stick, letting experience carry forward, and giving every employee an AI assistant they can actually trust.</p>
+        <p class="story-final-tagline" data-i18n="story-final-tagline">Our story isn't over yet.</p>
+        <p data-i18n="story-final-p4">We hope more companies join in — pushing private AI knowledge bases forward together, and helping AI become a real force behind enterprise digital transformation.</p>
+      </div>
+    </details>
 
   </div>
 </section>
@@ -549,8 +534,7 @@
     <h2 data-i18n="h2-2">Where your private AI earns its place.</h2>
     <p class="lede" data-i18n="lede-2">Common workflows that benefit from an always-on AI that never sends data outside your building.</p>
     <div class="uc-tab-list">
-      <button class="uc-tab active" data-tab="0" data-i18n="uc7-tag">AI Filmmaking</button>
-      <button class="uc-tab" data-tab="1" data-i18n="uc3-tag">Incident Resolution</button>
+      <button class="uc-tab active" data-tab="1" data-i18n="uc3-tag">Incident Resolution</button>
       <button class="uc-tab" data-tab="2" data-i18n="uc2-tag">IT Support</button>
       <button class="uc-tab" data-tab="3" data-i18n="uc4-tag">Legal &amp; Contracts</button>
       <button class="uc-tab" data-tab="4" data-i18n="uc1-tag">Onboarding</button>
@@ -558,16 +542,7 @@
       <button class="uc-tab" data-tab="6" data-i18n="uc6-tag">Training</button>
     </div>
 
-    <div class="uc-panel active" data-panel="0" style="--card-glow:rgba(236,72,153,0.10);--card-bar:rgba(236,72,153,0.5);">
-      <div class="uc-panel-icon">🎬</div>
-      <div class="uc-panel-body">
-        <div class="uc-panel-tag" data-i18n="uc7-tag">AI Filmmaking</div>
-        <div class="uc-panel-title" data-i18n="uc7-title">Generate and animate film shots on your own GPU</div>
-        <div class="uc-panel-desc" data-i18n="uc7-desc">Run a full local pipeline in ComfyUI — SDXL generates the still frames, ControlNet locks in poses and composition, AnimateDiff brings each shot to life, then upscaling and frame interpolation prep the clip before it lands in DaVinci Resolve. No render farm, no per-clip cloud fees.</div>
-      </div>
-    </div>
-
-    <div class="uc-panel" data-panel="1" style="--card-glow:rgba(139,92,246,0.10);--card-bar:rgba(139,92,246,0.5);">
+    <div class="uc-panel active" data-panel="1" style="--card-glow:rgba(139,92,246,0.10);--card-bar:rgba(139,92,246,0.5);">
       <div class="uc-panel-icon">🚨</div>
       <div class="uc-panel-body">
         <div class="uc-panel-tag" data-i18n="uc3-tag">Incident Resolution</div>

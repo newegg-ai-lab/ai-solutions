@@ -2,7 +2,6 @@
   var T = {
     en: {
       'nav-back':'← All Solutions',
-      'hero-h1':'Private AI &amp; <span>AI-First Analysis</span>',
       'hero-sub':'DataLLM connects OpenCowork to your BI cubes, so any employee can ask a business question in plain language and get an answer that\'s explainable, verifiable, and traceable.',
       'hero-badge':'Private · In Development',
 
@@ -131,11 +130,10 @@
       'story-final-tagline':'From BI OLAP cubes to an enterprise AI-First data analyst.',
       'story-final-p4':'We believe the future of enterprise AI shouldn\'t just be smarter — it should understand the business and the data better, and be more worthy of trust.',
 
-      'footer-meta':'<b>AI-First Analysis</b> &middot; DataLLM',
+      'footer-meta':'<b>Private AI &amp; BI</b> &middot; DataLLM',
     },
     zh: {
       'nav-back':'← 返回全部方案',
-      'hero-h1':'私有 AI 与 <span>AI-First 数据分析</span>',
       'hero-sub':'DataLLM 通过 OpenCowork 连接您的 BI Cube，让任何员工都可以用自然语言提问，获得可解释、可验证、可追溯的答案。',
       'hero-badge':'私有部署 · 开发中',
 
@@ -264,7 +262,7 @@
       'story-final-tagline':'从 BI OLAP Cube，到企业 AI-First 资深数据分析师。',
       'story-final-p4':'我们相信，未来的企业 AI，不应该只是更聪明，它还应该更懂企业、更懂数据，也更值得信任。',
 
-      'footer-meta':'<b>AI-First Analysis</b> &middot; DataLLM',
+      'footer-meta':'<b>Private AI &amp; BI</b> &middot; DataLLM',
     }
   };
 

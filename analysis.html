@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Private AI & AI-First Analysis</title>
+<title>Private AI &amp; BI</title>
 <link rel="stylesheet" href="css/style.css" />
 <script>(function(){var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t||'dark');})();</script>
 </head>
@@ -12,6 +12,17 @@
 <header class="topbar">
   <div class="wrap">
     <a href="index.html" class="mark"><span class="glyph"></span>Newegg AI Solutions</a>
+    <div class="products-menu" id="productsMenu">
+      <button class="products-menu-trigger" id="productsMenuBtn" aria-haspopup="true" aria-expanded="false">
+        <span class="pm-label-full">Products &amp; Solutions</span>
+        <span class="pm-label-short">Products</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="products-menu-panel">
+        <a href="rtx.html" class="products-menu-item"><span class="products-menu-item-name">Private AI &amp; KB</span></a>
+        <a href="analysis.html" class="products-menu-item"><span class="products-menu-item-name">Private AI &amp; BI</span></a>
+      </div>
+    </div>
     <nav>
       <a href="#get" data-i18n="nav-1">What You Get</a>
       <a href="#usecases" data-i18n="nav-2">Use Cases</a>
@@ -34,7 +45,7 @@
   <div class="wrap hero-split">
     <div class="hero-content">
       <div class="hero-badge" data-i18n="hero-badge">Private &middot; In Development</div>
-      <h1 data-i18n-html="hero-h1">Private AI &amp; <span>AI-First Analysis</span></h1>
+      <h1>Private <span>AI &amp; BI</span></h1>
       <div class="hero-sub" data-i18n="hero-sub">DataLLM connects OpenCowork to your BI cubes, so any employee can ask a business question in plain language and get an answer that's explainable, verifiable, and traceable.</div>
       <div class="hero-hardware">
         <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h12M6 14h8"/></svg>
@@ -340,7 +351,7 @@
               <span class="hub-badge hub-badge-lock">&#128274;</span>
               <span class="hub-badge hub-badge-shield">&#128737;</span>
             </div>
-            <div class="hub-tower-name">AI-First Analysis</div>
+            <div class="hub-tower-name">Private AI &amp; BI</div>
             <div class="hub-tagline" data-i18n="hub-tagline">100% Local — Every Cube Query Stays On-Premises</div>
           </div>
 
@@ -605,12 +616,14 @@
 
 <footer>
   <div class="wrap">
-    <span class="meta" data-i18n-html="footer-meta"><b>AI-First Analysis</b> &middot; DataLLM</span>
+    <span class="meta" data-i18n-html="footer-meta"><b>Private AI &amp; BI</b> &middot; DataLLM</span>
     <span class="note">Powered by NVIDIA RTX Pro 6000</span>
   </div>
 </footer>
 
 <script src="js/theme.js"></script>
+<script src="js/nav-toggle.js"></script>
+<script src="js/products-menu.js"></script>
 <script src="js/analysis.js"></script>
 </body>
 </html>

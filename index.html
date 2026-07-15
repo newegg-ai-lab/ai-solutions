@@ -14,9 +14,22 @@
 <header class="topbar">
   <div class="wrap">
     <a href="index.html" class="mark"><span class="glyph"></span>Newegg AI Solutions</a>
+    <div class="products-menu" id="productsMenu">
+      <button class="products-menu-trigger" id="productsMenuBtn" aria-haspopup="true" aria-expanded="false">
+        <span class="pm-label-full">Products &amp; Solutions</span>
+        <span class="pm-label-short">Products</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="products-menu-panel">
+        <a href="rtx.html" class="products-menu-item">
+          <span class="products-menu-item-name">Private AI &amp; KB</span>
+        </a>
+        <a href="analysis.html" class="products-menu-item">
+          <span class="products-menu-item-name">Private AI &amp; BI</span>
+        </a>
+      </div>
+    </div>
     <nav>
-      <a href="#products">Products</a>
-      <a href="#compare">Compare</a>
       <a href="#support">Support</a>
     </nav>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
@@ -43,10 +56,6 @@
         <span data-i18n="cta-primary">Explore Platforms</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
-      <a href="#compare" class="cta-secondary">
-        <span data-i18n="cta-secondary">Compare Specs</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
     </div>
   </div>
   <div class="scroll-hint">
@@ -64,140 +73,32 @@
 
       <!-- RTX PRO 6000 -->
       <a class="product-card" href="rtx.html">
-        <div class="card-visual" style="background:#0d0c0a;">
-          <div class="card-visual-glow" style="background:radial-gradient(ellipse at 50% 70%,rgba(240,169,59,0.22) 0%,transparent 65%);"></div>
-          <svg class="card-visual-icon" width="120" height="80" viewBox="0 0 120 80" fill="none" stroke="#F0A93B" stroke-width="1.2" stroke-linecap="round">
-            <!-- GPU PCB -->
-            <rect x="8" y="28" width="104" height="36" rx="2"/>
-            <!-- Cooling fins -->
-            <line x1="20" y1="16" x2="20" y2="28"/><line x1="30" y1="12" x2="30" y2="28"/>
-            <line x1="40" y1="10" x2="40" y2="28"/><line x1="50" y1="9" x2="50" y2="28"/>
-            <line x1="60" y1="9" x2="60" y2="28"/><line x1="70" y1="10" x2="70" y2="28"/>
-            <line x1="80" y1="12" x2="80" y2="28"/><line x1="90" y1="16" x2="90" y2="28"/>
-            <line x1="18" y1="12" x2="92" y2="12"/>
-            <!-- Main die -->
-            <rect x="30" y="36" width="50" height="20" rx="1" fill="rgba(240,169,59,0.06)"/>
-            <rect x="38" y="41" width="10" height="10" rx=".5"/>
-            <rect x="52" y="41" width="10" height="10" rx=".5"/>
-            <rect x="66" y="41" width="10" height="10" rx=".5"/>
-            <!-- Ports -->
-            <rect x="100" y="38" width="7" height="5" rx=".5"/>
-            <rect x="100" y="46" width="7" height="5" rx=".5"/>
-            <!-- Status LED -->
-            <circle cx="16" cy="46" r="2.5" fill="#F0A93B" opacity=".8"/>
-          </svg>
-        </div>
         <div class="card-body">
           <p class="product-cat" style="color:var(--accent)" data-i18n="rtx-cat">Enterprise AI</p>
           <h3 class="product-name">Private AI & KB</h3>
-          <p class="product-hw">NVIDIA RTX PRO 6000 · Windows</p>
           <p class="product-desc" data-i18n="rtx-desc">High-throughput on-premise AI workstation. Multi-user chat, document RAG, image generation, and long-term memory.</p>
           <div class="product-chips">
             <span class="chip" data-i18n="rtx-c1">Multi-user</span><span class="chip" data-i18n="rtx-c2">RAG</span>
             <span class="chip" data-i18n="rtx-c3">Image Gen</span><span class="chip" data-i18n="rtx-c4">Memory</span>
           </div>
-          <div class="product-tops">
-            <span class="tops-num">~4,000</span>
-            <span class="tops-lbl">AI TOPS</span>
-          </div>
           <span class="product-cta"><span data-i18n="card-cta">Explore</span> <span>→</span></span>
         </div>
       </a>
 
-      <!-- AI Filmmaking -->
-      <a class="product-card" href="setup-film.html">
-        <div class="card-visual" style="background:#0d0c0a;">
-          <div class="card-visual-glow" style="background:radial-gradient(ellipse at 50% 70%,rgba(240,169,59,0.22) 0%,transparent 65%);"></div>
-          <svg class="card-visual-icon" width="110" height="80" viewBox="0 0 110 80" fill="none" stroke="#F0A93B" stroke-width="1.2" stroke-linecap="round">
-            <!-- Clapperboard -->
-            <rect x="10" y="30" width="90" height="42" rx="2"/>
-            <path d="M10 30 L22 14 H98 L86 30 Z"/>
-            <line x1="30" y1="30" x2="42" y2="14"/><line x1="50" y1="30" x2="62" y2="14"/><line x1="70" y1="30" x2="82" y2="14"/>
-            <!-- Play triangle -->
-            <path d="M46 44 L68 52 L46 60 Z" fill="rgba(240,169,59,0.12)"/>
-          </svg>
-        </div>
-        <div class="card-body">
-          <p class="product-cat" style="color:var(--accent)" data-i18n="film-cat">Creative AI</p>
-          <h3 class="product-name">AI Filmmaking</h3>
-          <p class="product-hw">NVIDIA RTX PRO 6000 · Windows</p>
-          <p class="product-desc" data-i18n="film-desc">A full local ComfyUI pipeline — SDXL for stills, ControlNet for pose and composition, AnimateDiff for motion, then upscaling. No render farm, no cloud fees.</p>
-          <div class="product-chips">
-            <span class="chip" data-i18n="film-c1">SDXL</span><span class="chip" data-i18n="film-c2">ControlNet</span>
-            <span class="chip" data-i18n="film-c3">AnimateDiff</span><span class="chip" data-i18n="film-c4">Upscaling</span>
-          </div>
-          <div class="product-tops">
-            <span class="tops-num">~4,000</span>
-            <span class="tops-lbl">AI TOPS</span>
-          </div>
-          <span class="product-cta"><span data-i18n="card-cta">Explore</span> <span>→</span></span>
-        </div>
-      </a>
-
-      <!-- AI-First Analysis -->
+      <!-- Private AI & BI -->
       <a class="product-card" href="analysis.html">
-        <div class="card-visual" style="background:#0b0c10;">
-          <div class="card-visual-glow" style="background:radial-gradient(ellipse at 50% 60%,rgba(88,198,214,0.18) 0%,transparent 70%);"></div>
-          <svg class="card-visual-icon" width="100" height="80" viewBox="0 0 100 80" fill="none" stroke="#58C6D6" stroke-width="1.2" stroke-linecap="round">
-            <!-- BI cube -->
-            <path d="M50 10 L86 26 V58 L50 74 L14 58 V26 Z"/>
-            <path d="M14 26 L50 42 L86 26"/>
-            <line x1="50" y1="42" x2="50" y2="74"/>
-            <!-- data bars inside -->
-            <line x1="30" y1="50" x2="30" y2="58" opacity=".7"/><line x1="38" y1="46" x2="38" y2="58" opacity=".7"/>
-            <!-- connection dot -->
-            <circle cx="50" cy="42" r="2.5" fill="#58C6D6" opacity=".9"/>
-          </svg>
-        </div>
         <div class="card-body">
           <p class="product-cat" style="color:var(--accent-2)" data-i18n="analysis-cat">Business Intelligence AI</p>
-          <h3 class="product-name">AI-First Analysis</h3>
-          <p class="product-hw">OpenCowork Platform</p>
+          <h3 class="product-name">Private AI &amp; BI</h3>
           <p class="product-desc" data-i18n="analysis-desc">Ask business questions in plain language. Private AI connects directly to your BI cubes through OpenCowork, pulling live data for instant, conversational analysis.</p>
           <div class="product-chips">
-            <span class="chip" data-i18n="analysis-c1">BI Integration</span><span class="chip" data-i18n="analysis-c2">Conversational Analytics</span>
+            <span class="chip" data-i18n="analysis-c1">BI Integration</span>
             <span class="chip" data-i18n="analysis-c3">Live Data</span><span class="chip" data-i18n="analysis-c4">OpenCowork</span>
-          </div>
-          <div class="product-tops">
-            <span class="tops-lbl" data-i18n="analysis-status">In Development</span>
           </div>
           <span class="product-cta"><span data-i18n="card-cta">Explore</span> <span>→</span></span>
         </div>
       </a>
 
-    </div>
-  </div>
-</section>
-
-<!-- Comparison -->
-<section class="compare-section reveal" id="compare">
-  <div class="wrap">
-    <p class="eyebrow" data-i18n="compare-eye">Compare Solutions</p>
-    <h2 class="section-h" data-i18n="compare-h">Find the right fit.</h2>
-    <div class="compare-wrap">
-      <table class="compare-table">
-        <thead>
-          <tr><th></th><th>Private AI & KB</th><th>AI Filmmaking</th><th>AI-First Analysis</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td data-i18n="th-platform">Runs On</td>
-            <td>NVIDIA RTX PRO 6000<span class="td-sub">Blackwell · Windows</span></td>
-            <td>NVIDIA RTX PRO 6000<span class="td-sub">Blackwell · Windows</span></td>
-            <td>OpenCowork Platform<span class="td-sub">In Development</span></td>
-          </tr>
-          <tr><td data-i18n="th-usecase">Use Case</td><td data-i18n="kb-usecase">Knowledge Q&amp;A / RAG chat</td><td data-i18n="film-usecase">Generative image &amp; video pipeline</td><td data-i18n="analysis-usecase">Conversational business analysis</td></tr>
-          <tr><td data-i18n="th-datasource">Data Source</td><td data-i18n="kb-datasource">Internal docs &amp; Wiki</td><td data-i18n="film-datasource">Local models &amp; workflows</td><td data-i18n="analysis-datasource">BI cubes via OpenCowork</td></tr>
-          <tr><td data-i18n="th-modes">Key Capabilities</td><td data-i18n="kb-modes">Chat · RAG · Long-Term Memory</td><td data-i18n="film-modes">SDXL · ControlNet · AnimateDiff</td><td data-i18n="analysis-modes">BI Integration · Live Data</td></tr>
-          <tr><td data-i18n="th-users">Users</td><td data-i18n="kb-users">Multi-user</td><td data-i18n="film-users">Single / small team</td><td data-i18n="analysis-users">TBD</td></tr>
-          <tr>
-            <td data-i18n="th-bestfor">Best For</td>
-            <td><div class="best-chips"><span class="best-chip" data-i18n="kb-b1">Enterprise</span><span class="best-chip" data-i18n="kb-b2">Knowledge work</span></div></td>
-            <td><div class="best-chips"><span class="best-chip" data-i18n="film-b1">Creative teams</span><span class="best-chip" data-i18n="film-b2">Content production</span></div></td>
-            <td><div class="best-chips"><span class="best-chip" data-i18n="analysis-b1">Analysts</span><span class="best-chip" data-i18n="analysis-b2">Leadership</span></div></td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </div>
 </section>
@@ -222,13 +123,14 @@
     <span class="footer-meta" data-i18n-html="footer-meta"><b>Newegg</b> AI Solutions · Private AI for Enterprise</span>
     <div class="footer-links">
       <a href="#products" data-i18n="footer-nav-1">Platforms</a>
-      <a href="#compare" data-i18n="footer-nav-2">Compare</a>
       <a href="#support" data-i18n="footer-nav-3">Support</a>
     </div>
   </div>
 </footer>
 
 <script src="js/theme.js"></script>
+<script src="js/nav-toggle.js"></script>
+<script src="js/products-menu.js"></script>
 <script src="js/product-i18n.js"></script>
 <script src="js/home.js"></script>
 </body>

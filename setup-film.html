@@ -12,6 +12,17 @@
 <header class="topbar">
   <div class="wrap">
     <a href="index.html" class="mark"><span class="glyph"></span>Newegg AI Solutions</a>
+    <div class="products-menu" id="productsMenu">
+      <button class="products-menu-trigger" id="productsMenuBtn" aria-haspopup="true" aria-expanded="false">
+        <span class="pm-label-full">Products &amp; Solutions</span>
+        <span class="pm-label-short">Products</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="products-menu-panel">
+        <a href="rtx.html" class="products-menu-item"><span class="products-menu-item-name">Private AI &amp; KB</span></a>
+        <a href="analysis.html" class="products-menu-item"><span class="products-menu-item-name">Private AI &amp; BI</span></a>
+      </div>
+    </div>
     <nav>
       <a href="setup.html" data-i18n="nav-back">&larr; All Setup Guides</a>
       <span data-i18n="hero-crumb">AI Filmmaking</span>
@@ -76,6 +87,8 @@
 </footer>
 
 <script src="js/theme.js"></script>
+<script src="js/nav-toggle.js"></script>
+<script src="js/products-menu.js"></script>
 <script src="js/setup-film.js"></script>
 </body>
 </html>

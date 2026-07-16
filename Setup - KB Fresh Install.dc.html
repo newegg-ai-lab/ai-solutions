@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin: 0; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; }
+    a { text-decoration: none; }
+    .navlink { transition: background .15s, color .15s; }
+    .navlink:hover { color: var(--ink) !important; background: var(--panel-alt); }
+    .theme-btn { transition: border-color .16s, color .16s; }
+    .theme-btn:hover { border-color: #084BA6; color: #084BA6; }
+    .lang-btn { transition: background .15s, color .15s; cursor: pointer; }
+    .step-card { position: relative; }
+    .step-card::before { content:''; position:absolute; top:0; left:0; width:3px; height:100%; background:linear-gradient(180deg,#084BA6,#09144F); border-radius:3px 0 0 3px; }
+    table.doc-table { width:100%; border-collapse:collapse; font-size:13px; margin:12px 0; }
+    table.doc-table th { text-align:left; padding:10px 14px; background:var(--panel-alt); border:1px solid var(--border); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); }
+    table.doc-table td { padding:10px 14px; border:1px solid var(--border); vertical-align:top; color:var(--ink-soft); }
+    table.doc-table td code { background:var(--panel-alt); border:1px solid var(--border); padding:2px 6px; border-radius:4px; font-family:monospace; font-size:12px; color:#09144F; }
+    .code-block pre { padding:16px; overflow-x:auto; font-family:monospace; font-size:12.5px; line-height:1.6; margin:0; color:#e2e8f0; white-space:pre-wrap; }
+    .code-block { background:#0d1117; border:1px solid #2e3350; border-radius:8px; overflow:hidden; margin:12px 0; }
+    .code-head { display:flex; align-items:center; justify-content:space-between; padding:8px 14px; border-bottom:1px solid #2e3350; background:#22263a; font-size:11px; color:#8892a4; text-transform:uppercase; letter-spacing:.06em; }
+    .info-box { display:flex; gap:12px; background:var(--panel); border:1px solid var(--border); border-left:3px solid #084BA6; border-radius:8px; padding:14px 16px; margin:16px 0; font-size:13.5px; color:var(--ink-soft); }
+    .num-list { list-style:none; padding:0; margin:0; }
+    .num-list > li { padding:6px 0 6px 28px; position:relative; font-size:14px; color:var(--ink-soft); }
+    .num-list > li::before { content: attr(data-n); position:absolute; left:0; top:6px; width:18px; height:18px; background:#084BA6; color:#fff; border-radius:50%; font-size:10px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+  </style>
+</helmet>
+<div style="{{ pageVars }}">
+
+  <button class="theme-btn" onClick="{{ toggleTheme }}" style="{{ themeBtnStyle }}">{{ themeIcon }} {{ themeLabel }}</button>
+
+  <aside style="width:260px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--border);padding:24px 0;position:sticky;top:0;height:100vh;overflow-y:auto;">
+    <div style="padding:0 20px 20px;border-bottom:1px solid var(--border);margin-bottom:16px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <h1 style="font-size:20px;font-weight:800;font-style:italic;color:#084BA6;margin:0;">ABS AI</h1>
+        <div style="display:flex;border:1px solid var(--border);border-radius:6px;overflow:hidden;">
+          <span class="lang-btn" onClick="{{ setLangEn }}" style="{{ langBtnStyleEn }}">EN</span>
+          <span class="lang-btn" onClick="{{ setLangZh }}" style="{{ langBtnStyleZh }}">中文</span>
+        </div>
+      </div>
+      <p style="font-size:11px;color:var(--muted);margin-top:2px;">{{ t.sideSub }}</p>
+    </div>
+    <a href="Setup - Private AI and KB.dc.html" class="navlink" style="display:flex;align-items:center;gap:6px;margin:16px 20px 4px;padding:8px 12px;font-size:12px;font-weight:700;color:#084BA6;background:#EEF5FF;border:1px solid #D8E7FA;border-radius:6px;">{{ t.backLink }}</a>
+    <nav>
+      <div style="font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#084BA6;padding:16px 20px 6px;">{{ t.navG1 }}</div>
+      <a href="#overview" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);">{{ t.navOverview }}</a>
+      <a href="#architecture" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);">{{ t.navArchitecture }}</a>
+      <a href="#prerequisites" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);">{{ t.navPrereq }}</a>
+      <div style="font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#084BA6;padding:16px 20px 6px;">{{ t.navG2 }}</div>
+      <a href="#step1" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);">{{ t.navStep1 }}</a>
+      <a href="#step2" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);">{{ t.navStep2 }}</a>
+      <a href="#step3" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);">{{ t.navStep3 }}</a>
+      <a href="#step4" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);">{{ t.navStep4 }}</a>
+      <a href="#step5" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);">{{ t.navStep5 }}</a>
+      <div style="font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#084BA6;padding:16px 20px 6px;">{{ t.navG3 }}</div>
+      <a href="#debug" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);">{{ t.navDebug }}</a>
+      <a href="#troubleshooting" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);">{{ t.navTroubleshooting }}</a>
+      <a href="#source" class="navlink" style="display:block;margin:4px 12px 0;padding:8px 12px;border:1px solid #D8E7FA;border-radius:6px;background:#EEF5FF;font-size:13px;color:#084BA6;">{{ t.navSource }} &#8599;</a>
+    </nav>
+  </aside>
+
+  <main style="flex:1;max-width:960px;margin:0 auto;padding:48px 56px;">
+
+    <div style="margin-bottom:40px;padding-bottom:32px;border-bottom:1px solid var(--border);">
+      <div style="display:inline-block;background:linear-gradient(135deg,#084BA6,#09144F);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.05em;margin-bottom:12px;">{{ t.hdrBadge }}</div>
+      <h1 style="font-size:32px;font-weight:800;color:var(--ink);margin:0;line-height:1.2;">{{ t.hdrH1 }}</h1>
+      <p style="color:var(--muted);margin-top:10px;font-size:15px;">{{ t.hdrP }}</p>
+    </div>
+
+    <a href="Setup - KB GUI Installer.dc.html" style="display:flex;align-items:center;gap:24px;background:var(--panel);border:1px solid #09144F;border-radius:14px;padding:24px 28px;margin:0 0 36px;color:inherit;">
+      <span style="flex-shrink:0;background:#09144F;color:#fff;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:6px 14px;border-radius:20px;">{{ t.installerBadge }}</span>
+      <span style="flex:1;">
+        <div style="font-size:18px;font-weight:700;color:var(--ink);margin-bottom:5px;">{{ t.installerTitle }}</div>
+        <p style="font-size:14px;color:var(--muted);line-height:1.55;margin:0;">{{ t.installerDesc }}</p>
+      </span>
+      <span style="flex-shrink:0;font-size:13px;font-weight:700;color:#09144F;white-space:nowrap;">{{ t.installerCta }} &rarr;</span>
+    </a>
+
+    <section id="overview" style="margin-bottom:48px;">
+      <h2 style="font-size:20px;font-weight:800;color:var(--ink);margin:0 0 16px;">{{ t.h2Overview }}</h2>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:8px;">{{ t.overviewP1 }}</p>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:0;" dangerouslySetInnerHTML="{{ h.overviewP2 }}"></p>
+      <ul style="list-style:disc;padding-left:20px;color:var(--muted);font-size:13.5px;line-height:1.8;margin-top:6px;">
+        <li dangerouslySetInnerHTML="{{ h.overviewLi1 }}"></li>
+        <li dangerouslySetInnerHTML="{{ h.overviewLi2 }}"></li>
+        <li dangerouslySetInnerHTML="{{ h.overviewLi3 }}"></li>
+      </ul>
+    </section>
+
+    <section id="architecture" style="margin-bottom:48px;">
+      <h2 style="font-size:20px;font-weight:800;color:var(--ink);margin:0 0 16px;">{{ t.h2Architecture }}</h2>
+      <div class="code-block"><div class="code-head">diagram</div><pre style="padding:16px;font-family:monospace;font-size:11.5px;line-height:1.55;color:#e2e8f0;margin:0;overflow-x:auto;white-space:pre;">{{ t.diagram }}</pre></div>
+
+      <h3 style="font-size:15px;font-weight:700;color:var(--ink);margin:22px 0 10px;">{{ t.h3Components }}</h3>
+      <table class="doc-table">
+        <tr><th>{{ t.thComponent }}</th><th>{{ t.thModel }}</th><th>{{ t.thDeployment }}</th><th>{{ t.thPort }}</th></tr>
+        <tr><td>{{ t.row1c }}</td><td>Qwen3.6-35B-A3B</td><td>{{ t.row1d }}</td><td>8880</td></tr>
+        <tr><td>{{ t.row2c }}</td><td>bge-reranker-large</td><td>{{ t.row2d }}</td><td>8883</td></tr>
+        <tr><td>{{ t.row3c }}</td><td>multilingual-e5-large</td><td>{{ t.row3d }}</td><td>8881</td></tr>
+        <tr><td>{{ t.row4c }}</td><td>&mdash;</td><td dangerouslySetInnerHTML="{{ h.row4d }}"></td><td>8888</td></tr>
+        <tr><td>{{ t.row5c }}</td><td>Onyx</td><td>{{ t.row5d }}</td><td>3000</td></tr>
+        <tr><td>{{ t.row6c }}</td><td>Telegram Bot</td><td>{{ t.row6d }}</td><td>&mdash;</td></tr>
+      </table>
+    </section>
+
+    <section id="prerequisites" style="margin-bottom:48px;">
+      <h2 style="font-size:20px;font-weight:800;color:var(--ink);margin:0 0 16px;">{{ t.h2Prereq }}</h2>
+      <ul style="list-style:disc;padding-left:20px;color:var(--muted);font-size:13.5px;line-height:1.8;">
+        <li>{{ t.prereqLi1 }}</li>
+        <li dangerouslySetInnerHTML="{{ h.prereqLi2 }}"></li>
+        <li>{{ t.prereqLi3 }}</li>
+        <li dangerouslySetInnerHTML="{{ h.prereqLi4 }}"></li>
+        <li dangerouslySetInnerHTML="{{ h.prereqLi5 }}"></li>
+        <li dangerouslySetInnerHTML="{{ h.prereqLi6 }}"></li>
+      </ul>
+      <div class="step-card" style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:22px;margin-top:16px;">
+        <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:12px;">{{ t.prereqCardTitle }}</div>
+        <div class="code-block"><div class="code-head">bash</div><pre>curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
+curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit
+sudo nvidia-ctk runtime configure --runtime=docker
+sudo systemctl restart docker</pre></div>
+        <p style="font-size:13px;color:var(--muted);margin:10px 0 0;">{{ t.verifyWith }}</p>
+        <div class="code-block"><div class="code-head">bash</div><pre>docker run --rm --gpus all nvidia/cuda:12.4.0-base-ubuntu22.04 nvidia-smi</pre></div>
+        <p style="font-size:13px;color:var(--muted);margin:10px 0 0;">{{ t.prereqVerifyResult }}</p>
+      </div>
+    </section>
+
+    <section id="step1" style="margin-bottom:48px;">
+      <h2 style="font-size:20px;font-weight:800;color:var(--ink);margin:0 0 16px;display:flex;gap:12px;align-items:center;"><span style="background:linear-gradient(135deg,#084BA6,#09144F);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:26px;">01</span>{{ t.h2Step1 }}</h2>
+
+      <div class="step-card" style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:14px;">
+        <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:10px;">{{ t.step11Title }}</div>
+        <div class="code-block"><div class="code-head">bash</div><pre>sudo mkdir -p /usr/local/vllm_env /models
+sudo chown $USER:$USER /usr/local/vllm_env /models
+python3 -m venv /usr/local/vllm_env
+source /usr/local/vllm_env/bin/activate
+pip install --upgrade pip</pre></div>
+      </div>
+
+      <div class="step-card" style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:14px;">
+        <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:10px;">{{ t.step12Title }}</div>
+        <div class="code-block"><div class="code-head">bash</div><pre>curl -LsSf https://hf.co/cli/install.sh | bash
+hf download Qwen/Qwen3.6-35B-A3B --local-dir /models/qwen3.6-35b-a3b</pre></div>
+      </div>
+
+      <div class="step-card" style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:14px;">
+        <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:10px;">{{ t.step13Title }}</div>
+        <div class="code-block"><div class="code-head">bash</div><pre>pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 --trusted-host download.pytorch.org
+pip install vllm==0.18.0
+pip install transformers==5.0.0</pre></div>
+      </div>
+
+      <div class="step-card" style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:14px;">
+        <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:10px;">{{ t.step14Title }}</div>
+        <div class="code-block"><div class="code-head">bash</div><pre>sudo tee /usr/local/bin/start_vllm.sh &gt; /dev/null &lt;&lt;'EOF'
+#!/bin/bash
+cd /usr/local/vllm_env
+source /usr/local/vllm_env/bin/activate
+export VLLM_USE_V1=0
+python3 -m vllm.entrypoints.openai.api_server \
+    --model /models/qwen3.6-35b-a3b \
+    --dtype float16 \
+    --gpu-memory-utilization 0.85 \
+    --max-model-len 150000 \
+    --port 8880 \
+    --enable-auto-tool-choice \
+    --tool-call-parser qwen3_coder \
+    --served-model-name Qwen-On-Premise
+EOF
+sudo chmod +x /usr/local/bin/start_vllm.sh</pre></div>
+        <div class="info-box"><span style="font-size:16px;flex-shrink:0;">&#128161;</span><div dangerouslySetInnerHTML="{{ h.step1Note }}"></div></div>
+      </div>
+
+      <div class="step-card" style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:22px;">
+        <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:10px;">{{ t.step15Title }}</div>
+        <div class="code-block"><div class="code-head">bash</div><pre>sudo tee /etc/systemd/system/vllm.service &gt; /dev/null &lt;&lt;'EOF'
+[Unit]
+Description=vLLM Qwen3.6 35B API Service
+After=network-online.target
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/local/bin/start_vllm.sh
+Restart=always
+RestartSec=10
+[Install]
+WantedBy=multi-user.target
+EOF
+sudo systemctl daemon-reload
+sudo systemctl enable vllm.service
+sudo systemctl start vllm.service</pre></div>
+        <p style="font-size:13px;color:var(--muted);margin:10px 0 0;">{{ t.verifyColon }}</p>
+        <div class="code-block"><div class="code-head">bash</div><pre>curl http://localhost:8880/v1/models</pre></div>
+      </div>
+    </section>
+
+    <section id="step2" style="margin-bottom:48px;">
+      <h2 style="font-size:20px;font-weight:800;color:var(--ink);margin:0 0 16px;display:flex;gap:12px;align-items:center;"><span style="background:linear-gradient(135deg,#084BA6,#09144F);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:26px;">02</span>{{ t.h2Step2 }}</h2>
+
+      <div class="step-card" style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:14px;">
+        <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:10px;">{{ t.step21Title }}</div>
+        <div class="code-block"><div class="code-head">tree</div><pre>docker-deploy/
+├── docker-compose.yml
+├── .env.example
+├── bge-reranker-api/
+├── text-embedding-api/
+├── qwen3-model-api/
+└── telegram-bot/</pre></div>
+      </div>
+
+      <div class="step-card" style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:14px;">
+        <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:10px;">{{ t.step22Title }}</div>
+        <div class="code-block"><div class="code-head">bash</div><pre>sudo mkdir -p /models/bge-reranker-large /models/multilingual-e5-large
+sudo chown $USER:$USER /models/bge-reranker-large /models/multilingual-e5-large
+hf download BAAI/bge-reranker-large --local-dir /models/bge-reranker-large
+hf download intfloat/multilingual-e5-large --local-dir /models/multilingual-e5-large</pre></div>
+      </div>
+
+      <div class="step-card" style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:14px;">
+        <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:10px;">{{ t.step23Title }}</div>
+        <p style="font-size:13.5px;color:var(--muted);margin-bottom:0;" dangerouslySetInnerHTML="{{ h.step23P }}"></p>
+        <div class="code-block"><div class="code-head">bash</div><pre>cd docker-deploy/telegram-bot
+cp .env.example .env
+vim .env</pre></div>
+      </div>
+
+      <div class="step-card" style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:14px;">
+        <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:10px;">{{ t.step24Title }}</div>
+        <div class="code-block"><div class="code-head">bash</div><pre>cd docker-deploy
+cp .env.example .env
+docker compose up -d --build
+docker compose ps</pre></div>
+      </div>
+
+      <div class="step-card" style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:22px;">
+        <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:10px;">{{ t.step25Title }}</div>
+        <div class="code-block"><div class="code-head">bash</div><pre>curl http://localhost:8883/health   # bge-reranker-api
+curl http://localhost:8881/health   # text-embedding-api
+curl http://localhost:8888/health   # qwen3-model-api
+docker compose logs -f telegram-bot</pre></div>
+        <div class="info-box"><span style="font-size:16px;flex-shrink:0;">&#9888;&#65039;</span><div dangerouslySetInnerHTML="{{ h.step25Note }}"></div></div>
+      </div>
+    </section>
+
+    <section id="step3" style="margin-bottom:48px;">
+      <h2 style="font-size:20px;font-weight:800;color:var(--ink);margin:0 0 16px;display:flex;gap:12px;align-items:center;"><span style="background:linear-gradient(135deg,#084BA6,#09144F);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:26px;">03</span>{{ t.h2Step3 }}</h2>
+      <div class="step-card" style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:22px;">
+        <p style="font-size:13.5px;color:var(--muted);margin-bottom:0;">{{ t.step3P1 }}</p>
+        <div class="code-block"><div class="code-head">bash</div><pre>git clone https://github.com/onyx-dot-app/onyx.git
+cd onyx/deployment/docker_compose
+cp env.template .env
+vim .env   # at minimum set USER_AUTH_SECRET
+docker compose -f docker-compose.yml up -d</pre></div>
+        <p style="font-size:13.5px;color:var(--muted);margin:10px 0 0;" dangerouslySetInnerHTML="{{ h.step3P2 }}"></p>
+      </div>
+    </section>
+
+    <section id="step4" style="margin-bottom:48px;">
+      <h2 style="font-size:20px;font-weight:800;color:var(--ink);margin:0 0 16px;display:flex;gap:12px;align-items:center;"><span style="background:linear-gradient(135deg,#084BA6,#09144F);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:26px;">04</span>{{ t.h2Step4 }}</h2>
+      <div class="step-card" style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:22px;">
+        <ol class="num-list">
+          <li data-n="1" dangerouslySetInnerHTML="{{ h.step4Li1 }}"></li>
+          <li data-n="2" dangerouslySetInnerHTML="{{ h.step4Li2 }}"></li>
+          <li data-n="3"><strong style="color:var(--ink);" dangerouslySetInnerHTML="{{ h.step4Li3h }}"></strong>
+            <ul style="list-style:disc;padding-left:20px;color:var(--muted);margin-top:6px;font-size:13.5px;">
+              <li>{{ t.step4Li3a }}</li><li dangerouslySetInnerHTML="{{ h.step4Li3b }}"></li><li dangerouslySetInnerHTML="{{ h.step4Li3c }}"></li><li dangerouslySetInnerHTML="{{ h.step4Li3d }}"></li>
+            </ul>
+          </li>
+          <li data-n="4"><strong style="color:var(--ink);" dangerouslySetInnerHTML="{{ h.step4Li4h }}"></strong>
+            <ul style="list-style:disc;padding-left:20px;color:var(--muted);margin-top:6px;font-size:13.5px;">
+              <li dangerouslySetInnerHTML="{{ h.step4Li4a }}"></li><li dangerouslySetInnerHTML="{{ h.step4Li4b }}"></li><li dangerouslySetInnerHTML="{{ h.step4Li4c }}"></li>
+            </ul>
+          </li>
+          <li data-n="5"><strong style="color:var(--ink);" dangerouslySetInnerHTML="{{ h.step4Li5h }}"></strong>
+            <ul style="list-style:disc;padding-left:20px;color:var(--muted);margin-top:6px;font-size:13.5px;">
+              <li dangerouslySetInnerHTML="{{ h.step4Li5a }}"></li><li>{{ t.step4Li5b }}</li>
+            </ul>
+          </li>
+          <li data-n="6"><strong style="color:var(--ink);" dangerouslySetInnerHTML="{{ h.step4Li6h }}"></strong>
+            <ul style="list-style:disc;padding-left:20px;color:var(--muted);margin-top:6px;font-size:13.5px;">
+              <li dangerouslySetInnerHTML="{{ h.step4Li6a }}"></li><li dangerouslySetInnerHTML="{{ h.step4Li6b }}"></li>
+            </ul>
+          </li>
+        </ol>
+        <div class="info-box" style="margin-top:14px;"><span style="font-size:16px;flex-shrink:0;">&#9888;&#65039;</span><div><strong style="color:var(--ink);">{{ t.step4PitfallsH }}</strong><ul style="list-style:disc;padding-left:20px;color:var(--muted);margin-top:8px;font-size:13.5px;"><li dangerouslySetInnerHTML="{{ h.step4Pitfall1 }}"></li><li dangerouslySetInnerHTML="{{ h.step4Pitfall2 }}"></li></ul></div></div>
+      </div>
+    </section>
+
+    <section id="step5" style="margin-bottom:48px;">
+      <h2 style="font-size:20px;font-weight:800;color:var(--ink);margin:0 0 16px;display:flex;gap:12px;align-items:center;"><span style="background:linear-gradient(135deg,#084BA6,#09144F);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:26px;">05</span>{{ t.h2Step5 }}</h2>
+      <div class="step-card" style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:22px;">
+        <div class="code-block"><div class="code-head">bash</div><pre>cd docker-deploy/telegram-bot
+vim .env</pre></div>
+        <p style="font-size:13px;color:var(--muted);margin:10px 0 0;">{{ t.fillIn }}</p>
+        <div class="code-block"><div class="code-head">.env</div><pre><span style="color:#cba6f7;">ONYX_SERVICE_ACCOUNT_TOKEN</span>=<span style="color:#a6e3a1;">on_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>   <span style="color:#6c7086;font-style:italic;">{{ t.step5c1 }}</span>
+<span style="color:#cba6f7;">ONYX_PERSONA_ID</span>=<span style="color:#a6e3a1;">1</span>                                                 <span style="color:#6c7086;font-style:italic;">{{ t.step5c2 }}</span>
+<span style="color:#cba6f7;">ONYX_DOCUMENT_SET</span>=<span style="color:#a6e3a1;">ABS_AI</span></pre></div>
+        <div class="code-block"><div class="code-head">bash</div><pre>cd docker-deploy
+docker compose up -d --build telegram-bot
+docker compose logs -f telegram-bot</pre></div>
+        <p style="font-size:13.5px;color:var(--muted);margin:10px 0 0;" dangerouslySetInnerHTML="{{ h.step5Final }}"></p>
+      </div>
+    </section>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:36px 0;" />
+
+    <section id="debug" style="margin-bottom:48px;">
+      <h2 style="font-size:20px;font-weight:800;color:var(--ink);margin:0 0 16px;">{{ t.h2Debug }}</h2>
+      <div class="code-block"><div class="code-head">bash</div><pre>{{ t.debugC1 }}
+journalctl -u vllm.service -f
+curl http://localhost:8880/v1/models
+
+{{ t.debugC2 }}
+docker compose -f docker-deploy/docker-compose.yml logs -f bge-reranker-api
+docker compose -f docker-deploy/docker-compose.yml logs -f text-embedding-api
+docker compose -f docker-deploy/docker-compose.yml logs -f qwen3-model-api
+docker compose -f docker-deploy/docker-compose.yml logs -f telegram-bot
+
+{{ t.debugC3 }}
+nvidia-smi
+
+{{ t.debugC4 }}
+sudo ss -ltnp | grep -E '8880|8881|8883|8888|3000'</pre></div>
+    </section>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:36px 0;" />
+
+    <section id="troubleshooting" style="margin-bottom:48px;">
+      <h2 style="font-size:20px;font-weight:800;color:var(--ink);margin:0 0 16px;">{{ t.h2Troubleshooting }}</h2>
+      <table class="doc-table">
+        <tr><th>{{ t.thSymptom }}</th><th>{{ t.thCause }}</th><th>{{ t.thFix }}</th></tr>
+        <tr><td dangerouslySetInnerHTML="{{ h.ts1s }}"></td><td>{{ t.ts1c }}</td><td dangerouslySetInnerHTML="{{ h.ts1f }}"></td></tr>
+        <tr><td>{{ t.ts2s }}</td><td>{{ t.ts2c }}</td><td dangerouslySetInnerHTML="{{ h.ts2f }}"></td></tr>
+        <tr><td>{{ t.ts3s }}</td><td dangerouslySetInnerHTML="{{ h.ts3c }}"></td><td>{{ t.ts3f }}</td></tr>
+        <tr><td>{{ t.ts4s }}</td><td dangerouslySetInnerHTML="{{ h.ts4c }}"></td><td dangerouslySetInnerHTML="{{ h.ts4f }}"></td></tr>
+        <tr><td>{{ t.ts5s }}</td><td dangerouslySetInnerHTML="{{ h.ts5c }}"></td><td dangerouslySetInnerHTML="{{ h.ts5f }}"></td></tr>
+      </table>
+    </section>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:36px 0;" />
+
+    <section id="source" style="margin-bottom:20px;">
+      <h2 style="font-size:20px;font-weight:800;color:var(--ink);margin:0 0 16px;">{{ t.h2Source }}</h2>
+      <p style="font-size:13.5px;color:var(--muted);margin-bottom:16px;">{{ t.sourceP }}</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <a class="step-card" href="docs/rtx-kb-fresh-manual-en.md" target="_blank" rel="noopener" style="display:block;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:20px;color:inherit;">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:#084BA6;margin-bottom:6px;">{{ t.sourceEnLabel }}</div>
+          <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px;">USER_MANUAL_EN.md</div>
+          <p style="font-size:13px;color:var(--muted);margin:0;">{{ t.sourceEnDesc }}</p>
+          <div style="margin-top:10px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#084BA6;font-family:monospace;">{{ t.download }}</div>
+        </a>
+        <a class="step-card" href="docs/rtx-kb-fresh-manual-cn.md" target="_blank" rel="noopener" style="display:block;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:20px;color:inherit;">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:#084BA6;margin-bottom:6px;">{{ t.sourceCnLabel }}</div>
+          <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px;">USER_MANUAL_CN.md</div>
+          <p style="font-size:13px;color:var(--muted);margin:0;">{{ t.sourceCnDesc }}</p>
+          <div style="margin-top:10px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#084BA6;font-family:monospace;">{{ t.download }}</div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const DICT = {
+  en: {
+    sideSub: 'Customer Self-Deployment', backLink: '\u2190 Back to Setup Guides',
+    navG1: 'Overview', navOverview: 'Deployment Strategy', navArchitecture: 'Architecture', navPrereq: 'Prerequisites',
+    navG2: 'Steps', navStep1: 'Step 1 \u00b7 vLLM (bare metal)', navStep2: 'Step 2 \u00b7 Docker Services', navStep3: 'Step 3 \u00b7 Deploy Onyx',
+    navStep4: 'Step 4 \u00b7 Configure Onyx', navStep5: 'Step 5 \u00b7 Telegram Bot', navG3: 'Reference', navDebug: 'Debugging Commands',
+    navTroubleshooting: 'Troubleshooting', navSource: 'Source Files',
+    hdrBadge: 'Private AI & KB \u00b7 Fresh Hardware', hdrH1: 'ABS AI User Manual',
+    hdrP: 'Customer Self-Deployment Edition \u2014 deploy the full private AI stack from scratch on a brand-new Ubuntu host, starting with just the NVIDIA RTX PRO 6000 Blackwell 96GB card.',
+    installerBadge: 'New', installerTitle: 'Prefer a guided installer?',
+    installerDesc: 'Skip the manual steps below \u2014 a point-and-click installer walks you through setup with a simple form, then handles the rest automatically.',
+    installerCta: 'See the Guided Installer',
+    h2Overview: 'Deployment Strategy',
+    overviewP1: 'Scenario: the customer has purchased only the hardware \u2014 an NVIDIA RTX PRO 6000 Blackwell 96GB card \u2014 and needs to deploy the full private AI stack from scratch on a brand-new Ubuntu host.',
+    overviewP2: 'Unlike the vendor\u2019s internal deployment (everything managed via <code>systemctl</code>), this approach:',
+    overviewLi1: 'Keeps <strong style="color:var(--ink);">Qwen3.6-35B-A3B (vLLM)</strong> as a bare-metal <code>systemctl</code> deployment \u2014 so inference has exclusive, direct access to the GPU.',
+    overviewLi2: 'Moves <strong style="color:var(--ink);">Rerank / Embedding / Mem0 / Telegram Bot entirely to Docker</strong> \u2014 so they can come up in one shot and upgrade independently.',
+    overviewLi3: 'Keeps <strong style="color:var(--ink);">Onyx</strong> on its official Docker Compose deployment.',
+    h2Architecture: 'Architecture Overview',
+    diagram: '[Telegram on phone/PC]\n        |\n        v   (long polling, outbound only)\n+------------------------+\n| telegram-bot (Docker)  |  no listening port\n+------------------------+\n        |\n        v   HTTP\n+------------------------+        +--------------------------+\n| Onyx (Docker, official |        | qwen3-model-api (Docker) |  :8888\n| compose) :3000         |        | vLLM proxy + Mem0 API    |\n+------------------------+        +--------------------------+\n        |                                 |\n        v   RAG dep                       v   reverse proxy\n+------------------------+        +--------------------------+\n| text-embedding-api     |        | vLLM (bare-metal         |\n| (Docker) :8881 [GPU]   |        | systemctl) :8880 [GPU]  |\n+------------------------+        +--------------------------+\n+------------------------+\n| bge-reranker-api :8883 |\n+------------------------+',
+    h3Components: 'How the four core components are deployed',
+    thComponent: 'Component', thModel: 'Model', thDeployment: 'Deployment', thPort: 'Port',
+    row1c: 'Local LLM', row1d: 'systemctl (bare metal + venv + vLLM)',
+    row2c: 'Rerank', row2d: 'Docker', row3c: 'Embedding', row3d: 'Docker',
+    row4c: 'Mem0 memory layer + vLLM proxy', row4d: 'Docker (<code>qwen3-model-api</code>)',
+    row5c: 'Enterprise KB RAG', row5d: 'Docker (official compose)', row6c: 'Mobile entry point', row6d: 'Docker (long polling)',
+    h2Prereq: 'Prerequisites',
+    prereqLi1: 'Ubuntu 22.04 LTS (native install or bare-metal server; Docker Desktop also works under WSL2)',
+    prereqLi2: 'NVIDIA RTX PRO 6000 Blackwell 96GB with a matching NVIDIA driver (<code>nvidia-smi</code> should work)',
+    prereqLi3: 'Docker Engine \u2265 24.0 and Docker Compose v2',
+    prereqLi4: '<strong style="color:var(--ink);">NVIDIA Container Toolkit</strong> (lets containers access the GPU)',
+    prereqLi5: 'Python 3.10+ and <code>python3-venv</code>',
+    prereqLi6: 'Hugging Face access granted to download <code>Qwen/Qwen3.6-35B-A3B</code>',
+    prereqCardTitle: 'Install NVIDIA Container Toolkit', verifyWith: 'Verify with:', prereqVerifyResult: 'Should display the GPU info normally.',
+    h2Step1: 'Deploy Qwen3.6-35B-A3B (vLLM, bare-metal)',
+    step11Title: '1.1 Create a Python virtual environment', step12Title: '1.2 Download the model', step13Title: '1.3 Install inference dependencies',
+    step14Title: '1.4 Startup script',
+    step1Note: 'You can safely adjust <code>--gpu-memory-utilization 0.85</code> \u2014 it leaves ~15% VRAM free so Rerank/Embedding can share the same GPU.',
+    step15Title: '1.5 systemd service', verifyColon: 'Verify:',
+    h2Step2: 'Docker-deploy Rerank / Embedding / Mem0 / Telegram Bot',
+    step21Title: '2.1 Directory layout', step22Title: '2.2 Download the Rerank / Embedding models', step23Title: '2.3 Configure the Telegram Bot',
+    step23P: 'First obtain <code>TELEGRAM_BOT_TOKEN</code> and <code>ALLOWED_USER_IDS</code>.',
+    step24Title: '2.4 One-shot startup', step25Title: '2.5 Verify',
+    step25Note: '<code>qwen3-model-api</code>\u2019s <code>/health</code> must show <code>vllm_backend: reachable</code>.',
+    h2Step3: 'Deploy Onyx (Official Docker Compose)', step3P1: 'Onyx is already a multi-container app \u2014 use the official repository:',
+    step3P2: 'Visiting <code>http://&lt;host-ip&gt;:3000</code> should show the Onyx setup page.',
+    h2Step4: 'Configure Onyx to Connect to the Local LLM / Embedding',
+    step4Li1: 'On first visit to <code>http://&lt;host-ip&gt;:3000/app</code>, create an admin account.',
+    step4Li2: '<strong>Admin Panel \u2192 API Keys \u2192 New</strong>: generate a Service Account Token (prefixed <code>on_</code>) and note it down.',
+    step4Li3h: 'Admin Panel \u2192 LLM Providers \u2192 Add:', step4Li3a: 'Provider type: "OpenAI API Compatible"',
+    step4Li3b: 'API Base URL: <code>http://host.docker.internal:8888/qwen3-model/v1</code>', step4Li3c: 'Model Name: <code>Qwen-On-Premise</code>', step4Li3d: 'API Key: any non-empty string',
+    step4Li4h: 'Admin Panel \u2192 Embedding \u2192 Add Provider:', step4Li4a: 'API Base URL: <code>http://host.docker.internal:8881/v1</code>',
+    step4Li4b: 'Model Name: <code>multilingual-e5-large</code>', step4Li4c: 'Dimensions: <code>1024</code>',
+    step4Li5h: 'Admin Panel \u2192 Document Sets \u2192 New:', step4Li5a: 'Name must be <code>ABS_AI</code> (matching <code>ONYX_DOCUMENT_SET</code>)',
+    step4Li5b: 'Attach connectors and feed in SOPs, manuals, etc.',
+    step4Li6h: 'Admin Panel \u2192 Assistants (Persona) \u2192 New:', step4Li6a: 'Bind it to the <code>ABS_AI</code> Document Set',
+    step4Li6b: 'Note the Persona ID for <code>ONYX_PERSONA_ID</code>',
+    step4PitfallsH: 'Common pitfalls:',
+    step4Pitfall1: 'An empty <code>document_set</code> array means Onyx always replies "I don\u2019t know" \u2014 the set name must be explicit.',
+    step4Pitfall2: 'Newer Onyx uses <code>/api/chat/send-chat-message</code> with line-delimited JSON \u2014 already implemented in the shipped <code>bot.py</code>.',
+    h2Step5: 'Fill in the Telegram Bot Config and Restart', fillIn: 'Fill in:', step5c1: '# token from Step 4.2', step5c2: '# ID from Step 4.6',
+    step5Final: 'Deployment is complete once the log shows <code>Bot starting - allowed users: {...}</code> with no errors.',
+    h2Debug: 'Debugging Commands', debugC1: '# vLLM (bare metal)', debugC2: '# Docker services', debugC3: '# GPU usage', debugC4: '# Port check',
+    h2Troubleshooting: 'Troubleshooting', thSymptom: 'Symptom', thCause: 'Likely cause', thFix: 'Fix',
+    ts1s: 'qwen3-model-api <code>/health</code> returns <code>unhealthy</code>', ts1c: 'Can\u2019t reach bare-metal vLLM', ts1f: 'Check <code>vllm.service</code> status; confirm <code>host-gateway</code> is in effect',
+    ts2s: 'Rerank/Embedding container OOMs on startup', ts2c: 'Insufficient VRAM', ts2f: 'Lower vLLM\u2019s <code>--gpu-memory-utilization</code>, or stagger startup',
+    ts3s: 'Telegram keeps replying "unauthorized user"', ts3c: '<code>ALLOWED_USER_IDS</code> missing/wrong', ts3f: 'Confirm the numeric ID via @userinfobot, comma-separate, restart',
+    ts4s: 'Bot replies "I don\u2019t know"', ts4c: 'Onyx <code>document_set</code> mismatch', ts4f: 'Confirm exact name match and that documents are indexed',
+    ts5s: 'Mem0 memory isn\u2019t persisting', ts5c: 'Data volume not persisted', ts5f: 'Confirm <code>qwen3-model-data</code> volume wasn\u2019t removed by <code>down -v</code>',
+    h2Source: 'Source Files', sourceP: 'Prefer to read this as a plain document, or need to copy it elsewhere? Download the original manuals below.',
+    sourceEnLabel: 'English', sourceEnDesc: 'The full manual in Markdown, English.', sourceCnLabel: 'Chinese', sourceCnDesc: 'The full manual in Markdown, Chinese.',
+    download: 'Open in New Tab \u2197'
+  },
+  zh: {
+    sideSub: '客户自部署', backLink: '← 返回安装指南',
+    navG1: '总览', navOverview: '部署方案', navArchitecture: '架构总览', navPrereq: '前提条件',
+    navG2: '步骤', navStep1: '第一步 · vLLM（裸机）', navStep2: '第二步 · Docker 服务', navStep3: '第三步 · 部署 Onyx',
+    navStep4: '第四步 · 配置 Onyx', navStep5: '第五步 · Telegram Bot', navG3: '参考', navDebug: '调试命令',
+    navTroubleshooting: '故障排查', navSource: '原始文件',
+    hdrBadge: 'Private AI & KB · 全新硬件', hdrH1: 'ABS AI 用户手册',
+    hdrP: '客户自部署版 —— 在一台全新的 Ubuntu 主机上从零部署整套私有 AI 方案，起点仅是一张 NVIDIA RTX PRO 6000 Blackwell 96GB 显卡。',
+    installerBadge: '新', installerTitle: '更想用图形化安装向导？',
+    installerDesc: '跳过下面的手动步骤——图形化安装向导用一个简单的表单引导您完成设置，之后自动处理剩下的一切。',
+    installerCta: '查看图形化安装向导',
+    h2Overview: '部署方案',
+    overviewP1: '适用场景：客户只购买了搭载 NVIDIA RTX PRO 6000 Blackwell 96GB 的硬件，需要在一台全新的 Ubuntu 主机上从零部署整套私有 AI 方案。',
+    overviewP2: '与原厂内部部署（全部 <code>systemctl</code> 管理）不同，本方案将：',
+    overviewLi1: '<strong style="color:var(--ink);">Qwen3.6-35B-A3B（vLLM）</strong> 保留为 <code>systemctl</code> 裸机部署——让推理进程独占、直接访问 GPU。',
+    overviewLi2: '<strong style="color:var(--ink);">其余四项服务（Rerank / Embedding / Mem0 / Telegram Bot）全部改为 Docker 部署</strong>——便于一次性拉起、独立升级。',
+    overviewLi3: '<strong style="color:var(--ink);">Onyx</strong> 维持官方的 Docker Compose 部署方式。',
+    h2Architecture: '架构总览',
+    diagram: '[手机/PC 上的 Telegram]\n        |\n        v   (长轮询，纯出站)\n+------------------------+\n| telegram-bot (Docker)  |  无监听端口\n+------------------------+\n        |\n        v   HTTP\n+------------------------+        +--------------------------+\n| Onyx (Docker, 官方     |        | qwen3-model-api (Docker) |  :8888\n| compose) :3000         |        | vLLM 代理 + Mem0 接口    |\n+------------------------+        +--------------------------+\n        |                                 |\n        v   RAG 依赖                      v   反向代理\n+------------------------+        +--------------------------+\n| text-embedding-api     |        | vLLM (systemctl          |\n| (Docker) :8881 [GPU]   |        | 裸机) :8880 [GPU]        |\n+------------------------+        +--------------------------+\n+------------------------+\n| bge-reranker-api :8883 |\n+------------------------+',
+    h3Components: '四个核心组件的落地方式',
+    thComponent: '组件', thModel: '模型', thDeployment: '部署方式', thPort: '端口',
+    row1c: '本地 LLM', row1d: 'systemctl（裸机 + venv + vLLM）',
+    row2c: 'Rerank', row2d: 'Docker', row3c: 'Embedding', row3d: 'Docker',
+    row4c: 'Mem0 记忆层 + vLLM 代理', row4d: 'Docker（<code>qwen3-model-api</code>）',
+    row5c: '企业知识库 RAG', row5d: 'Docker（官方 compose）', row6c: '移动端入口', row6d: 'Docker（长轮询）',
+    h2Prereq: '前提条件',
+    prereqLi1: 'Ubuntu 22.04 LTS（本机直装或裸金属服务器；WSL2 下 Docker Desktop 亦可）',
+    prereqLi2: 'NVIDIA RTX PRO 6000 Blackwell 96GB，已安装匹配的 NVIDIA 驱动（<code>nvidia-smi</code> 能正常输出）',
+    prereqLi3: 'Docker Engine ≥ 24.0 及 Docker Compose v2',
+    prereqLi4: '<strong style="color:var(--ink);">NVIDIA Container Toolkit</strong>（让容器能访问 GPU）',
+    prereqLi5: 'Python 3.10+ 及 <code>python3-venv</code>',
+    prereqLi6: '已获得 Hugging Face 访问权限，可下载 <code>Qwen/Qwen3.6-35B-A3B</code>',
+    prereqCardTitle: '安装 NVIDIA Container Toolkit', verifyWith: '验证：', prereqVerifyResult: '应正常显示显卡信息。',
+    h2Step1: '部署 Qwen3.6-35B-A3B（vLLM，裸机）',
+    step11Title: '1.1 创建 Python 虚拟环境', step12Title: '1.2 下载模型', step13Title: '1.3 安装推理依赖',
+    step14Title: '1.4 启动脚本',
+    step1Note: '<code>--gpu-memory-utilization 0.85</code> 特意保留约 15% 显存，供 Rerank / Embedding 共享同一张 GPU。',
+    step15Title: '1.5 systemd 服务', verifyColon: '验证：',
+    h2Step2: 'Docker 部署 Rerank / Embedding / Mem0 / Telegram Bot',
+    step21Title: '2.1 目录结构', step22Title: '2.2 下载 Rerank / Embedding 模型', step23Title: '2.3 配置 Telegram Bot',
+    step23P: '先获取 <code>TELEGRAM_BOT_TOKEN</code> 和 <code>ALLOWED_USER_IDS</code>。',
+    step24Title: '2.4 一键启动', step25Title: '2.5 验证',
+    step25Note: '<code>qwen3-model-api</code> 的 <code>/health</code> 需返回 <code>vllm_backend: reachable</code>。',
+    h2Step3: '部署 Onyx（官方 Docker Compose）', step3P1: 'Onyx 本身就是多容器应用——直接使用官方仓库：',
+    step3P2: '访问 <code>http://&lt;主机IP&gt;:3000</code> 应能看到 Onyx 初始化页面。',
+    h2Step4: '配置 Onyx 连接本地 LLM / Embedding',
+    step4Li1: '首次访问 <code>http://&lt;主机IP&gt;:3000/app</code>，创建管理员账号。',
+    step4Li2: '<strong>Admin Panel → API Keys → New</strong>，生成一个 Service Account Token（<code>on_</code> 前缀），记下来。',
+    step4Li3h: 'Admin Panel → LLM Providers → Add：', step4Li3a: 'Provider 类型选择 "OpenAI API Compatible"',
+    step4Li3b: 'API Base URL: <code>http://host.docker.internal:8888/qwen3-model/v1</code>', step4Li3c: 'Model Name: <code>Qwen-On-Premise</code>', step4Li3d: 'API Key: 任意非空字符串',
+    step4Li4h: 'Admin Panel → Embedding → Add Provider：', step4Li4a: 'API Base URL: <code>http://host.docker.internal:8881/v1</code>',
+    step4Li4b: 'Model Name: <code>multilingual-e5-large</code>', step4Li4c: '维度: <code>1024</code>',
+    step4Li5h: 'Admin Panel → Document Sets → New：', step4Li5a: '名称必须是 <code>ABS_AI</code>（与 <code>ONYX_DOCUMENT_SET</code> 一致）',
+    step4Li5b: '关联 Connector，把公司 SOP / 产品手册等文件喂进去',
+    step4Li6h: 'Admin Panel → Assistants (Persona) → New：', step4Li6a: '绑定上面的 Document Set <code>ABS_AI</code>',
+    step4Li6b: '记下 Persona ID，填入 <code>ONYX_PERSONA_ID</code>',
+    step4PitfallsH: '常见坑：',
+    step4Pitfall1: '<code>document_set</code> 若传空数组，Onyx 会一直回答"不知道"——必须显式指定文档集名称。',
+    step4Pitfall2: '新版 Onyx 聊天接口是 <code>/api/chat/send-chat-message</code>，SSE 为逐行 JSON——本手册配套的 <code>bot.py</code> 已实现。',
+    h2Step5: '回填 Telegram Bot 配置并重启', fillIn: '补全：', step5c1: '# 第四步第 2 项拿到的 token', step5c2: '# 第四步第 6 项拿到的 ID',
+    step5Final: '日志出现 <code>Bot starting - allowed users: {...}</code> 且无报错，即部署完成。',
+    h2Debug: '调试命令', debugC1: '# vLLM（裸机）', debugC2: '# Docker 服务', debugC3: '# GPU 占用情况', debugC4: '# 端口检查',
+    h2Troubleshooting: '故障排查', thSymptom: '现象', thCause: '可能原因', thFix: '处理',
+    ts1s: '<code>qwen3-model-api</code> <code>/health</code> 返回 <code>unhealthy</code>', ts1c: '无法连接裸机 vLLM', ts1f: '确认 <code>vllm.service</code> 状态；确认 <code>host-gateway</code> 生效',
+    ts2s: 'Rerank/Embedding 容器启动后 OOM', ts2c: 'GPU 显存不足', ts2f: '降低 vLLM 的 <code>--gpu-memory-utilization</code>，或错峰启动',
+    ts3s: 'Telegram 一直回复"未授权用户"', ts3c: '<code>ALLOWED_USER_IDS</code> 未填或填错', ts3f: '用 @userinfobot 确认数字 ID，逗号分隔，重启容器',
+    ts4s: 'Bot 回复"我不知道"', ts4c: 'Onyx <code>document_set</code> 未匹配', ts4f: '确认名称与 <code>.env</code> 完全一致，且已索引文档',
+    ts5s: 'Mem0 记忆没有生效', ts5c: '数据卷未持久化', ts5f: '确认 <code>qwen3-model-data</code> 未被 <code>down -v</code> 误删',
+    h2Source: '原始文件', sourceP: '想直接看纯文档，或者需要复制到别处？可在下方打开原始手册。',
+    sourceEnLabel: '英文', sourceEnDesc: '完整的 Markdown 手册（英文版）。', sourceCnLabel: '中文', sourceCnDesc: '完整的 Markdown 手册（中文版）。',
+    download: '在新标签页打开 ↗'
+  }
+};
+
+class Component extends DCLogic {
+  state = { dark: false, lang: 'en' };
+  toggleTheme = () => this.setState(s => ({ dark: !s.dark }));
+  setLang = (l) => this.setState({ lang: l });
+
+  renderVals() {
+    const dark = this.state.dark;
+    const vars = dark ? {
+      '--bg': '#0B1220', '--panel': '#101a2c', '--panel-alt': '#0d1626',
+      '--ink': '#E7ECF3', '--ink-soft': '#C7CEDC', '--muted': '#93A0B8', '--border': '#213047'
+    } : {
+      '--bg': '#ffffff', '--panel': '#ffffff', '--panel-alt': '#F7F9FC',
+      '--ink': '#212121', '--ink-soft': '#505050', '--muted': '#6E6E6E', '--border': '#E8E8E8'
+    };
+    const pageVars = { ...vars, color: 'var(--ink)', background: 'var(--bg)', display: 'flex', minHeight: '100vh' };
+    const lang = this.state.lang;
+    const t = DICT[lang];
+    const h = {};
+    Object.keys(t).forEach(k => { h[k] = { __html: t[k] }; });
+    const activeBtn = { padding: '5px 10px', fontSize: '11px', fontWeight: 700, background: '#084BA6', color: '#fff' };
+    const inactiveBtn = { padding: '5px 10px', fontSize: '11px', fontWeight: 700, background: 'var(--panel-alt)', color: 'var(--muted)' };
+    return {
+      pageVars, toggleTheme: this.toggleTheme,
+      themeIcon: dark ? '\u2600' : '\u263D', themeLabel: dark ? 'Light' : 'Dark',
+      themeBtnStyle: { display: 'flex', alignItems: 'center', gap: '6px', height: '34px', padding: '0 12px', fontSize: '12px', fontWeight: 700, color: '#084BA6', background: '#EEF5FF', border: '1px solid #D8E7FA', borderRadius: '6px', cursor: 'pointer', position: 'fixed', top: '16px', right: '20px', zIndex: 50, boxShadow: '0 2px 10px rgba(0,0,0,.15)' },
+      setLangEn: () => this.setLang('en'), setLangZh: () => this.setLang('zh'),
+      langBtnStyleEn: lang === 'en' ? activeBtn : inactiveBtn, langBtnStyleZh: lang === 'zh' ? activeBtn : inactiveBtn,
+      t, h
+    };
+  }
+}
+</script>
+</body>
+</html>

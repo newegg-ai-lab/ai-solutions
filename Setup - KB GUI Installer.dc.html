@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin: 0; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; }
+    a { text-decoration: none; }
+    .navlink { transition: background .15s, color .15s; }
+    .navlink:hover { color: var(--ink) !important; background: var(--panel-alt); }
+    .theme-btn { transition: border-color .16s, color .16s; }
+    .theme-btn:hover { border-color: #084BA6; color: #084BA6; }
+    .lang-btn { transition: background .15s, color .15s; cursor: pointer; }
+    .step-card { position: relative; }
+    .step-card::before { content:''; position:absolute; top:0; left:0; width:3px; height:100%; background:linear-gradient(180deg,#084BA6,#09144F); border-radius:3px 0 0 3px; }
+    .code-block { background:#0d1117; border:1px solid #2e3350; border-radius:8px; overflow:hidden; margin:12px 0; }
+    .code-head { display:flex; align-items:center; justify-content:space-between; padding:8px 14px; border-bottom:1px solid #2e3350; background:#22263a; font-size:11px; color:#8892a4; text-transform:uppercase; letter-spacing:.06em; }
+    .code-block pre { padding:16px; overflow-x:auto; font-family:monospace; font-size:12.5px; line-height:1.6; margin:0; color:#e2e8f0; white-space:pre-wrap; }
+    .info-box { display:flex; gap:12px; background:var(--panel); border:1px solid var(--border); border-left:3px solid #084BA6; border-radius:8px; padding:14px 16px; margin:16px 0; font-size:13.5px; color:var(--ink-soft); }
+    .num-list { list-style:none; padding:0; margin:0; }
+    .num-list > li { padding:6px 0 6px 28px; position:relative; font-size:14px; color:var(--ink-soft); }
+    .num-list > li::before { content: attr(data-n); position:absolute; left:0; top:6px; width:18px; height:18px; background:#084BA6; color:#fff; border-radius:50%; font-size:10px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+  </style>
+</helmet>
+<div style="{{ pageVars }}">
+
+  <button class="theme-btn" onClick="{{ toggleTheme }}" style="{{ themeBtnStyle }}">{{ themeIcon }} {{ themeLabel }}</button>
+
+  <aside style="width:260px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--border);padding:24px 0;position:sticky;top:0;height:100vh;overflow-y:auto;">
+    <div style="padding:0 20px 20px;border-bottom:1px solid var(--border);margin-bottom:16px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <h1 style="font-size:20px;font-weight:800;font-style:italic;color:#084BA6;margin:0;">ABS AI</h1>
+        <div style="display:flex;border:1px solid var(--border);border-radius:6px;overflow:hidden;">
+          <span class="lang-btn" onClick="{{ setLangEn }}" style="{{ langBtnStyleEn }}">EN</span>
+          <span class="lang-btn" onClick="{{ setLangZh }}" style="{{ langBtnStyleZh }}">中文</span>
+        </div>
+      </div>
+      <p style="font-size:11px;color:var(--muted);margin-top:2px;">{{ t.sideSub }}</p>
+    </div>
+    <a href="Setup - Private AI and KB.dc.html" class="navlink" style="display:flex;align-items:center;gap:6px;margin:16px 20px 4px;padding:8px 12px;font-size:12px;font-weight:700;color:#084BA6;background:#EEF5FF;border:1px solid #D8E7FA;border-radius:6px;">{{ t.backLink }}</a>
+    <nav>
+      <div style="font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#084BA6;padding:16px 20px 6px;">{{ t.navG1 }}</div>
+      <a href="#overview" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);">{{ t.navOverview }}</a>
+      <div style="font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#084BA6;padding:16px 20px 6px;">{{ t.navFlow }}</div>
+      <a href="#step1" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);">{{ t.navStep1 }}</a>
+      <a href="#step2" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);">{{ t.navStep2 }}</a>
+      <div style="font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#084BA6;padding:16px 20px 6px;">{{ t.navG3 }}</div>
+      <a href="#step3" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);">{{ t.navStep3 }}</a>
+      <a href="#step4" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);">{{ t.navStep4 }}</a>
+      <div style="font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#084BA6;padding:16px 20px 6px;">{{ t.navG2 }}</div>
+      <a href="Setup - KB Fresh Install.dc.html" class="navlink" style="display:block;margin:4px 12px 0;padding:8px 12px;border:1px solid #D8E7FA;border-radius:6px;background:#EEF5FF;font-size:13px;color:#084BA6;">{{ t.navManual }} &#8599;</a>
+    </nav>
+  </aside>
+
+  <main style="flex:1;max-width:900px;margin:0 auto;padding:48px 56px;">
+
+    <div style="margin-bottom:40px;padding-bottom:32px;border-bottom:1px solid var(--border);">
+      <div style="display:inline-block;background:linear-gradient(135deg,#084BA6,#09144F);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.05em;margin-bottom:12px;">{{ t.hdrBadge }}</div>
+      <h1 style="font-size:32px;font-weight:800;color:var(--ink);margin:0;line-height:1.2;">{{ t.hdrH1 }}</h1>
+      <p style="color:var(--muted);margin-top:10px;font-size:15px;">{{ t.hdrP }}</p>
+    </div>
+
+    <section id="overview" style="margin-bottom:48px;">
+      <h2 style="font-size:20px;font-weight:800;color:var(--ink);margin:0 0 16px;">{{ t.h2Overview }}</h2>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">{{ t.overviewP }}</p>
+      <div class="step-card" style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:22px;">
+        <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:12px;">{{ t.featTitle }}</div>
+        <ol class="num-list">
+          <li data-n="1">{{ t.featLi1 }}</li>
+          <li data-n="2">{{ t.featLi2 }}</li>
+          <li data-n="3">{{ t.featLi3 }}</li>
+          <li data-n="4">{{ t.featLi4 }}</li>
+          <li data-n="5">{{ t.featLi5 }}</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="step1" style="margin-bottom:48px;">
+      <h2 style="font-size:20px;font-weight:800;color:var(--ink);margin:0 0 16px;display:flex;gap:12px;align-items:center;"><span style="background:linear-gradient(135deg,#084BA6,#09144F);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:26px;">01</span>{{ t.h2Download }}</h2>
+      <div class="step-card" style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:22px;">
+        <p style="font-size:14px;color:var(--muted);margin-bottom:0;" dangerouslySetInnerHTML="{{ h.downloadP }}"></p>
+        <a href="downloads/abs-ai-installer.zip" download="" style="display:block;margin-top:16px;background:var(--panel-alt);border:1px solid var(--border);border-radius:10px;padding:18px 20px;color:inherit;">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:#084BA6;margin-bottom:6px;">{{ t.downloadFileLabel }}</div>
+          <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px;">abs-ai-installer.zip</div>
+          <p style="font-size:13px;color:var(--muted);margin:0;">{{ t.downloadFile1Desc }}</p>
+          <div style="margin-top:10px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#084BA6;font-family:monospace;">{{ t.downloadFileCta }}</div>
+        </a>
+        <div class="info-box" style="margin-top:16px;"><span style="font-size:16px;flex-shrink:0;">&#9888;&#65039;</span><div dangerouslySetInnerHTML="{{ h.downloadNote }}"></div></div>
+      </div>
+    </section>
+
+    <section id="step2" style="margin-bottom:48px;">
+      <h2 style="font-size:20px;font-weight:800;color:var(--ink);margin:0 0 16px;display:flex;gap:12px;align-items:center;"><span style="background:linear-gradient(135deg,#084BA6,#09144F);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:26px;">02</span>{{ t.h2Run }}</h2>
+      <div class="step-card" style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:16px;">
+        <ol class="num-list">
+          <li data-n="1">{{ t.flowLi1 }}</li>
+          <li data-n="2">{{ t.flowLi2 }}</li>
+          <li data-n="3">{{ t.flowLi3 }}</li>
+          <li data-n="4">{{ t.flowLi4 }}</li>
+          <li data-n="5">{{ t.flowLi5 }}</li>
+        </ol>
+      </div>
+      <div class="info-box"><span style="font-size:16px;flex-shrink:0;">&#8505;&#65039;</span><div>{{ t.scopeNote }}</div></div>
+    </section>
+
+    <section id="step3" style="margin-bottom:48px;">
+      <h2 style="font-size:20px;font-weight:800;color:var(--ink);margin:0 0 16px;display:flex;gap:12px;align-items:center;"><span style="background:linear-gradient(135deg,#084BA6,#09144F);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:26px;">03</span>{{ t.h2Onyx }}</h2>
+      <div class="step-card" style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:22px;">
+        <ol class="num-list">
+          <li data-n="1" dangerouslySetInnerHTML="{{ h.step4Li1 }}"></li>
+          <li data-n="2" dangerouslySetInnerHTML="{{ h.step4Li2 }}"></li>
+          <li data-n="3"><strong style="color:var(--ink);" dangerouslySetInnerHTML="{{ h.step4Li3h }}"></strong>
+            <ul style="list-style:disc;padding-left:20px;color:var(--muted);margin-top:6px;font-size:13.5px;">
+              <li>{{ t.step4Li3a }}</li><li dangerouslySetInnerHTML="{{ h.step4Li3b }}"></li><li dangerouslySetInnerHTML="{{ h.step4Li3c }}"></li><li dangerouslySetInnerHTML="{{ h.step4Li3d }}"></li>
+            </ul>
+          </li>
+          <li data-n="4"><strong style="color:var(--ink);" dangerouslySetInnerHTML="{{ h.step4Li4h }}"></strong>
+            <ul style="list-style:disc;padding-left:20px;color:var(--muted);margin-top:6px;font-size:13.5px;">
+              <li dangerouslySetInnerHTML="{{ h.step4Li4a }}"></li><li dangerouslySetInnerHTML="{{ h.step4Li4b }}"></li><li dangerouslySetInnerHTML="{{ h.step4Li4c }}"></li>
+            </ul>
+          </li>
+          <li data-n="5"><strong style="color:var(--ink);" dangerouslySetInnerHTML="{{ h.step4Li5h }}"></strong>
+            <ul style="list-style:disc;padding-left:20px;color:var(--muted);margin-top:6px;font-size:13.5px;">
+              <li dangerouslySetInnerHTML="{{ h.step4Li5a }}"></li><li>{{ t.step4Li5b }}</li>
+            </ul>
+          </li>
+          <li data-n="6"><strong style="color:var(--ink);" dangerouslySetInnerHTML="{{ h.step4Li6h }}"></strong>
+            <ul style="list-style:disc;padding-left:20px;color:var(--muted);margin-top:6px;font-size:13.5px;">
+              <li dangerouslySetInnerHTML="{{ h.step4Li6a }}"></li><li dangerouslySetInnerHTML="{{ h.step4Li6b }}"></li>
+            </ul>
+          </li>
+        </ol>
+        <div class="info-box" style="margin-top:14px;"><span style="font-size:16px;flex-shrink:0;">&#9888;&#65039;</span><div><strong style="color:var(--ink);">{{ t.step4PitfallsH }}</strong><ul style="list-style:disc;padding-left:20px;color:var(--muted);margin-top:8px;font-size:13.5px;"><li dangerouslySetInnerHTML="{{ h.step4Pitfall1 }}"></li><li dangerouslySetInnerHTML="{{ h.step4Pitfall2 }}"></li></ul></div></div>
+      </div>
+    </section>
+
+    <section id="step4" style="margin-bottom:20px;">
+      <h2 style="font-size:20px;font-weight:800;color:var(--ink);margin:0 0 16px;display:flex;gap:12px;align-items:center;"><span style="background:linear-gradient(135deg,#084BA6,#09144F);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:26px;">04</span>{{ t.h2Telegram }}</h2>
+      <div class="step-card" style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:22px;">
+        <div class="code-block"><div class="code-head">bash</div><pre>cd docker-deploy/telegram-bot
+vim .env</pre></div>
+        <p style="font-size:13px;color:var(--muted);margin:10px 0 0;">{{ t.fillIn }}</p>
+        <div class="code-block"><div class="code-head">.env</div><pre><span style="color:#cba6f7;">ONYX_SERVICE_ACCOUNT_TOKEN</span>=<span style="color:#a6e3a1;">on_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>   <span style="color:#6c7086;font-style:italic;">{{ t.step5c1 }}</span>
+<span style="color:#cba6f7;">ONYX_PERSONA_ID</span>=<span style="color:#a6e3a1;">1</span>                                                 <span style="color:#6c7086;font-style:italic;">{{ t.step5c2 }}</span>
+<span style="color:#cba6f7;">ONYX_DOCUMENT_SET</span>=<span style="color:#a6e3a1;">ABS_AI</span></pre></div>
+        <div class="code-block"><div class="code-head">bash</div><pre>cd docker-deploy
+docker compose up -d --build telegram-bot
+docker compose logs -f telegram-bot</pre></div>
+        <p style="font-size:13.5px;color:var(--muted);margin:10px 0 0;" dangerouslySetInnerHTML="{{ h.step5Final }}"></p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const DICT = {
+  en: {
+    sideSub: 'Guided Installer', backLink: '\u2190 Back to Setup Guides',
+    navG1: 'Overview', navOverview: 'What It Does', navFlow: 'Install Flow',
+    navStep1: 'Step 1 \u00b7 Download', navStep2: 'Step 2 \u00b7 Run the Installer',
+    navG3: 'After the Installer', navStep3: 'Step 3 \u00b7 Configure Onyx', navStep4: 'Step 4 \u00b7 Telegram Bot',
+    navG2: 'Reference', navManual: 'Full Manual Guide',
+    hdrBadge: 'Private AI & KB \u00b7 Fresh Hardware', hdrH1: 'GUI Installer',
+    hdrP: 'A guided, point-and-click alternative to the manual terminal setup \u2014 for customers who\u2019d rather fill in a form than run commands.',
+    h2Overview: 'What It Does',
+    overviewP: 'Instead of typing every command from the manual guide by hand, the GUI installer wraps the same install script in a simple point-and-click flow. It\u2019s launched by double-clicking one file \u2014 no terminal required.',
+    featTitle: 'What it handles for you',
+    featLi1: 'Checks for and installs its one dependency (a small dialog toolkit) automatically',
+    featLi2: 'Shows a welcome screen explaining what\u2019s about to happen before anything runs',
+    featLi3: 'Collects your Telegram bot token, allowed user IDs, and an optional Hugging Face token through a simple form up front',
+    featLi4: 'Runs the full install with a live progress dialog \u2014 no need to babysit a terminal window',
+    featLi5: 'Shows a clear success screen with your Onyx URL, or a failure screen pointing at the full log if something goes wrong',
+    h2Run: 'Run the Installer',
+    flowLi1: 'Double-click the installer icon on the desktop', flowLi2: 'Confirm the welcome dialog',
+    flowLi3: 'Fill in your Telegram bot token and allowed user ID(s)', flowLi4: 'Watch the progress dialog while everything installs in the background',
+    flowLi5: 'Get a success screen with a link to your new private AI',
+    scopeNote: 'The installer automates the LLM, Docker services, and Onyx deployment. Two things still happen in your browser afterward: configuring Onyx itself, and finishing the Telegram Bot\u2019s connection to it \u2014 covered in Steps 3 and 4 below.',
+    h2Onyx: 'Configure Onyx',
+    step4Li1: 'On first visit to <code>http://&lt;host-ip&gt;:3000/app</code>, create an admin account.',
+    step4Li2: '<strong>Admin Panel \u2192 API Keys \u2192 New</strong>: generate a Service Account Token (prefixed <code>on_</code>) and note it down \u2014 needed for the Telegram Bot\u2019s <code>.env</code> later.',
+    step4Li3h: 'Admin Panel \u2192 LLM Providers \u2192 Add:', step4Li3a: 'Provider type: "OpenAI API Compatible"',
+    step4Li3b: 'API Base URL: <code>http://host.docker.internal:8888/qwen3-model/v1</code>', step4Li3c: 'Model Name: <code>Qwen-On-Premise</code>', step4Li3d: 'API Key: any non-empty string',
+    step4Li4h: 'Admin Panel \u2192 Embedding \u2192 Add Provider:', step4Li4a: 'API Base URL: <code>http://host.docker.internal:8881/v1</code>',
+    step4Li4b: 'Model Name: <code>multilingual-e5-large</code>', step4Li4c: 'Dimensions: <code>1024</code>',
+    step4Li5h: 'Admin Panel \u2192 Document Sets \u2192 New:', step4Li5a: 'Name must be <code>ABS_AI</code>',
+    step4Li5b: 'Attach connectors and feed in company SOPs, product manuals, etc.',
+    step4Li6h: 'Admin Panel \u2192 Assistants (Persona) \u2192 New:', step4Li6a: 'Bind it to the <code>ABS_AI</code> Document Set',
+    step4Li6b: 'Note the Persona ID for the Bot\u2019s <code>ONYX_PERSONA_ID</code>',
+    step4PitfallsH: 'Common pitfalls (from real debugging sessions):',
+    step4Pitfall1: 'An empty <code>document_set</code> array means Onyx always replies "I don\u2019t know" \u2014 the name must be explicit.',
+    step4Pitfall2: 'Newer Onyx uses <code>/api/chat/send-chat-message</code> with line-delimited JSON \u2014 already implemented, no changes needed.',
+    h2Telegram: 'Finish the Telegram Bot Setup', fillIn: 'Fill in:', step5c1: '# token from Step 3.2', step5c2: '# ID from Step 3.6',
+    step5Final: 'Deployment is complete once the log shows <code>Bot starting - allowed users: {...}</code> with no errors. Send <code>/start</code> to the Bot from a whitelisted Telegram account, then ask a question covered by the knowledge base to verify RAG is working.',
+    h2Download: 'Download the Installer',
+    downloadP: 'Everything you need is bundled into one download \u2014 <code>install.sh</code>, the GUI wrapper, and the desktop launcher.',
+    downloadFileLabel: 'ZIP Archive', downloadFile1Desc: 'Contains install.sh, install-ui.sh, and ABS-AI-Install.desktop.', downloadFileCta: 'Download \u2192',
+    downloadNote: 'This zip doesn\u2019t include the rest of the <code>docker-deploy</code> package \u2014 get that from your account representative, then unzip these three files directly into that same folder before running the installer.'
+  },
+  zh: {
+    sideSub: '图形化安装向导', backLink: '← 返回安装指南',
+    navG1: '总览', navOverview: '功能说明', navFlow: '安装流程',
+    navStep1: '步骤 1 · 下载', navStep2: '步骤 2 · 运行安装向导',
+    navG3: '安装向导完成之后', navStep3: '步骤 3 · 配置 Onyx', navStep4: '步骤 4 · Telegram Bot',
+    navG2: '参考', navManual: '完整手册指南',
+    hdrBadge: 'Private AI & KB · 全新硬件', hdrH1: '图形化安装向导',
+    hdrP: '手动终端安装的图形化替代方案——为更愿意填写表单而非敲命令的客户设计。',
+    h2Overview: '功能说明',
+    overviewP: '无需手动逐条输入手册中的命令，图形化安装向导将同一套安装脚本封装成简单的点选流程。双击一个文件即可启动——无需打开终端。',
+    featTitle: '它会自动帮您完成',
+    featLi1: '自动检测并安装它唯一的依赖项（一个小型对话框工具包）',
+    featLi2: '在开始前先显示欢迎界面，说明接下来会发生什么',
+    featLi3: '通过一个简单的表单预先收集您的 Telegram Bot Token、允许的用户 ID，以及可选的 Hugging Face Token',
+    featLi4: '以实时进度对话框运行完整安装——无需守着终端窗口',
+    featLi5: '安装成功后显示清晰的成功界面（含 Onyx 访问地址），若失败则显示指向完整日志的失败界面',
+    h2Run: '运行安装向导',
+    flowLi1: '双击桌面上的安装向导图标', flowLi2: '确认欢迎对话框',
+    flowLi3: '填写您的 Telegram Bot Token 与允许的用户 ID', flowLi4: '等待进度对话框，后台自动完成全部安装',
+    flowLi5: '获得成功界面，其中含有您全新私有 AI 的访问链接',
+    scopeNote: '安装向导自动完成 LLM、Docker 服务与 Onyx 部署。之后仍有两件事需要在浏览器中完成：配置 Onyx 本身，以及完成 Telegram Bot 与它的连接——详见下方步骤 3 与步骤 4。',
+    h2Onyx: '配置 Onyx',
+    step4Li1: '首次访问 <code>http://&lt;主机IP&gt;:3000/app</code>，创建管理员账号。',
+    step4Li2: '<strong>Admin Panel → API Keys → New</strong>，生成一个 Service Account Token（<code>on_</code> 前缀），记下来，稍后要填进 Telegram Bot 的 <code>.env</code>。',
+    step4Li3h: 'Admin Panel → LLM Providers → Add：', step4Li3a: 'Provider 类型选择 "OpenAI API Compatible"',
+    step4Li3b: 'API Base URL: <code>http://host.docker.internal:8888/qwen3-model/v1</code>', step4Li3c: 'Model Name: <code>Qwen-On-Premise</code>', step4Li3d: 'API Key: 任意非空字符串',
+    step4Li4h: 'Admin Panel → Embedding → Add Provider：', step4Li4a: 'API Base URL: <code>http://host.docker.internal:8881/v1</code>',
+    step4Li4b: 'Model Name: <code>multilingual-e5-large</code>', step4Li4c: '维度: <code>1024</code>',
+    step4Li5h: 'Admin Panel → Document Sets → New：', step4Li5a: '名称必须是 <code>ABS_AI</code>',
+    step4Li5b: '关联 Connector，把公司 SOP / 产品手册等文件喂进去',
+    step4Li6h: 'Admin Panel → Assistants (Persona) → New：', step4Li6a: '绑定上面创建的 Document Set <code>ABS_AI</code>',
+    step4Li6b: '记下 Persona ID，填入 <code>ONYX_PERSONA_ID</code>',
+    step4PitfallsH: '常见坑（来自实际调试记录）：',
+    step4Pitfall1: '<code>document_set</code> 若传空数组，Onyx 会一直回答"不知道"——必须显式指定文档集名称。',
+    step4Pitfall2: '新版 Onyx 聊天接口是 <code>/api/chat/send-chat-message</code>，SSE 为逐行 JSON——已按新格式实现，无需修改。',
+    h2Telegram: '完成 Telegram Bot 设置', fillIn: '补全：', step5c1: '# 上面 Onyx 设置中获取的 token', step5c2: '# 上面 Onyx 设置中获取的 ID',
+    step5Final: '日志中出现 <code>Bot starting - allowed users: {...}</code> 且没有报错，即部署完成。用白名单里的 Telegram 账号给 Bot 发 <code>/start</code>，再问一句知识库里有的内容验证 RAG 是否生效。',
+    h2Download: '下载安装向导',
+    downloadP: '所需的一切都打包在一个下载文件中——<code>install.sh</code>、图形化安装向导和桌面启动器。',
+    downloadFileLabel: 'ZIP 压缩包', downloadFile1Desc: '包含 install.sh、install-ui.sh 和 ABS-AI-Install.desktop。', downloadFileCta: '下载 →',
+    downloadNote: '此压缩包不包含 <code>docker-deploy</code> 的其余部分——请向您的客户代表获取，然后将这三个文件直接解压到同一个目录中，再运行安装向导。'
+  }
+};
+
+class Component extends DCLogic {
+  state = { dark: false, lang: 'en' };
+  toggleTheme = () => this.setState(s => ({ dark: !s.dark }));
+  setLang = (l) => this.setState({ lang: l });
+
+  renderVals() {
+    const dark = this.state.dark;
+    const vars = dark ? {
+      '--bg': '#0B1220', '--panel': '#101a2c', '--panel-alt': '#0d1626',
+      '--ink': '#E7ECF3', '--ink-soft': '#C7CEDC', '--muted': '#93A0B8', '--border': '#213047'
+    } : {
+      '--bg': '#ffffff', '--panel': '#ffffff', '--panel-alt': '#F7F9FC',
+      '--ink': '#212121', '--ink-soft': '#505050', '--muted': '#6E6E6E', '--border': '#E8E8E8'
+    };
+    const pageVars = { ...vars, color: 'var(--ink)', background: 'var(--bg)', display: 'flex', minHeight: '100vh' };
+    const lang = this.state.lang;
+    const t = DICT[lang];
+    const h = {};
+    Object.keys(t).forEach(k => { h[k] = { __html: t[k] }; });
+    const activeBtn = { padding: '5px 10px', fontSize: '11px', fontWeight: 700, background: '#084BA6', color: '#fff' };
+    const inactiveBtn = { padding: '5px 10px', fontSize: '11px', fontWeight: 700, background: 'var(--panel-alt)', color: 'var(--muted)' };
+    return {
+      pageVars, toggleTheme: this.toggleTheme,
+      themeIcon: dark ? '\u2600' : '\u263D', themeLabel: dark ? 'Light' : 'Dark',
+      themeBtnStyle: { display: 'flex', alignItems: 'center', gap: '6px', height: '34px', padding: '0 12px', fontSize: '12px', fontWeight: 700, color: '#084BA6', background: '#EEF5FF', border: '1px solid #D8E7FA', borderRadius: '6px', cursor: 'pointer', position: 'fixed', top: '16px', right: '20px', zIndex: 50, boxShadow: '0 2px 10px rgba(0,0,0,.15)' },
+      setLangEn: () => this.setLang('en'), setLangZh: () => this.setLang('zh'),
+      langBtnStyleEn: lang === 'en' ? activeBtn : inactiveBtn, langBtnStyleZh: lang === 'zh' ? activeBtn : inactiveBtn,
+      t, h
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/newegg-design-system-19ec22e3-5641-41ee-a8b9-f38bc6f65a77/colors_and_type.css">
+  <link rel="stylesheet" href="_ds/newegg-design-system-19ec22e3-5641-41ee-a8b9-f38bc6f65a77/ui_kits/newegg-storefront/styles.css">
+  <script src="_ds/newegg-design-system-19ec22e3-5641-41ee-a8b9-f38bc6f65a77/_ds_bundle.js"></script>
+  <style>
+    body { margin: 0; }
+    a { text-decoration: none; }
+    .doc-card { transition: box-shadow .16s, border-color .16s, transform .16s; }
+    .doc-card.live:hover { box-shadow: 0 10px 28px rgba(0,40,58,.12); border-color: #084BA6; transform: translateY(-2px); }
+    .theme-btn { transition: border-color .16s, color .16s; }
+    .theme-btn:hover { border-color: #FA9D28; color: #FA9D28; }
+  </style>
+</helmet>
+<div style="{{ pageVars }}">
+
+  <!-- Header -->
+  <header style="background:#00283A;color:#fff;position:sticky;top:0;z-index:50;">
+    <div style="max-width:1280px;margin:0 auto;padding:14px 30px;display:flex;align-items:center;gap:22px;">
+      <a href="Home.dc.html" style="display:inline-flex;align-items:baseline;gap:9px;text-decoration:none;">
+        <span style="font-weight:800;font-style:italic;font-size:28px;color:#FA9D28;letter-spacing:-.5px;line-height:1;">Newegg</span>
+        <span style="font-weight:700;font-style:italic;font-size:15px;color:#fff;opacity:.92;">AI Solutions</span>
+      </a>
+      <nav style="margin-left:auto;display:flex;align-items:center;gap:26px;font-size:14px;font-weight:700;">
+        <a href="Home.dc.html" style="color:#fff;">Solutions</a>
+        <span style="color:#BFC5CB;cursor:default;">Platform</span>
+        <span style="color:#BFC5CB;cursor:default;">Security</span>
+        <a href="Setup Guides.dc.html" style="color:#FA9D28;">Support</a>
+      </nav>
+      <button class="theme-btn" onClick="{{ toggleTheme }}" style="{{ themeBtnStyle }}">{{ themeIcon }} {{ themeLabel }}</button>
+      <button class="ne-btn-primary" style="height:40px;font-size:14px;padding:0 22px;">Book a Demo</button>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div style="background:var(--panel-alt);border-bottom:1px solid var(--panel-alt-border);">
+    <div style="max-width:1280px;margin:0 auto;padding:9px 30px;font-size:13px;color:var(--muted);">
+      <a href="Home.dc.html" style="color:#1061CD;">AI Solutions</a> <span style="color:var(--faint);">&rsaquo;</span> <em style="font-style:italic;font-weight:700;color:var(--ink);">Setup Guides</em>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section style="background:linear-gradient(180deg,var(--panel-alt) 0%,var(--panel) 100%);border-bottom:1px solid var(--border-soft);">
+    <div style="max-width:1280px;margin:0 auto;padding:48px 30px;">
+      <h1 style="font-size:38px;line-height:1.1;font-weight:800;font-style:italic;color:var(--ink);margin:0 0 12px;">Setup <em style="font-style:italic;color:#084BA6;">Guides</em></h1>
+      <p style="font-size:17px;color:var(--ink-soft);margin:0 0 6px;">Step-by-step instructions for getting each platform running.</p>
+      <p style="font-size:14px;color:var(--muted);margin:0 0 22px;">Pick your product below to get started.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;">
+        <span style="font-size:13px;font-weight:700;color:#084BA6;background:#EEF5FF;border:1px solid #D8E7FA;border-radius:20px;padding:6px 16px;">Pre-Loaded &mdash; everything installed</span>
+        <span style="font-size:13px;font-weight:700;color:#3E5074;background:#EEF0F5;border:1px solid #DCE1EC;border-radius:20px;padding:6px 16px;">Fresh Hardware &mdash; manual install</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guides -->
+  <section style="max-width:1280px;margin:0 auto;padding:52px 30px 30px;flex:1;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+
+      <div class="doc-card" style="position:relative;background:var(--panel);border:1px solid var(--border);border-top:4px solid #084BA6;border-radius:10px;padding:28px;color:var(--ink);">
+        <div style="font-size:11px;font-weight:800;letter-spacing:1.5px;color:#084BA6;text-transform:uppercase;margin-bottom:10px;">Enterprise AI</div>
+        <h3 style="font-size:19px;font-weight:800;color:var(--ink);margin:0 0 8px;">Private AI &amp; KB</h3>
+        <p style="font-size:14px;line-height:1.65;color:var(--muted);margin:0 0 18px;">Knowledge Base &amp; Private AI Assistant setup &mdash; Pre-Loaded and Fresh Hardware paths.</p>
+        <a href="Setup - Private AI and KB.dc.html" style="display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:#084BA6;">View Guides
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <div style="display:block;background:var(--panel-alt);border:1px solid var(--border);border-top:4px solid #D8DEE8;border-radius:10px;padding:28px;color:var(--ink);opacity:.65;">
+        <div style="font-size:11px;font-weight:800;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-bottom:10px;">Business Intelligence AI</div>
+        <h3 style="font-size:19px;font-weight:800;color:var(--muted);margin:0 0 8px;">Private AI &amp; BI</h3>
+        <p style="font-size:14px;line-height:1.65;color:var(--muted);margin:0 0 18px;">Setup guide for DataLLM &mdash; connecting OpenCowork to your BI cubes.</p>
+        <span style="font-size:12px;font-weight:800;letter-spacing:1px;color:var(--faint);text-transform:uppercase;">Coming Soon</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background:#001A26;color:#7B8A96;">
+    <div style="max-width:1280px;margin:0 auto;padding:26px 30px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13px;">
+      <span style="font-weight:800;font-style:italic;color:#FA9D28;font-size:18px;">Newegg <span style="color:#fff;font-size:13px;font-weight:700;">AI Solutions</span></span>
+      <span>&copy; 2026 Newegg Inc. &middot; Setup Guides</span>
+    </div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { dark: false };
+
+  toggleTheme = () => this.setState(s => ({ dark: !s.dark }));
+
+  renderVals() {
+    const dark = this.state.dark;
+    const vars = dark ? {
+      '--bg': '#0B1220', '--panel': '#101a2c', '--panel-alt': '#0d1626',
+      '--panel-alt-border': '#1c2942', '--ink': '#E7ECF3', '--ink-soft': '#C7CEDC',
+      '--muted': '#93A0B8', '--faint': '#5b6b89', '--border': '#213047', '--border-soft': '#1c2942'
+    } : {
+      '--bg': '#ffffff', '--panel': '#ffffff', '--panel-alt': '#F7F9FC',
+      '--panel-alt-border': '#E8EDF3', '--ink': '#212121', '--ink-soft': '#505050',
+      '--muted': '#6E6E6E', '--faint': '#8CA6C9', '--border': '#E8E8E8', '--border-soft': '#EDEFF3'
+    };
+    const pageVars = { ...vars, fontFamily: "'Open Sans',Arial,sans-serif", color: 'var(--ink)', background: 'var(--bg)', minWidth: '1080px', display: 'flex', flexDirection: 'column', minHeight: '100vh' };
+    return {
+      pageVars,
+      toggleTheme: this.toggleTheme,
+      themeIcon: dark ? '\u2600' : '\u263D',
+      themeLabel: dark ? 'Light' : 'Dark',
+      themeBtnStyle: { display: 'flex', alignItems: 'center', gap: '6px', height: '40px', padding: '0 14px', fontSize: '13px', fontWeight: 700, color: '#fff', background: 'rgba(255,255,255,.06)', border: '1px solid rgba(255,255,255,.2)', borderRadius: '20px', cursor: 'pointer' }
+    };
+  }
+}
+</script>
+</body>
+</html>

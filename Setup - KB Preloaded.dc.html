@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin: 0; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC',sans-serif; }
+    a { text-decoration: none; }
+    .navlink { transition: background .15s, color .15s, border-color .15s; }
+    .navlink:hover { color: var(--ink) !important; background: var(--panel-alt); }
+    .theme-btn { transition: border-color .16s, color .16s; }
+    .theme-btn:hover { border-color: #084BA6; color: #084BA6; }
+    .lang-btn { transition: background .15s, color .15s; cursor: pointer; }
+    .step-card { position: relative; }
+    .step-card::before { content:''; position:absolute; top:0; left:0; width:3px; height:100%; background:linear-gradient(180deg,#084BA6,#09144F); border-radius:3px 0 0 3px; }
+    table.doc-table { width:100%; border-collapse:collapse; font-size:13.5px; margin:12px 0; }
+    table.doc-table th { text-align:left; padding:10px 14px; background:var(--panel-alt); border:1px solid var(--border); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); }
+    table.doc-table td { padding:10px 14px; border:1px solid var(--border); vertical-align:top; color:var(--ink-soft); }
+    table.doc-table td code { background:var(--panel-alt); border:1px solid var(--border); padding:2px 6px; border-radius:4px; font-family:monospace; font-size:12px; color:#09144F; }
+  </style>
+</helmet>
+<div style="{{ pageVars }}">
+
+  <button class="theme-btn" onClick="{{ toggleTheme }}" style="{{ themeBtnStyle }}">{{ themeIcon }} {{ themeLabel }}</button>
+
+  <!-- Sidebar -->
+  <aside style="width:260px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--border);padding:24px 0;position:sticky;top:0;height:100vh;overflow-y:auto;">
+    <div style="padding:0 20px 20px;border-bottom:1px solid var(--border);margin-bottom:16px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <h1 style="font-size:20px;font-weight:800;font-style:italic;color:#084BA6;margin:0;">ABS AI</h1>
+        <div style="display:flex;border:1px solid var(--border);border-radius:6px;overflow:hidden;">
+          <span class="lang-btn" onClick="{{ setLangEn }}" style="{{ langBtnStyleEn }}">EN</span>
+          <span class="lang-btn" onClick="{{ setLangZh }}" style="{{ langBtnStyleZh }}">中文</span>
+        </div>
+      </div>
+      <p style="font-size:11px;color:var(--muted);margin-top:2px;">{{ t.sideSub }}</p>
+    </div>
+    <a href="Setup - Private AI and KB.dc.html" class="navlink" style="display:flex;align-items:center;gap:6px;margin:16px 20px 4px;padding:8px 12px;font-size:12px;font-weight:700;color:#084BA6;background:#EEF5FF;border:1px solid #D8E7FA;border-radius:6px;">{{ t.backLink }}</a>
+    <nav>
+      <div style="font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#084BA6;padding:16px 20px 6px;">{{ t.navG1 }}</div>
+      <a href="#prerequisites" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);border-left:2px solid transparent;">{{ t.navPrereq }}</a>
+      <a href="#step1" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);border-left:2px solid transparent;">{{ t.navStep1 }}</a>
+      <a href="#step2" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);border-left:2px solid transparent;">{{ t.navStep2 }}</a>
+      <a href="#step3" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);border-left:2px solid transparent;">{{ t.navStep3 }}</a>
+      <a href="#step4" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);border-left:2px solid transparent;">{{ t.navStep4 }}</a>
+      <a href="#step5" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);border-left:2px solid transparent;">{{ t.navStep5 }}</a>
+      <a href="#step6" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);border-left:2px solid transparent;">{{ t.navStep6 }}</a>
+      <a href="#step7" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);border-left:2px solid transparent;">{{ t.navStep7 }}</a>
+      <div style="font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#084BA6;padding:16px 20px 6px;">{{ t.navG2 }}</div>
+      <a href="#debug" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);border-left:2px solid transparent;">{{ t.navDebug }}</a>
+      <a href="#services" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);border-left:2px solid transparent;">{{ t.navServices }}</a>
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <main style="flex:1;max-width:900px;margin:0 auto;padding:48px 56px;">
+
+    <div style="margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--border);">
+      <div style="display:inline-block;background:linear-gradient(135deg,#084BA6,#09144F);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.05em;margin-bottom:12px;">ABS AI &middot; Private AI Stack</div>
+      <h1 style="font-size:32px;font-weight:800;color:var(--ink);margin:0;line-height:1.2;">{{ t.hdrH1 }}</h1>
+      <p style="color:var(--muted);margin-top:10px;font-size:15px;">{{ t.hdrP }}</p>
+    </div>
+
+    <section id="prerequisites" style="margin-bottom:52px;">
+      <h2 style="font-size:21px;font-weight:800;color:var(--ink);margin:0 0 18px;">{{ t.h2Prereq }}</h2>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:8px;">{{ t.prereqP }}</p>
+      <div style="background:#0d1117;border:1px solid #2e3350;border-radius:8px;overflow:hidden;margin:12px 0;">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 14px;border-bottom:1px solid #2e3350;background:#22263a;"><span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#8892a4;">Windows CMD</span><span style="border:1px solid #2e3350;color:#8892a4;font-size:11px;padding:2px 8px;border-radius:4px;">{{ t.copy }}</span></div>
+        <pre style="padding:16px;overflow-x:auto;font-family:monospace;font-size:13px;line-height:1.6;margin:0;color:#e2e8f0;"><code><span style="color:#6c7086;font-style:italic;">{{ t.cmtWsl }}</span>
+wsl</code></pre>
+      </div>
+    </section>
+
+    <sc-for list="{{ steps }}" as="s" hint-placeholder-count="6">
+      <section style="margin-bottom:52px;" id="{{ s.id }}">
+        <h2 style="font-size:21px;font-weight:800;color:var(--ink);margin:0 0 18px;display:flex;align-items:center;gap:12px;">
+          <span style="background:linear-gradient(135deg,#084BA6,#09144F);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:26px;font-weight:800;">{{ s.num }}</span>
+          <span>{{ s.title }}</span>
+        </h2>
+        <div class="step-card" style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:24px;">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#084BA6;margin-bottom:6px;">{{ s.stepLabel }}</div>
+          <div style="font-size:16px;font-weight:700;color:var(--ink);margin-bottom:10px;">{{ s.model }}</div>
+          <div style="display:inline-block;background:var(--panel-alt);border:1px solid var(--border);color:var(--muted);font-size:12px;padding:2px 8px;border-radius:4px;margin-bottom:12px;font-family:monospace;">{{ s.service }}</div>
+          <div style="background:#0d1117;border:1px solid #2e3350;border-radius:8px;overflow:hidden;">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 14px;border-bottom:1px solid #2e3350;background:#22263a;"><span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#8892a4;">bash</span><span style="border:1px solid #2e3350;color:#8892a4;font-size:11px;padding:2px 8px;border-radius:4px;">{{ t.copy }}</span></div>
+            <pre style="padding:16px;overflow-x:auto;font-family:monospace;font-size:13px;line-height:1.6;margin:0;color:#e2e8f0;white-space:pre-wrap;">{{ s.cmd }}</pre>
+          </div>
+        </div>
+      </section>
+    </sc-for>
+
+    <!-- Step 5: Onyx detail -->
+    <section id="step5b" style="margin-top:-30px;margin-bottom:52px;">
+      <div class="step-card" style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:24px;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#084BA6;margin-bottom:6px;">Step 5</div>
+        <div style="font-size:16px;font-weight:700;color:var(--ink);margin-bottom:14px;">{{ t.step5Title }}</div>
+        <ol style="list-style:none;padding:0;margin:0 0 16px;">
+          <li style="padding:6px 0 6px 28px;position:relative;font-size:14px;color:var(--ink-soft);"><span style="position:absolute;left:0;top:8px;width:18px;height:18px;background:#084BA6;color:#fff;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;">1</span><span dangerouslySetInnerHTML="{{ h.step5Li1 }}"></span></li>
+          <li style="padding:6px 0 6px 28px;position:relative;font-size:14px;color:var(--ink-soft);"><span style="position:absolute;left:0;top:8px;width:18px;height:18px;background:#084BA6;color:#fff;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;">2</span><span dangerouslySetInnerHTML="{{ h.step5Li2 }}"></span></li>
+        </ol>
+        <table class="doc-table"><tr><th>{{ t.thField }}</th><th>{{ t.thValue }}</th></tr>
+          <tr><td>{{ t.lblUrl }}</td><td><code>http://localhost:3000/app</code></td></tr>
+          <tr><td>{{ t.lblEmail }}</td><td><code>admin@newegg.com</code></td></tr>
+          <tr><td>{{ t.lblPass }}</td><td><code>admin@1234</code></td></tr>
+        </table>
+        <div style="display:flex;gap:12px;background:var(--panel);border:1px solid var(--border);border-left:3px solid #084BA6;border-radius:8px;padding:14px 16px;margin-top:14px;font-size:14px;">
+          <span style="font-size:18px;flex-shrink:0;">&#128273;</span>
+          <div style="color:var(--ink-soft);" dangerouslySetInnerHTML="{{ h.step5Info }}"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6: Telegram config -->
+    <section id="step6b" style="margin-top:-30px;margin-bottom:52px;">
+      <div class="step-card" style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:24px;">
+        <h3 style="font-size:15px;font-weight:700;color:var(--ink);margin:0 0 12px;">{{ t.h3Envvars }}</h3>
+        <div style="background:#0d1117;border:1px solid #2e3350;border-radius:8px;overflow:hidden;margin-bottom:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 14px;border-bottom:1px solid #2e3350;background:#22263a;"><span style="font-size:11px;font-weight:700;text-transform:uppercase;color:#8892a4;">bash</span></div>
+          <pre style="padding:16px;overflow-x:auto;font-family:monospace;font-size:13px;color:#e2e8f0;margin:0;">vim /usr/local/abs-ai/telegram-bot/.env</pre>
+        </div>
+        <div style="background:#0d1117;border:1px solid #2e3350;border-radius:8px;overflow:hidden;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 14px;border-bottom:1px solid #2e3350;background:#22263a;"><span style="font-size:11px;font-weight:700;text-transform:uppercase;color:#8892a4;">.env</span></div>
+          <pre style="padding:16px;overflow-x:auto;font-family:monospace;font-size:13px;line-height:1.7;margin:0;"><span style="color:#cba6f7;">ALLOWED_USER_IDS</span>=<span style="color:#a6e3a1;">Your_ALLOWED_USER_IDS</span>
+<span style="color:#cba6f7;">TELEGRAM_BOT_TOKEN</span>=<span style="color:#a6e3a1;">Your_TELEGRAM_BOT_TOKEN</span>
+<span style="color:#cba6f7;">ONYX_BASE_URL</span>=<span style="color:#a6e3a1;">http://localhost:3000</span>
+<span style="color:#cba6f7;">ONYX_SERVICE_ACCOUNT_TOKEN</span>=<span style="color:#a6e3a1;">Your_ONYX_SERVICE_ACCOUNT_TOKEN</span>
+<span style="color:#cba6f7;">ONYX_PERSONA_ID</span>=<span style="color:#a6e3a1;">1</span>
+<span style="color:#cba6f7;">ONYX_TIMEOUT</span>=<span style="color:#a6e3a1;">180</span></pre>
+        </div>
+
+        <h3 style="font-size:15px;font-weight:700;color:var(--ink);margin:20px 0 12px;">{{ t.h3TelegramParams }}</h3>
+        <div class="step-card" style="background:var(--panel-alt);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:12px;">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:#084BA6;margin-bottom:6px;">{{ t.sc1Num }}</div>
+          <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:12px;">{{ t.sc1Title }}</div>
+          <ol style="list-style:none;padding:0;margin:0;">
+            <li style="padding:6px 0 6px 28px;position:relative;font-size:13.5px;color:var(--ink-soft);"><span style="position:absolute;left:0;top:6px;width:18px;height:18px;background:#084BA6;color:#fff;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;">1</span><span dangerouslySetInnerHTML="{{ h.tg1Li1 }}"></span></li>
+            <li style="padding:6px 0 6px 28px;position:relative;font-size:13.5px;color:var(--ink-soft);"><span style="position:absolute;left:0;top:6px;width:18px;height:18px;background:#084BA6;color:#fff;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;">2</span><span dangerouslySetInnerHTML="{{ h.tg1Li2 }}"></span></li>
+            <li style="padding:6px 0 6px 28px;position:relative;font-size:13.5px;color:var(--ink-soft);"><span style="position:absolute;left:0;top:6px;width:18px;height:18px;background:#084BA6;color:#fff;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;">3</span><span dangerouslySetInnerHTML="{{ h.tg1Li3 }}"></span></li>
+            <li style="padding:6px 0 6px 28px;position:relative;font-size:13.5px;color:var(--ink-soft);"><span style="position:absolute;left:0;top:6px;width:18px;height:18px;background:#084BA6;color:#fff;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;">4</span><span dangerouslySetInnerHTML="{{ h.tg1Li4 }}"></span></li>
+            <li style="padding:6px 0 6px 28px;position:relative;font-size:13.5px;color:var(--ink-soft);"><span style="position:absolute;left:0;top:6px;width:18px;height:18px;background:#084BA6;color:#fff;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;">5</span><span dangerouslySetInnerHTML="{{ h.tg1Li5 }}"></span></li>
+          </ol>
+        </div>
+        <div class="step-card" style="background:var(--panel-alt);border:1px solid var(--border);border-radius:12px;padding:20px;">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:#084BA6;margin-bottom:6px;">{{ t.sc2Num }}</div>
+          <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:12px;">{{ t.sc2Title }}</div>
+          <ol style="list-style:none;padding:0;margin:0;">
+            <li style="padding:6px 0 6px 28px;position:relative;font-size:13.5px;color:var(--ink-soft);"><span style="position:absolute;left:0;top:6px;width:18px;height:18px;background:#084BA6;color:#fff;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;">1</span><span dangerouslySetInnerHTML="{{ h.tg2Li1 }}"></span></li>
+            <li style="padding:6px 0 6px 28px;position:relative;font-size:13.5px;color:var(--ink-soft);"><span style="position:absolute;left:0;top:6px;width:18px;height:18px;background:#084BA6;color:#fff;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;">2</span><span dangerouslySetInnerHTML="{{ h.tg2Li2 }}"></span></li>
+            <li style="padding:6px 0 6px 28px;position:relative;font-size:13.5px;color:var(--ink-soft);"><span style="position:absolute;left:0;top:6px;width:18px;height:18px;background:#084BA6;color:#fff;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;">3</span><span dangerouslySetInnerHTML="{{ h.tg2Li3 }}"></span></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: usage example -->
+    <section id="step7" style="margin-top:-30px;margin-bottom:52px;">
+      <p style="font-size:14px;color:var(--muted);margin-bottom:12px;">{{ t.step8P }}</p>
+      <div style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:20px;">
+        <div style="display:flex;gap:10px;margin-bottom:16px;">
+          <span style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#084BA6,#09144F);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">&#128100;</span>
+          <div style="background:#EEF5FF;border:1px solid #D8E7FA;border-radius:8px;padding:10px 14px;font-size:14px;color:var(--ink);">{{ t.chatUser }}</div>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <span style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#22c55e,#15803d);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">&#129302;</span>
+          <div style="background:var(--panel-alt);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:14px;color:var(--ink-soft);line-height:1.6;">{{ t.chatBot }}</div>
+        </div>
+      </div>
+
+      <h3 style="font-size:15px;font-weight:700;color:var(--ink);margin:0 0 12px;">{{ t.h3Core }}</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:20px;">
+          <div style="font-size:22px;margin-bottom:8px;">&#129504;</div>
+          <div style="display:inline-block;background:var(--panel-alt);border:1px solid var(--border);font-size:11px;padding:2px 7px;border-radius:4px;color:#084BA6;margin-bottom:8px;font-family:monospace;">vllm.service</div>
+          <div style="font-size:14.5px;font-weight:700;color:var(--ink);margin-bottom:6px;">{{ t.core1Title }}</div>
+          <div style="font-size:12.5px;color:var(--muted);line-height:1.55;">{{ t.core1Desc }}</div>
+        </div>
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:20px;">
+          <div style="font-size:22px;margin-bottom:8px;">&#128218;</div>
+          <div style="display:inline-block;background:var(--panel-alt);border:1px solid var(--border);font-size:11px;padding:2px 7px;border-radius:4px;color:#084BA6;margin-bottom:8px;font-family:monospace;">Onyx RAG</div>
+          <div style="font-size:14.5px;font-weight:700;color:var(--ink);margin-bottom:6px;">{{ t.core2Title }}</div>
+          <div style="font-size:12.5px;color:var(--muted);line-height:1.55;">{{ t.core2Desc }}</div>
+        </div>
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:20px;">
+          <div style="font-size:22px;margin-bottom:8px;">&#128190;</div>
+          <div style="display:inline-block;background:var(--panel-alt);border:1px solid var(--border);font-size:11px;padding:2px 7px;border-radius:4px;color:#084BA6;margin-bottom:8px;font-family:monospace;">mem0.service</div>
+          <div style="font-size:14.5px;font-weight:700;color:var(--ink);margin-bottom:6px;">{{ t.core3Title }}</div>
+          <div style="font-size:12.5px;color:var(--muted);line-height:1.55;">{{ t.core3Desc }}</div>
+        </div>
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:20px;">
+          <div style="font-size:22px;margin-bottom:8px;">&#128172;</div>
+          <div style="display:inline-block;background:var(--panel-alt);border:1px solid var(--border);font-size:11px;padding:2px 7px;border-radius:4px;color:#084BA6;margin-bottom:8px;font-family:monospace;">telegram-bot.service</div>
+          <div style="font-size:14.5px;font-weight:700;color:var(--ink);margin-bottom:6px;">{{ t.core4Title }}</div>
+          <div style="font-size:12.5px;color:var(--muted);line-height:1.55;">{{ t.core4Desc }}</div>
+        </div>
+      </div>
+
+      <h3 style="font-size:15px;font-weight:700;color:var(--ink);margin:0 0 12px;">{{ t.h3Why }}</h3>
+      <table class="doc-table">
+        <tr><th>{{ t.thAdv }}</th><th>{{ t.thDesc }}</th></tr>
+        <tr><td style="color:#1E852C;font-weight:700;">{{ t.adv1 }}</td><td>{{ t.adv1Desc }}</td></tr>
+        <tr><td style="color:#1E852C;font-weight:700;">{{ t.adv2 }}</td><td>{{ t.adv2Desc }}</td></tr>
+        <tr><td style="color:#1E852C;font-weight:700;">{{ t.adv3 }}</td><td>{{ t.adv3Desc }}</td></tr>
+        <tr><td style="color:#1E852C;font-weight:700;">{{ t.adv4 }}</td><td>{{ t.adv4Desc }}</td></tr>
+      </table>
+    </section>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:40px 0;" />
+
+    <!-- Debug -->
+    <section id="debug" style="margin-bottom:52px;">
+      <h2 style="font-size:21px;font-weight:800;color:var(--ink);margin:0 0 18px;">{{ t.h2Debug }}</h2>
+      <h3 style="font-size:15px;font-weight:700;color:var(--ink);margin:0 0 12px;">{{ t.h3Logs }}</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="background:#0d1117;border:1px solid #2e3350;border-radius:8px;overflow:hidden;"><div style="padding:8px 14px;background:#22263a;border-bottom:1px solid #2e3350;font-size:11px;color:#8892a4;text-transform:uppercase;">vllm</div><pre style="padding:14px;overflow-x:auto;color:#e2e8f0;font-family:monospace;font-size:12.5px;margin:0;">journalctl -u vllm.service -f</pre></div>
+        <div style="background:#0d1117;border:1px solid #2e3350;border-radius:8px;overflow:hidden;"><div style="padding:8px 14px;background:#22263a;border-bottom:1px solid #2e3350;font-size:11px;color:#8892a4;text-transform:uppercase;">rerank</div><pre style="padding:14px;overflow-x:auto;color:#e2e8f0;font-family:monospace;font-size:12.5px;margin:0;">journalctl -u rerank.service -f</pre></div>
+        <div style="background:#0d1117;border:1px solid #2e3350;border-radius:8px;overflow:hidden;"><div style="padding:8px 14px;background:#22263a;border-bottom:1px solid #2e3350;font-size:11px;color:#8892a4;text-transform:uppercase;">embedding</div><pre style="padding:14px;overflow-x:auto;color:#e2e8f0;font-family:monospace;font-size:12.5px;margin:0;">journalctl -u embedding.service -f</pre></div>
+        <div style="background:#0d1117;border:1px solid #2e3350;border-radius:8px;overflow:hidden;"><div style="padding:8px 14px;background:#22263a;border-bottom:1px solid #2e3350;font-size:11px;color:#8892a4;text-transform:uppercase;">mem0</div><pre style="padding:14px;overflow-x:auto;color:#e2e8f0;font-family:monospace;font-size:12.5px;margin:0;">journalctl -u mem0.service -f</pre></div>
+        <div style="background:#0d1117;border:1px solid #2e3350;border-radius:8px;overflow:hidden;"><div style="padding:8px 14px;background:#22263a;border-bottom:1px solid #2e3350;font-size:11px;color:#8892a4;text-transform:uppercase;">telegram-bot</div><pre style="padding:14px;overflow-x:auto;color:#e2e8f0;font-family:monospace;font-size:12.5px;margin:0;">journalctl -u telegram-bot.service -f</pre></div>
+        <div style="background:#0d1117;border:1px solid #2e3350;border-radius:8px;overflow:hidden;"><div style="padding:8px 14px;background:#22263a;border-bottom:1px solid #2e3350;font-size:11px;color:#8892a4;text-transform:uppercase;">{{ t.lblPortcheck }}</div><pre style="padding:14px;overflow-x:auto;color:#e2e8f0;font-family:monospace;font-size:12.5px;margin:0;">netstat | grep 8880</pre></div>
+      </div>
+    </section>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:40px 0;" />
+
+    <!-- Services -->
+    <section id="services" style="margin-bottom:20px;">
+      <h2 style="font-size:21px;font-weight:800;color:var(--ink);margin:0 0 18px;">{{ t.h2Services }}</h2>
+      <sc-for list="{{ services }}" as="sv" hint-placeholder-count="5">
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:20px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:var(--panel-alt);border-bottom:1px solid var(--border);">
+            <span style="font-size:15px;font-weight:700;color:var(--ink);">{{ sv.name }}</span>
+            <span style="font-size:12px;color:var(--muted);font-family:monospace;">{{ sv.model }}</span>
+          </div>
+          <div style="padding:16px 20px;">
+            <div style="background:#0d1117;border:1px solid #2e3350;border-radius:8px;overflow:hidden;">
+              <div style="padding:8px 14px;background:#22263a;border-bottom:1px solid #2e3350;font-size:11px;color:#8892a4;text-transform:uppercase;">bash</div>
+              <pre style="padding:16px;overflow-x:auto;color:#e2e8f0;font-family:monospace;font-size:12.5px;line-height:1.6;margin:0;white-space:pre-wrap;">{{ sv.cmds }}</pre>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </section>
+
+  </main>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const DICT = {
+  en: {
+    sideSub: 'User Manual', backLink: '\u2190 Back to Setup Guides',
+    navG1: 'Quick Start', navPrereq: 'Prerequisites', navStep1: 'Step 1 \u00b7 LLM', navStep2: 'Step 2 \u00b7 Rerank',
+    navStep3: 'Step 3 \u00b7 Embedding', navStep4: 'Step 4 \u00b7 Mem0', navStep5: 'Step 5 \u00b7 Onyx', navStep6: 'Step 6 \u00b7 Telegram Bot',
+    navStep7: 'Step 7 \u00b7 Usage Example', navG2: 'Ops Reference', navDebug: 'Debug Commands', navServices: 'Service Management',
+    hdrH1: 'ABS AI User Manual', hdrP: 'On-premise enterprise private AI solution \u2014 complete deployment & usage guide',
+    h2Prereq: 'Prerequisites', prereqP: 'All of the following services run under Ubuntu via WSL (Windows Subsystem for Linux).',
+    copy: 'Copy', cmtWsl: '# Open Windows Command Prompt, then enter WSL',
+    h2Step1: 'Start the LLM Model', h2Step2: 'Start the Rerank Model', h2Step3: 'Start the Embedding Model', h2Step4: 'Start Mem0',
+    step4Title: 'Mem0 Memory Layer', h2Step5: 'Start Onyx', h2Step6: 'Start & Configure the Telegram Bot', step6Title: 'Start the Service',
+    h2Step7: 'Usage Example', step5Title: 'Enterprise Knowledge Base \u00b7 Onyx',
+    step5Li1: 'Start <strong>Docker Desktop</strong> on Windows', step5Li2: 'Start <strong>Onyx</strong>',
+    thField: 'Field', thValue: 'Value', lblUrl: 'Access URL', lblEmail: 'Admin Email', lblPass: 'Password',
+    step5Info: 'Get API Key: go to <strong>Admin Panel</strong> \u2192 <strong>API Keys</strong> \u2192 click <strong>New</strong>',
+    h3Envvars: 'Configure Environment Variables', h3TelegramParams: 'How to Get Telegram Configuration Parameters',
+    sc1Num: 'Get TELEGRAM_BOT_TOKEN', sc1Title: 'Create a Bot via @BotFather',
+    tg1Li1: 'Open Telegram and search for <strong>@BotFather</strong>', tg1Li2: 'Send <code>/newbot</code>',
+    tg1Li3: 'Enter a bot name (e.g. <code>My AI Bot</code>)', tg1Li4: 'Enter a bot username \u2014 it must end in <code>bot</code>',
+    tg1Li5: 'BotFather replies with your <strong>Token</strong> \u2014 copy and save it',
+    sc2Num: 'Get ALLOWED_USER_IDS', sc2Title: 'Get Your Numeric Telegram User ID',
+    tg2Li1: 'Search for <strong>@userinfobot</strong>', tg2Li2: 'Send <code>/start</code>',
+    tg2Li3: 'The bot replies with your numeric <strong>User ID</strong> \u2014 copy and save it',
+    step8P: 'Send a message to the bot in Telegram:', chatUser: 'ABS_AI four core components',
+    chatBot: 'According to ABS AI\u2019s documentation, its \u201cfour core components\u201d are the four essential building blocks of the enterprise private AI solution \u2014 none of which can be left out. They are as follows:',
+    h3Core: 'The Four Core Components',
+    core1Title: '1. Local LLM', core1Desc: 'Runs the Qwen 3.6 35B model on an NVIDIA RTX PRO 6000 Blackwell 96GB GPU. All data stays local end-to-end \u2014 no third-party retention, no API bills.',
+    core2Title: '2. Onyx Enterprise Knowledge Base', core2Desc: 'Ingests company SOPs, product manuals, and internal documents. The AI answers using \u201cyour own material\u201d (via RAG), ideal for onboarding, policy lookups, and finding answers fast.',
+    core3Title: '3. Mem0 Memory Layer', core3Desc: 'The AI remembers every conversation, user preference, and piece of project context. It gets better the more the team uses it.',
+    core4Title: '4. Telegram Bot Interface', core4Desc: 'Interact with the AI through the familiar Telegram chat window \u2014 ask questions anytime, anywhere, including from mobile.',
+    h3Why: 'Why Choose This Architecture?', thAdv: 'Advantage', thDesc: 'Description',
+    adv1: 'Fully Compliant', adv1Desc: 'Sensitive data (MNPI, customer records, financial figures) never leaves the server room, meeting strict information-security requirements',
+    adv2: 'Zero Marginal Cost', adv2Desc: 'One-time hardware investment, unlimited use afterward \u2014 no per-token billing',
+    adv3: 'Ready Out of the Box', adv3Desc: 'Hardware, software, models, and configuration delivered as one integrated package',
+    adv4: 'Scalable', adv4Desc: 'A modular architecture leaves room to upgrade and grow with the team',
+    h2Debug: 'Debug Commands', h3Logs: 'View Service Logs in Real Time', lblPortcheck: 'Port Check', h2Services: 'Service Management Reference'
+  },
+  zh: {
+    sideSub: '用户手册 · User Manual', backLink: '← 返回安装指南',
+    navG1: '快速启动', navPrereq: '准备工作', navStep1: '第一步 · LLM', navStep2: '第二步 · Rerank',
+    navStep3: '第三步 · Embedding', navStep4: '第四步 · Mem0', navStep5: '第五步 · Onyx', navStep6: '第六步 · Telegram Bot',
+    navStep7: '第七步 · 使用示例', navG2: '运维参考', navDebug: '调试命令', navServices: '服务管理',
+    hdrH1: 'ABS AI 用户手册', hdrP: '本地化企业私有 AI 解决方案 — 完整部署与使用指南',
+    h2Prereq: '准备工作', prereqP: '以下所有服务均通过 WSL（Windows Subsystem for Linux）在 Ubuntu 下执行。',
+    copy: '复制', cmtWsl: '# 打开 Windows 命令提示符，进入 WSL',
+    h2Step1: '启动 LLM 模型', h2Step2: '启动 Rerank 模型', h2Step3: '启动 Embedding 模型', h2Step4: '启动 Mem0',
+    step4Title: 'Mem0 记忆层', h2Step5: '启动 Onyx', h2Step6: '启动并配置 Telegram Bot', step6Title: '启动服务',
+    h2Step7: '使用示例', step5Title: '企业知识库 · Onyx',
+    step5Li1: '在 Windows 中启动 <strong>Docker Desktop</strong>', step5Li2: '启动 <strong>Onyx</strong>',
+    thField: '字段', thValue: '值', lblUrl: '访问地址', lblEmail: '管理员邮箱', lblPass: '密码',
+    step5Info: '获取 API Key：进入 <strong>Admin Panel</strong> → <strong>API Keys</strong> → 点击 <strong>New</strong>',
+    h3Envvars: '配置环境变量', h3TelegramParams: '如何获取 Telegram 配置参数',
+    sc1Num: '获取 TELEGRAM_BOT_TOKEN', sc1Title: '通过 @BotFather 创建 Bot',
+    tg1Li1: '打开 Telegram，搜索 <strong>@BotFather</strong>', tg1Li2: '发送 <code>/newbot</code>',
+    tg1Li3: '输入 Bot 名称（如 <code>My AI Bot</code>）', tg1Li4: '输入 Bot 用户名，必须以 <code>bot</code> 结尾',
+    tg1Li5: 'BotFather 回复您的 <strong>Token</strong>，复制保存',
+    sc2Num: '获取 ALLOWED_USER_IDS', sc2Title: '获取您的 Telegram 数字用户 ID',
+    tg2Li1: '搜索 <strong>@userinfobot</strong>', tg2Li2: '发送 <code>/start</code>',
+    tg2Li3: '机器人将回复您的数字 <strong>User ID</strong>，复制保存',
+    step8P: '在 Telegram 中向 Bot 发送消息：', chatUser: 'ABS_AI 四个核心',
+    chatBot: '根据 ABS AI 的相关资料，其"四个核心"是指构建企业私有 AI 解决方案的四大关键组件，缺一不可。具体如下：',
+    h3Core: '四个核心组件',
+    core1Title: '1. 本地 LLM', core1Desc: '运行 Qwen 3.6 35B 模型，部署在 NVIDIA RTX PRO 6000 Blackwell 96GB 显卡上。所有数据全程本地，无第三方留存，无 API 账单。',
+    core2Title: '2. Onyx 企业知识库', core2Desc: '将公司 SOP、产品手册注入系统。AI 基于"你的资料"回答（RAG 技术），适用于新人上手、查规范、找答案。',
+    core3Title: '3. Mem0 记忆层', core3Desc: 'AI 记住每次对话、用户偏好及项目脉络。AI 越用越懂团队，提供个性化且连贯的交互体验。',
+    core4Title: '4. Telegram Bot 接口', core4Desc: '通过熟悉的 Telegram 聊天窗口与 AI 交互。支持随时随地（含移动端）发问，降低使用门槛。',
+    h3Why: '为什么选择这套架构？', thAdv: '优势', thDesc: '说明',
+    adv1: '合规无虞', adv1Desc: '敏感数据（MNPI、客户资料、财务数字）不出机房，满足严格信息安全要求',
+    adv2: '零边际成本', adv2Desc: '一次硬件投资，后续无限次使用，不按 Token 计费',
+    adv3: '开箱即用', adv3Desc: '硬件、软件、模型、配置一体化交付，节省自建技术栈工程成本',
+    adv4: '可成长', adv4Desc: '模块化架构预留升级空间，可随团队规模扩展',
+    h2Debug: '调试命令', h3Logs: '实时查看服务日志', lblPortcheck: '端口检查', h2Services: '服务管理参考'
+  }
+};
+
+class Component extends DCLogic {
+  state = { dark: false, lang: 'en' };
+  toggleTheme = () => this.setState(s => ({ dark: !s.dark }));
+  setLang = (l) => this.setState({ lang: l });
+
+  renderVals() {
+    const dark = this.state.dark;
+    const vars = dark ? {
+      '--bg': '#0B1220', '--panel': '#101a2c', '--panel-alt': '#0d1626',
+      '--ink': '#E7ECF3', '--ink-soft': '#C7CEDC', '--muted': '#93A0B8', '--border': '#213047'
+    } : {
+      '--bg': '#ffffff', '--panel': '#ffffff', '--panel-alt': '#F7F9FC',
+      '--ink': '#212121', '--ink-soft': '#505050', '--muted': '#6E6E6E', '--border': '#E8E8E8'
+    };
+    const pageVars = { ...vars, color: 'var(--ink)', background: 'var(--bg)', display: 'flex', minHeight: '100vh' };
+    const lang = this.state.lang;
+    const t = DICT[lang];
+    const h = {};
+    Object.keys(t).forEach(k => { h[k] = { __html: t[k] }; });
+    const activeBtn = { padding: '5px 10px', fontSize: '11px', fontWeight: 700, background: '#084BA6', color: '#fff' };
+    const inactiveBtn = { padding: '5px 10px', fontSize: '11px', fontWeight: 700, background: 'var(--panel-alt)', color: 'var(--muted)' };
+
+    const steps = [
+      { id: 'step1', num: '01', title: t.h2Step1, stepLabel: 'Step 1', model: 'Qwen3.6-35b-a3b', service: 'vllm.service', cmd: 'systemctl status vllm.service\nsystemctl start vllm.service' },
+      { id: 'step2', num: '02', title: t.h2Step2, stepLabel: 'Step 2', model: 'bge-reranker-large', service: 'rerank.service', cmd: 'sudo systemctl start rerank.service' },
+      { id: 'step3', num: '03', title: t.h2Step3, stepLabel: 'Step 3', model: 'multilingual-e5-large', service: 'embedding.service', cmd: 'systemctl start embedding.service' },
+      { id: 'step4', num: '04', title: t.h2Step4, stepLabel: 'Step 4', model: t.step4Title, service: 'mem0.service', cmd: 'systemctl start mem0.service' },
+      { id: 'step5', num: '05', title: t.h2Step5, stepLabel: 'Step 5', model: t.step5Title, service: '', cmd: '' },
+      { id: 'step6', num: '06', title: t.h2Step6, stepLabel: 'Step 6', model: t.step6Title, service: 'telegram-bot.service', cmd: 'systemctl start telegram-bot.service' }
+    ].filter(s => s.cmd || s.id === 'step5');
+
+    const services = [
+      { name: 'vllm.service', model: 'Qwen3.6-35b-a3b', cmds: 'sudo vim /etc/systemd/system/vllm.service\n\nsudo systemctl daemon-reload\nsystemctl status vllm.service\nsystemctl start vllm.service\nsystemctl stop vllm.service\nsystemctl enable vllm.service\nsystemctl disable vllm.service' },
+      { name: 'rerank.service', model: 'bge-reranker-large', cmds: 'sudo vim /etc/systemd/system/rerank.service\n\nsudo systemctl daemon-reload\nsudo systemctl enable rerank.service\nsudo systemctl start rerank.service\nsudo systemctl status rerank.service' },
+      { name: 'embedding.service', model: 'multilingual-e5-large', cmds: 'sudo vim /etc/systemd/system/embedding.service\n\nsudo systemctl daemon-reload\nsystemctl status embedding.service\nsystemctl start embedding.service\nsystemctl stop embedding.service\nsystemctl enable embedding.service\nsystemctl disable embedding.service' },
+      { name: 'mem0.service', model: 'Memory Layer', cmds: 'sudo vim /etc/systemd/system/mem0.service\n\nsudo systemctl daemon-reload\nsystemctl status mem0.service\nsystemctl start mem0.service\nsystemctl stop mem0.service\nsystemctl enable mem0.service\nsystemctl disable mem0.service' },
+      { name: 'telegram-bot.service', model: 'Telegram Bot', cmds: 'sudo vim /etc/systemd/system/telegram-bot.service\n\nsudo systemctl daemon-reload\nsystemctl status telegram-bot.service\nsystemctl start telegram-bot.service\nsystemctl stop telegram-bot.service\nsystemctl enable telegram-bot.service\nsystemctl disable telegram-bot.service' }
+    ];
+
+    return {
+      pageVars, toggleTheme: this.toggleTheme,
+      themeIcon: dark ? '\u2600' : '\u263D', themeLabel: dark ? 'Light' : 'Dark',
+      themeBtnStyle: { display: 'flex', alignItems: 'center', gap: '6px', height: '34px', padding: '0 12px', fontSize: '12px', fontWeight: 700, color: '#084BA6', background: '#EEF5FF', border: '1px solid #D8E7FA', borderRadius: '6px', cursor: 'pointer', position: 'fixed', top: '16px', right: '20px', zIndex: 50, boxShadow: '0 2px 10px rgba(0,0,0,.15)' },
+      setLangEn: () => this.setLang('en'), setLangZh: () => this.setLang('zh'),
+      langBtnStyleEn: lang === 'en' ? activeBtn : inactiveBtn, langBtnStyleZh: lang === 'zh' ? activeBtn : inactiveBtn,
+      t, h, steps, services
+    };
+  }
+}
+</script>
+</body>
+</html>

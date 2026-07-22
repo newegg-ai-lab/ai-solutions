@@ -24,7 +24,7 @@
     table.doc-table td code { background:var(--panel-alt); border:1px solid var(--border); padding:2px 6px; border-radius:4px; font-family:monospace; font-size:12px; color:#09144F; }
     .code-block pre { padding:16px; overflow-x:auto; font-family:monospace; font-size:12.5px; line-height:1.6; margin:0; color:#e2e8f0; white-space:pre-wrap; }
     .code-block { background:#0d1117; border:1px solid #2e3350; border-radius:8px; overflow:hidden; margin:12px 0; }
-    .code-head { display:flex; align-items:center; justify-content:space-between; padding:8px 14px; border-bottom:1px solid #2e3350; background:#22263a; font-size:11px; color:#8892a4; text-transform:uppercase; letter-spacing:.06em; }
+    .code-head { display:flex; align-items:center; justify-content:space-between; padding:8px 14px; border-bottom:1px solid #2e3350; background:#0f2744; font-size:11px; color:#7ea3c9; text-transform:uppercase; letter-spacing:.06em; }
     .info-box { display:flex; gap:12px; background:var(--panel); border:1px solid var(--border); border-left:3px solid #084BA6; border-radius:8px; padding:14px 16px; margin:16px 0; font-size:13.5px; color:var(--ink-soft); }
     .num-list { list-style:none; padding:0; margin:0; }
     .num-list > li { padding:6px 0 6px 28px; position:relative; font-size:14px; color:var(--ink-soft); }
@@ -33,34 +33,36 @@
 </helmet>
 <div style="{{ pageVars }}">
 
-  <button class="theme-btn" onClick="{{ toggleTheme }}" style="{{ themeBtnStyle }}">{{ themeIcon }} {{ themeLabel }}</button>
-
-  <aside style="width:260px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--border);padding:24px 0;position:sticky;top:0;height:100vh;overflow-y:auto;">
-    <div style="padding:0 20px 20px;border-bottom:1px solid var(--border);margin-bottom:16px;">
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
-        <h1 style="font-size:20px;font-weight:800;font-style:italic;color:#084BA6;margin:0;">ABS AI</h1>
-        <div style="display:flex;border:1px solid var(--border);border-radius:6px;overflow:hidden;">
+  <aside style="width:260px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--border);padding:0 0 24px;position:sticky;top:0;height:100vh;overflow-y:auto;">
+    <div style="background:#00283A;padding:18px 20px 16px;margin-bottom:16px;">
+      <a href="index.html" style="display:flex;align-items:baseline;gap:7px;text-decoration:none;margin-bottom:4px;">
+        <span style="font-weight:800;font-style:italic;font-size:19px;color:#FA9D28;letter-spacing:-.3px;line-height:1;">Newegg</span>
+        <span style="font-weight:700;font-style:italic;font-size:11px;color:#fff;opacity:.9;">AI Solutions</span>
+      </a>
+      <p style="font-size:11px;color:rgba(255,255,255,.55);margin:0 0 14px;">{{ t.sideSub }}</p>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="display:flex;border:1px solid rgba(255,255,255,.2);border-radius:6px;overflow:hidden;">
           <span class="lang-btn" onClick="{{ setLangEn }}" style="{{ langBtnStyleEn }}">EN</span>
           <span class="lang-btn" onClick="{{ setLangZh }}" style="{{ langBtnStyleZh }}">中文</span>
         </div>
+        <button class="theme-btn" onClick="{{ toggleTheme }}" style="{{ themeBtnStyle }}">{{ themeIcon }}</button>
       </div>
-      <p style="font-size:11px;color:var(--muted);margin-top:2px;">{{ t.sideSub }}</p>
     </div>
-    <a href="Setup - Private AI and KB.html" class="navlink" style="display:flex;align-items:center;gap:6px;margin:16px 20px 4px;padding:8px 12px;font-size:12px;font-weight:700;color:#084BA6;background:#EEF5FF;border:1px solid #D8E7FA;border-radius:6px;">{{ t.backLink }}</a>
+    <a href="Setup - Private AI and KB.html" class="navlink" style="display:flex;align-items:center;gap:6px;margin:0 20px 16px;font-size:12px;font-weight:700;color:#1061CD;">{{ t.backLink }}</a>
     <nav>
       <div style="font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#084BA6;padding:16px 20px 6px;">{{ t.navG1 }}</div>
-      <a href="#overview" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);">{{ t.navOverview }}</a>
-      <a href="#architecture" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);">{{ t.navArchitecture }}</a>
-      <a href="#prerequisites" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);">{{ t.navPrereq }}</a>
+      <a href="#overview" class="navlink" style="display:block;padding:11px 20px;font-size:{{ navFontSize }};color:var(--muted);">{{ t.navOverview }}</a>
+      <a href="#architecture" class="navlink" style="display:block;padding:11px 20px;font-size:{{ navFontSize }};color:var(--muted);">{{ t.navArchitecture }}</a>
+      <a href="#prerequisites" class="navlink" style="display:block;padding:11px 20px;font-size:{{ navFontSize }};color:var(--muted);">{{ t.navPrereq }}</a>
       <div style="font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#084BA6;padding:16px 20px 6px;">{{ t.navG2 }}</div>
-      <a href="#step1" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);">{{ t.navStep1 }}</a>
-      <a href="#step2" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);">{{ t.navStep2 }}</a>
-      <a href="#step3" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);">{{ t.navStep3 }}</a>
-      <a href="#step4" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);">{{ t.navStep4 }}</a>
-      <a href="#step5" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);">{{ t.navStep5 }}</a>
+      <a href="#step1" class="navlink" style="display:block;padding:11px 20px;font-size:{{ navFontSize }};color:var(--muted);">{{ t.navStep1 }}</a>
+      <a href="#step2" class="navlink" style="display:block;padding:11px 20px;font-size:{{ navFontSize }};color:var(--muted);">{{ t.navStep2 }}</a>
+      <a href="#step3" class="navlink" style="display:block;padding:11px 20px;font-size:{{ navFontSize }};color:var(--muted);">{{ t.navStep3 }}</a>
+      <a href="#step4" class="navlink" style="display:block;padding:11px 20px;font-size:{{ navFontSize }};color:var(--muted);">{{ t.navStep4 }}</a>
+      <a href="#step5" class="navlink" style="display:block;padding:11px 20px;font-size:{{ navFontSize }};color:var(--muted);">{{ t.navStep5 }}</a>
       <div style="font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#084BA6;padding:16px 20px 6px;">{{ t.navG3 }}</div>
-      <a href="#debug" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);">{{ t.navDebug }}</a>
-      <a href="#troubleshooting" class="navlink" style="display:block;padding:8px 20px;font-size:13px;color:var(--muted);">{{ t.navTroubleshooting }}</a>
+      <a href="#debug" class="navlink" style="display:block;padding:11px 20px;font-size:{{ navFontSize }};color:var(--muted);">{{ t.navDebug }}</a>
+      <a href="#troubleshooting" class="navlink" style="display:block;padding:11px 20px;font-size:{{ navFontSize }};color:var(--muted);">{{ t.navTroubleshooting }}</a>
       <a href="#source" class="navlink" style="display:block;margin:4px 12px 0;padding:8px 12px;border:1px solid #D8E7FA;border-radius:6px;background:#EEF5FF;font-size:13px;color:#084BA6;">{{ t.navSource }} &#8599;</a>
     </nav>
   </aside>
@@ -369,7 +371,7 @@ sudo ss -ltnp | grep -E '8880|8881|8883|8888|3000'</pre></div>
 </div>
 
 </x-dc>
-<script type="text/x-dc" data-dc-script>
+<script type="text/x-dc" data-dc-script data-props="{&quot;sidebarFontSize&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:14,&quot;tsType&quot;:&quot;number&quot;,&quot;min&quot;:12,&quot;max&quot;:18,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;section&quot;:&quot;Sidebar&quot;}}">
 const DICT = {
   en: {
     sideSub: 'Customer Self-Deployment', backLink: '\u2190 Back to Setup Guides',
@@ -536,14 +538,15 @@ class Component extends DCLogic {
     const t = DICT[lang];
     const h = {};
     Object.keys(t).forEach(k => { h[k] = { __html: t[k] }; });
-    const activeBtn = { padding: '5px 10px', fontSize: '11px', fontWeight: 700, background: '#084BA6', color: '#fff' };
-    const inactiveBtn = { padding: '5px 10px', fontSize: '11px', fontWeight: 700, background: 'var(--panel-alt)', color: 'var(--muted)' };
+    const activeBtn = { padding: '5px 10px', fontSize: '11px', fontWeight: 700, background: '#FA9D28', color: '#00283A' };
+    const inactiveBtn = { padding: '5px 10px', fontSize: '11px', fontWeight: 700, background: 'transparent', color: '#fff' };
     return {
       pageVars, toggleTheme: this.toggleTheme,
       themeIcon: dark ? '\u2600' : '\u263D', themeLabel: dark ? 'Light' : 'Dark',
-      themeBtnStyle: { display: 'flex', alignItems: 'center', gap: '6px', height: '34px', padding: '0 12px', fontSize: '12px', fontWeight: 700, color: '#084BA6', background: '#EEF5FF', border: '1px solid #D8E7FA', borderRadius: '6px', cursor: 'pointer', position: 'fixed', top: '16px', right: '20px', zIndex: 50, boxShadow: '0 2px 10px rgba(0,0,0,.15)' },
+      themeBtnStyle: { display: 'flex', alignItems: 'center', gap: '6px', height: '30px', minWidth: '30px', padding: '0 7px', justifyContent: 'center', fontSize: '13px', color: '#fff', background: 'rgba(255,255,255,.08)', border: '1px solid rgba(255,255,255,.2)', borderRadius: '6px', cursor: 'pointer', flexShrink: 0 },
       setLangEn: () => this.setLang('en'), setLangZh: () => this.setLang('zh'),
       langBtnStyleEn: lang === 'en' ? activeBtn : inactiveBtn, langBtnStyleZh: lang === 'zh' ? activeBtn : inactiveBtn,
+      navFontSize: (this.props.sidebarFontSize ?? 13) + 'px',
       t, h
     };
   }

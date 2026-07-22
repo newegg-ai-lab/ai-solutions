@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin: 0; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC',sans-serif; }
+    a { text-decoration: none; }
+    .navlink { transition: background .15s, color .15s, border-color .15s; }
+    .navlink:hover { color: var(--ink) !important; background: var(--panel-alt); }
+    .theme-btn { transition: border-color .16s, color .16s; }
+    .theme-btn:hover { border-color: #1477A3; color: #1477A3; }
+    .lang-btn { transition: background .15s, color .15s; cursor: pointer; }
+    .step-card { position: relative; }
+    .step-card::before { content:''; position:absolute; top:0; left:0; width:3px; height:100%; background:linear-gradient(180deg,#1477A3,#00283A); border-radius:3px 0 0 3px; }
+    table.doc-table { width:100%; border-collapse:collapse; font-size:13.5px; margin:12px 0; }
+    table.doc-table th { text-align:left; padding:10px 14px; background:var(--panel-alt); border:1px solid var(--border); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); }
+    table.doc-table td { padding:10px 14px; border:1px solid var(--border); vertical-align:top; color:var(--ink-soft); }
+    table.doc-table td code { background:var(--panel-alt); border:1px solid var(--border); padding:2px 6px; border-radius:4px; font-family:monospace; font-size:12px; color:#0B3550; }
+  </style>
+</helmet>
+<div style="{{ pageVars }}">
+
+  <!-- Sidebar -->
+  <aside style="width:260px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--border);padding:0 0 24px;position:sticky;top:0;height:100vh;overflow-y:auto;">
+    <div style="background:#00283A;padding:18px 20px 16px;margin-bottom:16px;">
+      <a href="index.html" style="display:flex;align-items:baseline;gap:7px;text-decoration:none;margin-bottom:4px;">
+        <span style="font-weight:800;font-style:italic;font-size:19px;color:#FA9D28;letter-spacing:-.3px;line-height:1;">Newegg</span>
+        <span style="font-weight:700;font-style:italic;font-size:11px;color:#fff;opacity:.9;">AI Solutions</span>
+      </a>
+      <p style="font-size:11px;color:rgba(255,255,255,.55);margin:0 0 14px;">{{ t.sideSub }}</p>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="display:flex;border:1px solid rgba(255,255,255,.2);border-radius:6px;overflow:hidden;">
+          <span class="lang-btn" onClick="{{ setLangEn }}" style="{{ langBtnStyleEn }}">EN</span>
+          <span class="lang-btn" onClick="{{ setLangZh }}" style="{{ langBtnStyleZh }}">中文</span>
+        </div>
+        <button class="theme-btn" onClick="{{ toggleTheme }}" style="{{ themeBtnStyle }}">{{ themeIcon }}</button>
+      </div>
+    </div>
+    <a href="Setup - Private AI and BI.html" class="navlink" style="display:flex;align-items:center;gap:6px;margin:0 20px 16px;font-size:12px;font-weight:700;color:#1061CD;">{{ t.backLink }}</a>
+    <nav>
+      <div style="font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#1477A3;padding:16px 20px 6px;">{{ t.navG1 }}</div>
+      <a href="#prerequisites" class="navlink" style="display:block;padding:11px 20px;font-size:{{ navFontSize }};color:var(--muted);border-left:2px solid transparent;">{{ t.navPrereq }}</a>
+      <sc-for list="{{ steps }}" as="step" hint-placeholder-count="9">
+        <sc-if value="{{ step.phaseLabel }}" hint-placeholder-val="{{ true }}">
+          <div style="font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#1477A3;padding:16px 20px 6px;">{{ step.phaseLabel }}</div>
+        </sc-if>
+        <a href="{{ step.href }}" class="navlink" style="display:block;padding:11px 20px;font-size:{{ navFontSize }};color:var(--muted);border-left:2px solid transparent;">{{ step.navLabel }}</a>
+      </sc-for>
+      <div style="font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#1477A3;padding:16px 20px 6px;">{{ t.navG2 }}</div>
+      <a href="#debug" class="navlink" style="display:block;padding:11px 20px;font-size:{{ navFontSize }};color:var(--muted);border-left:2px solid transparent;">{{ t.navDebug }}</a>
+      <a href="#services" class="navlink" style="display:block;padding:11px 20px;font-size:{{ navFontSize }};color:var(--muted);border-left:2px solid transparent;">{{ t.navServices }}</a>
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <main style="flex:1;max-width:900px;margin:0 auto;padding:48px 56px;">
+
+    <div style="margin-bottom:40px;padding-bottom:32px;border-bottom:1px solid var(--border);">
+      <div style="display:inline-block;background:linear-gradient(135deg,#1477A3,#00283A);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.05em;margin-bottom:12px;">DataLLM &middot; Bare-Metal Self-Deployment</div>
+      <h1 style="font-size:32px;font-weight:800;color:var(--ink);margin:0;line-height:1.2;">{{ t.hdrH1 }}</h1>
+      <p style="color:var(--muted);margin-top:10px;font-size:15px;">{{ t.hdrP }}</p>
+    </div>
+
+    <section id="prerequisites" style="margin-bottom:52px;">
+      <h2 style="font-size:21px;font-weight:800;color:var(--ink);margin:0 0 18px;">{{ t.h2Prereq }}</h2>
+      <ol style="list-style:none;padding:0;margin:0;">
+        <li style="padding:6px 0 6px 28px;position:relative;font-size:14px;color:var(--ink-soft);"><span style="position:absolute;left:0;top:8px;width:18px;height:18px;background:#1477A3;color:#fff;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;">1</span><span dangerouslySetInnerHTML="{{ h.prereqLi1 }}"></span></li>
+        <li style="padding:6px 0 6px 28px;position:relative;font-size:14px;color:var(--ink-soft);"><span style="position:absolute;left:0;top:8px;width:18px;height:18px;background:#1477A3;color:#fff;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;">2</span><span dangerouslySetInnerHTML="{{ h.prereqLi2 }}"></span></li>
+        <li style="padding:6px 0 6px 28px;position:relative;font-size:14px;color:var(--ink-soft);"><span style="position:absolute;left:0;top:8px;width:18px;height:18px;background:#1477A3;color:#fff;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;">3</span><span dangerouslySetInnerHTML="{{ h.prereqLi3 }}"></span></li>
+        <li style="padding:6px 0 6px 28px;position:relative;font-size:14px;color:var(--ink-soft);"><span style="position:absolute;left:0;top:8px;width:18px;height:18px;background:#1477A3;color:#fff;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;">4</span><span dangerouslySetInnerHTML="{{ h.prereqLi4 }}"></span></li>
+      </ol>
+    </section>
+
+    <sc-for list="{{ steps }}" as="step" hint-placeholder-count="9">
+      <section id="{{ step.id }}" style="margin-bottom:52px;">
+        <sc-if value="{{ step.phaseLabel }}" hint-placeholder-val="{{ true }}">
+          <div style="display:inline-block;background:var(--panel-alt);border:1px solid var(--border);color:#1477A3;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:6px 14px;border-radius:20px;margin-bottom:16px;">{{ step.phaseLabel }}</div>
+        </sc-if>
+        <h2 style="font-size:21px;font-weight:800;color:var(--ink);margin:0 0 6px;display:flex;align-items:center;gap:12px;">
+          <span style="background:linear-gradient(135deg,#1477A3,#00283A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:26px;font-weight:800;">{{ step.n }}</span>
+          <span>{{ step.title }}</span>
+        </h2>
+        <sc-if value="{{ step.sub }}" hint-placeholder-val="{{ true }}">
+          <p style="font-size:13.5px;color:var(--muted);margin:0 0 18px;padding-left:38px;line-height:1.5;">{{ step.sub }}</p>
+        </sc-if>
+        <div class="step-card" style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:24px;">
+          <sc-for list="{{ step.blocks }}" as="blk" hint-placeholder-count="2">
+            <sc-if value="{{ blk.p }}" hint-placeholder-val="{{ true }}"><p style="font-size:14px;color:var(--ink-soft);line-height:1.65;margin:0 0 14px;" dangerouslySetInnerHTML="{{ blk.p }}"></p></sc-if>
+            <sc-if value="{{ blk.note }}" hint-placeholder-val="{{ true }}"><div style="background:var(--panel-alt);border:1px solid var(--border);border-left:3px solid #1477A3;border-radius:8px;padding:12px 16px;margin-bottom:14px;font-size:13.5px;color:var(--ink-soft);line-height:1.6;" dangerouslySetInnerHTML="{{ blk.note }}"></div></sc-if>
+            <sc-if value="{{ blk.verify }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;gap:8px;background:var(--panel-alt);border:1px solid var(--border);border-left:3px solid #1E852C;border-radius:8px;padding:12px 16px;margin-bottom:14px;font-size:13.5px;color:var(--ink-soft);line-height:1.6;">
+                <span style="color:#1E852C;font-weight:800;flex-shrink:0;">&#10003;</span>
+                <div dangerouslySetInnerHTML="{{ blk.verify }}"></div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ blk.code }}" hint-placeholder-val="{{ true }}">
+              <div style="background:#0d1117;border:1px solid #2e3350;border-radius:8px;overflow:hidden;margin-bottom:14px;">
+                <div style="padding:8px 14px;border-bottom:1px solid #2e3350;background:#0f2744;"><span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#7ea3c9;">{{ blk.codeLabel }}</span></div>
+                <pre style="padding:16px;overflow-x:auto;font-family:monospace;font-size:12.5px;line-height:1.65;margin:0;color:#e2e8f0;white-space:pre-wrap;">{{ blk.codeText }}</pre>
+              </div>
+            </sc-if>
+            <sc-if value="{{ blk.table }}" hint-placeholder-val="{{ true }}">
+              <table class="doc-table"><tr><th>{{ t.thField }}</th><th>{{ t.thValue }}</th></tr>
+                <sc-for list="{{ blk.tRows }}" as="row" hint-placeholder-count="3">
+                  <tr><td>{{ row.label }}</td><td><code>{{ row.value }}</code></td></tr>
+                </sc-for>
+              </table>
+            </sc-if>
+            <sc-if value="{{ blk.list }}" hint-placeholder-val="{{ true }}">
+              <ol style="list-style:none;padding:0;margin:0 0 14px;">
+                <sc-for list="{{ blk.listItems }}" as="li" hint-placeholder-count="2">
+                  <li style="padding:6px 0 6px 28px;position:relative;font-size:14px;color:var(--ink-soft);line-height:1.55;"><span style="position:absolute;left:0;top:8px;width:18px;height:18px;background:#1477A3;color:#fff;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;">{{ li.n }}</span><span dangerouslySetInnerHTML="{{ li.html }}"></span></li>
+                </sc-for>
+              </ol>
+            </sc-if>
+            <sc-if value="{{ blk.chat }}" hint-placeholder-val="{{ true }}">
+              <div style="background:var(--panel-alt);border:1px solid var(--border);border-radius:10px;padding:18px;margin-bottom:6px;">
+                <div style="display:flex;gap:10px;margin-bottom:14px;">
+                  <span style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#1477A3,#00283A);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">&#128100;</span>
+                  <div style="background:#EAF3F7;border:1px solid #D3E7EE;border-radius:8px;padding:10px 14px;font-size:14px;color:#212121;">{{ blk.chatQ }}</div>
+                </div>
+                <div style="display:flex;gap:10px;">
+                  <span style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#22c55e,#15803d);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">&#129302;</span>
+                  <div style="background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:14px;color:var(--ink-soft);line-height:1.6;">{{ blk.chatA }}</div>
+                </div>
+              </div>
+            </sc-if>
+          </sc-for>
+        </div>
+      </section>
+    </sc-for>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:40px 0;" />
+
+    <section style="margin-bottom:52px;">
+      <h3 style="font-size:15px;font-weight:700;color:var(--ink);margin:0 0 12px;">{{ t.h3Core }}</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:20px;">
+          <div style="display:inline-block;background:var(--panel-alt);border:1px solid var(--border);font-size:11px;padding:2px 7px;border-radius:4px;color:#1477A3;margin-bottom:8px;font-family:monospace;">vllm.service</div>
+          <div style="font-size:14.5px;font-weight:700;color:var(--ink);margin-bottom:6px;">{{ t.core1Title }}</div>
+          <div style="font-size:12.5px;color:var(--muted);line-height:1.55;">{{ t.core1Desc }}</div>
+        </div>
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:20px;">
+          <div style="display:inline-block;background:var(--panel-alt);border:1px solid var(--border);font-size:11px;padding:2px 7px;border-radius:4px;color:#1477A3;margin-bottom:8px;font-family:monospace;">clickhouse-server</div>
+          <div style="font-size:14.5px;font-weight:700;color:var(--ink);margin-bottom:6px;">{{ t.core2Title }}</div>
+          <div style="font-size:12.5px;color:var(--muted);line-height:1.55;">{{ t.core2Desc }}</div>
+        </div>
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:20px;">
+          <div style="display:inline-block;background:var(--panel-alt);border:1px solid var(--border);font-size:11px;padding:2px 7px;border-radius:4px;color:#1477A3;margin-bottom:8px;font-family:monospace;">mcp-clickhouse</div>
+          <div style="font-size:14.5px;font-weight:700;color:var(--ink);margin-bottom:6px;">{{ t.core3Title }}</div>
+          <div style="font-size:12.5px;color:var(--muted);line-height:1.55;">{{ t.core3Desc }}</div>
+        </div>
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:20px;">
+          <div style="display:inline-block;background:var(--panel-alt);border:1px solid var(--border);font-size:11px;padding:2px 7px;border-radius:4px;color:#1477A3;margin-bottom:8px;font-family:monospace;">skill.md</div>
+          <div style="font-size:14.5px;font-weight:700;color:var(--ink);margin-bottom:6px;">{{ t.core4Title }}</div>
+          <div style="font-size:12.5px;color:var(--muted);line-height:1.55;">{{ t.core4Desc }}</div>
+        </div>
+      </div>
+    </section>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:40px 0;" />
+
+    <section id="debug" style="margin-bottom:52px;">
+      <h2 style="font-size:21px;font-weight:800;color:var(--ink);margin:0 0 18px;">{{ t.h2Debug }}</h2>
+      <h3 style="font-size:15px;font-weight:700;color:var(--ink);margin:0 0 12px;">{{ t.h3Logs }}</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="background:#0d1117;border:1px solid #2e3350;border-radius:8px;overflow:hidden;"><div style="padding:8px 14px;background:#0f2744;border-bottom:1px solid #2e3350;font-size:11px;color:#7ea3c9;text-transform:uppercase;">vllm</div><pre style="padding:14px;overflow-x:auto;color:#e2e8f0;font-family:monospace;font-size:12.5px;margin:0;">journalctl -u vllm.service -f</pre></div>
+        <div style="background:#0d1117;border:1px solid #2e3350;border-radius:8px;overflow:hidden;"><div style="padding:8px 14px;background:#0f2744;border-bottom:1px solid #2e3350;font-size:11px;color:#7ea3c9;text-transform:uppercase;">opencowork</div><pre style="padding:14px;overflow-x:auto;color:#e2e8f0;font-family:monospace;font-size:12.5px;margin:0;">journalctl -u opencowork.service -f</pre></div>
+        <div style="background:#0d1117;border:1px solid #2e3350;border-radius:8px;overflow:hidden;"><div style="padding:8px 14px;background:#0f2744;border-bottom:1px solid #2e3350;font-size:11px;color:#7ea3c9;text-transform:uppercase;">clickhouse-server</div><pre style="padding:14px;overflow-x:auto;color:#e2e8f0;font-family:monospace;font-size:12.5px;margin:0;">journalctl -u clickhouse-server -f</pre></div>
+        <div style="background:#0d1117;border:1px solid #2e3350;border-radius:8px;overflow:hidden;"><div style="padding:8px 14px;background:#0f2744;border-bottom:1px solid #2e3350;font-size:11px;color:#7ea3c9;text-transform:uppercase;">{{ t.lblGpuCheck }}</div><pre style="padding:14px;overflow-x:auto;color:#e2e8f0;font-family:monospace;font-size:12.5px;margin:0;">nvidia-smi</pre></div>
+      </div>
+    </section>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:40px 0;" />
+
+    <section id="services" style="margin-bottom:20px;">
+      <h2 style="font-size:21px;font-weight:800;color:var(--ink);margin:0 0 18px;">{{ t.h2Services }}</h2>
+      <sc-for list="{{ services }}" as="sv" hint-placeholder-count="3">
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:20px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:var(--panel-alt);border-bottom:1px solid var(--border);">
+            <span style="font-size:15px;font-weight:700;color:var(--ink);">{{ sv.name }}</span>
+            <span style="font-size:12px;color:var(--muted);font-family:monospace;">{{ sv.model }}</span>
+          </div>
+          <div style="padding:16px 20px;">
+            <div style="background:#0d1117;border:1px solid #2e3350;border-radius:8px;overflow:hidden;">
+              <div style="padding:8px 14px;background:#0f2744;border-bottom:1px solid #2e3350;font-size:11px;color:#7ea3c9;text-transform:uppercase;">bash</div>
+              <pre style="padding:16px;overflow-x:auto;color:#e2e8f0;font-family:monospace;font-size:12.5px;line-height:1.6;margin:0;white-space:pre-wrap;">{{ sv.cmds }}</pre>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </section>
+
+  </main>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;sidebarFontSize&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:13,&quot;tsType&quot;:&quot;number&quot;,&quot;min&quot;:12,&quot;max&quot;:18,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;section&quot;:&quot;Sidebar&quot;}}">
+const DICT = {
+  en: {
+    sideSub: 'Setup Guide \u00b7 Bare-Metal', backLink: '\u2190 Back to BI Setup Guides',
+    navG1: 'Quick Start', navPrereq: 'Prerequisites', navG2: 'Ops Reference', navDebug: 'Debug Commands', navServices: 'Service Management',
+    hdrH1: 'Manual B \u2014 Bare-Metal Self-Deployment',
+    hdrP: 'A brand-new Ubuntu host where only the GPU and its driver are in place. Install ClickHouse, set up OpenCowork and the MCP layer, then load data \u2014 ending at the same working state as Manual A.',
+    h2Prereq: 'Prerequisites',
+    prereqLi1: 'Ubuntu 22.04 / 24.04 (native, or under WSL2 on Windows)',
+    prereqLi2: 'NVIDIA RTX PRO 6000 (or comparable) with a working driver \u2014 <code>nvidia-smi</code> should return GPU info',
+    prereqLi3: 'The local LLM service (e.g. Qwen via vLLM) and OpenCowork desktop app \u2014 deploy these per your model-serving guide; this manual focuses on the ClickHouse + MCP data layer',
+    prereqLi4: 'Internet access to packages.clickhouse.com',
+    thField: 'Field', thValue: 'Value',
+    h3Core: 'The Four Core Components',
+    core1Title: '1. Local LLM', core1Desc: 'Qwen served via vLLM on an NVIDIA RTX PRO 6000 \u2014 all reasoning stays on-box, no third-party retention or API bills.',
+    core2Title: '2. ClickHouse', core2Desc: 'A single-node ClickHouse warehouse holding your tables \u2014 the same MergeTree engine whether pre-installed or bare-metal deployed.',
+    core3Title: '3. MCP Server', core3Desc: 'mcp-clickhouse bridges OpenCowork\u2019s tool calls to ClickHouse over a local stdio connection \u2014 live queries, not a guess.',
+    core4Title: '4. Knowledge Base', core4Desc: 'skill.md and the field-level KB CSV give the model your schema, joins, and column meanings before it ever writes SQL.',
+    h2Debug: 'Debug Commands', h3Logs: 'View Service Logs in Real Time', lblGpuCheck: 'GPU Check', h2Services: 'Service Management Reference'
+  },
+  zh: {
+    sideSub: '安装指南 · 裸机自部署', backLink: '← 返回 BI 安装指南',
+    navG1: '快速启动', navPrereq: '准备工作', navG2: '运维参考', navDebug: '调试命令', navServices: '服务管理',
+    hdrH1: '方案 B — 裸机自部署',
+    hdrP: '全新的 Ubuntu 主机，此时只具备 GPU 及其驱动。安装 ClickHouse，搭建 OpenCowork 与 MCP 层，再导入数据 — 最终达到与方案 A 相同的可用状态。',
+    h2Prereq: '准备工作',
+    prereqLi1: 'Ubuntu 22.04 / 24.04（原生，或 Windows 上的 WSL2）',
+    prereqLi2: 'NVIDIA RTX PRO 6000（或同级显卡），驱动正常 — <code>nvidia-smi</code> 应能返回 GPU 信息',
+    prereqLi3: '本地 LLM 服务（例如通过 vLLM 运行的 Qwen）与 OpenCowork 桌面应用 — 按你的模型部署指南完成；本指南聚焦于 ClickHouse + MCP 数据层',
+    prereqLi4: '可访问 packages.clickhouse.com 的网络',
+    thField: '字段', thValue: '值',
+    h3Core: '四个核心组件',
+    core1Title: '1. 本地 LLM', core1Desc: '通过 vLLM 运行的 Qwen 部署在 NVIDIA RTX PRO 6000 上 — 全部推理留在本机，无第三方留存，无 API 账单。',
+    core2Title: '2. ClickHouse', core2Desc: '承载你数据表的单节点 ClickHouse 数仓 — 无论预装还是裸机部署，都是同一套 MergeTree 引擎。',
+    core3Title: '3. MCP 服务器', core3Desc: 'mcp-clickhouse 通过本地 stdio 连接，把 OpenCowork 的工具调用桥接到 ClickHouse — 实时查询，而非猜测。',
+    core4Title: '4. 知识库', core4Desc: 'skill.md 与字段级知识库 CSV，让模型在编写 SQL 之前先掌握你的表结构、关联方式与字段含义。',
+    h2Debug: '调试命令', h3Logs: '实时查看服务日志', lblGpuCheck: 'GPU 检查', h2Services: '服务管理参考'
+  }
+};
+
+const RAW = {
+  en: [
+    { id: 'b1', navLabel: 'Step 1 \u00b7 Install Prerequisites', title: 'Enter WSL & Install Prerequisites', phaseLabel: 'Phase 1 \u2014 Install',
+      blocks: [
+        { note: 'If on Windows, install WSL first with <code>wsl --install -d Ubuntu</code> in an admin PowerShell, then reboot.' },
+        { code: true, codeLabel: 'bash', codeText: `wsl
+
+sudo apt-get update
+sudo apt-get install -y apt-transport-https ca-certificates curl gnupg` }
+      ]},
+    { id: 'b2', navLabel: 'Step 2 \u00b7 Add GPG Key', title: 'Add the ClickHouse GPG Key',
+      sub: 'Lets apt verify the authenticity of ClickHouse packages.',
+      blocks: [
+        { code: true, codeLabel: 'bash', codeText: `curl -fsSL 'https://packages.clickhouse.com/rpm/lts/repodata/repomd.xml.key' \\
+  | sudo gpg --dearmor -o /usr/share/keyrings/clickhouse-keyring.gpg
+
+sudo chmod 644 /usr/share/keyrings/clickhouse-keyring.gpg` }
+      ]},
+    { id: 'b3', navLabel: 'Step 3 \u00b7 Add Apt Repo', title: 'Add the Apt Repository',
+      blocks: [
+        { p: 'Detect the architecture and register ClickHouse\u2019s official Debian repository.' },
+        { code: true, codeLabel: 'bash', codeText: `ARCH=$(dpkg --print-architecture)
+
+echo "deb [signed-by=/usr/share/keyrings/clickhouse-keyring.gpg arch=\${ARCH}] https://packages.clickhouse.com/deb stable main" \\
+  | sudo tee /etc/apt/sources.list.d/clickhouse.list` },
+        { verify: '<code>cat /etc/apt/sources.list.d/clickhouse.list</code>, then <code>sudo apt-get update</code> \u2014 the ClickHouse repo should appear with no key errors.' }
+      ]},
+    { id: 'b4', navLabel: 'Step 4 \u00b7 Install ClickHouse', title: 'Install ClickHouse Server & Client',
+      blocks: [
+        { p: 'During install you may be prompted to set a password for the default user \u2014 note whatever you choose.' },
+        { code: true, codeLabel: 'bash', codeText: `sudo apt-get update
+sudo apt-get install -y clickhouse-server clickhouse-client
+
+# optional: pin the version so apt upgrade won't silently change it
+sudo apt-mark hold clickhouse-server clickhouse-client` }
+      ]},
+    { id: 'b5', navLabel: 'Step 5 \u00b7 Install OpenCowork', title: 'Install OpenCowork',
+      blocks: [
+        { p: 'Clone, build, and launch the desktop app.' },
+        { code: true, codeLabel: 'bash', codeText: `git clone https://github.com/OpenCoworkAI/open-cowork.git
+cd open-cowork
+npm install
+npm audit fix
+npm run rebuild
+npm run dev` }
+      ]},
+    { id: 'b6', navLabel: 'Step 6 \u00b7 Install MCP Server', title: 'Install the MCP Server',
+      blocks: [
+        { code: true, codeLabel: 'bash', codeText: 'pip install mcp-clickhouse --break-system-packages' },
+        { note: '--break-system-packages is needed on Ubuntu 24+ because it blocks system-wide pip installs by default; a virtual environment is the cleaner alternative if you prefer.' },
+        { verify: '<strong>End of Phase 1.</strong> Everything is now installed. The machine is at the same state as the Pre-Installed Edition \u2014 software running, no data loaded.' }
+      ]},
+    { id: 'b7', navLabel: 'Step 7 \u00b7 Start & Verify ClickHouse', title: 'Start ClickHouse and Verify', phaseLabel: 'Phase 2 \u2014 Data',
+      blocks: [
+        { code: true, codeLabel: 'bash', codeText: `sudo systemctl start clickhouse-server
+sudo systemctl status clickhouse-server` },
+        { verify: '<code>clickhouse-client --query "SELECT version()"</code> returns a version string, and <code>curl \'http://localhost:8123/?query=SELECT%201\'</code> returns 1.' },
+        { note: 'This is a standalone, single-node instance \u2014 no shards, replicas, macros, or ClickHouse Keeper needed. Those apply only when a node joins a multi-node cluster.' }
+      ]},
+    { id: 'b8', navLabel: 'Step 8 \u00b7 Point OpenCowork at LLM', title: 'Point OpenCowork at Your Local LLM',
+      blocks: [
+        { p: 'In OpenCowork\u2019s API Settings, configure your model provider (any OpenAI-compatible endpoint works, including a locally-served model).' }
+      ]},
+    { id: 'b9', navLabel: 'Step 9 \u00b7 Follow Pre-Installed Edition', title: 'Follow the Pre-Installed Edition',
+      blocks: [
+        { p: 'From here, complete Manual A, Steps 2\u20136: create the database and tables, import your CSV data, write the two knowledge-base files, connect the MCP server in OpenCowork, fold the skill file into the system prompt, and run the smoke-test question.' },
+        { note: 'Full walkthrough: <a href="Setup - BI Preloaded.html#a2" style="color:#1477A3;">Manual A \u2192 Steps 2\u20136</a>.' },
+        { verify: 'When "How many rows are in your database?" returns a correct count, the full stack is live.' }
+      ]}
+  ],
+  zh: [
+    { id: 'b1', navLabel: '第一步 \u00b7 安装依赖', title: '进入 WSL 并安装依赖', phaseLabel: '阶段一 \u2014 安装',
+      blocks: [
+        { note: '如果是 Windows，先在管理员 PowerShell 中执行 <code>wsl --install -d Ubuntu</code> 安装 WSL，然后重启。' },
+        { code: true, codeLabel: 'bash', codeText: `wsl
+
+sudo apt-get update
+sudo apt-get install -y apt-transport-https ca-certificates curl gnupg` }
+      ]},
+    { id: 'b2', navLabel: '第二步 \u00b7 添加 GPG 密钥', title: '添加 ClickHouse GPG 密钥',
+      sub: '用于让 apt 验证 ClickHouse 软件包的真实性。',
+      blocks: [
+        { code: true, codeLabel: 'bash', codeText: `curl -fsSL 'https://packages.clickhouse.com/rpm/lts/repodata/repomd.xml.key' \\
+  | sudo gpg --dearmor -o /usr/share/keyrings/clickhouse-keyring.gpg
+
+sudo chmod 644 /usr/share/keyrings/clickhouse-keyring.gpg` }
+      ]},
+    { id: 'b3', navLabel: '第三步 \u00b7 添加 apt 源', title: '添加 apt 软件源',
+      blocks: [
+        { p: '检测系统架构并注册 ClickHouse 官方 Debian 软件源。' },
+        { code: true, codeLabel: 'bash', codeText: `ARCH=$(dpkg --print-architecture)
+
+echo "deb [signed-by=/usr/share/keyrings/clickhouse-keyring.gpg arch=\${ARCH}] https://packages.clickhouse.com/deb stable main" \\
+  | sudo tee /etc/apt/sources.list.d/clickhouse.list` },
+        { verify: '<code>cat /etc/apt/sources.list.d/clickhouse.list</code>，再执行 <code>sudo apt-get update</code> — 应能看到 ClickHouse 源且无密钥错误。' }
+      ]},
+    { id: 'b4', navLabel: '第四步 \u00b7 安装 ClickHouse', title: '安装 ClickHouse 服务端与客户端',
+      blocks: [
+        { p: '安装过程中可能会提示为默认用户设置密码 — 记住你设置的密码。' },
+        { code: true, codeLabel: 'bash', codeText: `sudo apt-get update
+sudo apt-get install -y clickhouse-server clickhouse-client
+
+# optional: pin the version so apt upgrade won't silently change it
+sudo apt-mark hold clickhouse-server clickhouse-client` }
+      ]},
+    { id: 'b5', navLabel: '第五步 \u00b7 安装 OpenCowork', title: '安装 OpenCowork',
+      blocks: [
+        { p: '克隆、构建并启动桌面应用。' },
+        { code: true, codeLabel: 'bash', codeText: `git clone https://github.com/OpenCoworkAI/open-cowork.git
+cd open-cowork
+npm install
+npm audit fix
+npm run rebuild
+npm run dev` }
+      ]},
+    { id: 'b6', navLabel: '第六步 \u00b7 安装 MCP 服务器', title: '安装 MCP 服务器',
+      blocks: [
+        { code: true, codeLabel: 'bash', codeText: 'pip install mcp-clickhouse --break-system-packages' },
+        { note: 'Ubuntu 24+ 默认禁止全局 pip 安装，因此需要 --break-system-packages；如果不想用这个参数，使用虚拟环境是更干净的替代方案。' },
+        { verify: '<strong>阶段一结束。</strong>此时软件已全部安装完毕，机器状态与已预装环境相同 — 服务已运行，但尚未导入数据。' }
+      ]},
+    { id: 'b7', navLabel: '第七步 \u00b7 启动并验证 ClickHouse', title: '启动 ClickHouse 并验证', phaseLabel: '阶段二 \u2014 数据',
+      blocks: [
+        { code: true, codeLabel: 'bash', codeText: `sudo systemctl start clickhouse-server
+sudo systemctl status clickhouse-server` },
+        { verify: '<code>clickhouse-client --query "SELECT version()"</code> 应返回版本号，<code>curl \'http://localhost:8123/?query=SELECT%201\'</code> 应返回 1。' },
+        { note: '这是一个独立单节点实例 — 不需要分片、副本、macros 或 ClickHouse Keeper，这些只在节点加入多节点集群时才需要。' }
+      ]},
+    { id: 'b8', navLabel: '第八步 \u00b7 让 OpenCowork 指向本地 LLM', title: '让 OpenCowork 指向你的本地 LLM',
+      blocks: [
+        { p: '在 OpenCowork 的 API Settings 中配置模型提供方（任何兼容 OpenAI 接口的服务均可，包括本地部署的模型）。' }
+      ]},
+    { id: 'b9', navLabel: '第九步 \u00b7 按照已预装环境继续', title: '按照已预装环境继续操作',
+      blocks: [
+        { p: '从这里开始，完成 Manual A 的第 2–6 步：创建数据库和表、导入 CSV 数据、编写两个知识库文件、在 OpenCowork 中连接 MCP 服务器、将 skill 文件写入系统提示词，并运行冒烟测试问题。' },
+        { note: '完整步骤见 <a href="Setup - BI Preloaded.html#a2" style="color:#1477A3;">Manual A → 第 2–6 步</a>。' },
+        { verify: '当"数据库里一共有多少行数据？"返回正确的数量时，整套系统就已跑通。' }
+      ]}
+  ]
+};
+
+function mapBlocks(blocks) {
+  return blocks.map(b => {
+    if (b.p !== undefined) return { p: { __html: b.p } };
+    if (b.note !== undefined) return { note: { __html: b.note } };
+    if (b.verify !== undefined) return { verify: { __html: b.verify } };
+    if (b.code) return { code: true, codeLabel: b.codeLabel, codeText: b.codeText };
+    if (b.table) return { table: true, tRows: b.tRows };
+    if (b.list) return { list: true, listItems: b.listItems.map((li, i) => ({ n: i + 1, html: { __html: li } })) };
+    if (b.chat) return { chat: true, chatQ: b.chatQ, chatA: b.chatA };
+    return b;
+  });
+}
+
+class Component extends DCLogic {
+  state = { dark: false, lang: 'en' };
+  toggleTheme = () => this.setState(s => ({ dark: !s.dark }));
+  setLang = (l) => this.setState({ lang: l });
+
+  renderVals() {
+    const dark = this.state.dark;
+    const vars = dark ? {
+      '--bg': '#0B1220', '--panel': '#101a2c', '--panel-alt': '#0d1626',
+      '--ink': '#E7ECF3', '--ink-soft': '#C7CEDC', '--muted': '#93A0B8', '--border': '#213047'
+    } : {
+      '--bg': '#ffffff', '--panel': '#ffffff', '--panel-alt': '#F7F9FC',
+      '--ink': '#212121', '--ink-soft': '#505050', '--muted': '#6E6E6E', '--border': '#E8E8E8'
+    };
+    const pageVars = { ...vars, color: 'var(--ink)', background: 'var(--bg)', display: 'flex', minHeight: '100vh' };
+    const lang = this.state.lang;
+    const t = DICT[lang];
+    const h = {};
+    Object.keys(t).forEach(k => { h[k] = { __html: t[k] }; });
+    const activeBtn = { padding: '5px 10px', fontSize: '11px', fontWeight: 700, background: '#FA9D28', color: '#00283A' };
+    const inactiveBtn = { padding: '5px 10px', fontSize: '11px', fontWeight: 700, background: 'transparent', color: '#fff' };
+
+    const steps = RAW[lang].map((s, i) => ({
+      id: s.id, href: '#' + s.id, navLabel: s.navLabel, title: s.title, sub: s.sub, phaseLabel: s.phaseLabel,
+      n: String(i + 1).padStart(2, '0'),
+      blocks: mapBlocks(s.blocks)
+    }));
+
+    const services = [
+      { name: 'vllm.service', model: 'Qwen3.6-35b-a3b', cmds: 'sudo vim /etc/systemd/system/vllm.service\n\nsudo systemctl daemon-reload\nsystemctl status vllm.service\nsystemctl start vllm.service\nsystemctl stop vllm.service\nsystemctl enable vllm.service\nsystemctl disable vllm.service' },
+      { name: 'opencowork.service', model: 'OpenCowork', cmds: 'sudo vim /etc/systemd/system/opencowork.service\n\nsudo systemctl daemon-reload\nsystemctl status opencowork.service\nsystemctl start opencowork.service\nsystemctl stop opencowork.service\nsystemctl enable opencowork.service\nsystemctl disable opencowork.service' },
+      { name: 'clickhouse-server', model: 'ClickHouse', cmds: 'sudo systemctl daemon-reload\nsystemctl status clickhouse-server\nsystemctl start clickhouse-server\nsystemctl stop clickhouse-server\nsystemctl enable clickhouse-server\nsystemctl disable clickhouse-server\n\n# pin version\nsudo apt-mark hold clickhouse-server clickhouse-client' }
+    ];
+
+    return {
+      pageVars, toggleTheme: this.toggleTheme,
+      themeIcon: dark ? '\u2600' : '\u263D',
+      themeBtnStyle: { display: 'flex', alignItems: 'center', gap: '6px', height: '30px', minWidth: '30px', padding: '0 7px', justifyContent: 'center', fontSize: '13px', color: '#fff', background: 'rgba(255,255,255,.08)', border: '1px solid rgba(255,255,255,.2)', borderRadius: '6px', cursor: 'pointer', flexShrink: 0 },
+      setLangEn: () => this.setLang('en'), setLangZh: () => this.setLang('zh'),
+      langBtnStyleEn: lang === 'en' ? activeBtn : inactiveBtn, langBtnStyleZh: lang === 'zh' ? activeBtn : inactiveBtn,
+      navFontSize: (this.props.sidebarFontSize ?? 13) + 'px',
+      t, h, steps, services
+    };
+  }
+}
+
+</script>
+</body>
+</html>

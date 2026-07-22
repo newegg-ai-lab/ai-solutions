@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin: 0; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC',sans-serif; }
+    a { text-decoration: none; }
+    .navlink { transition: background .15s, color .15s, border-color .15s; }
+    .navlink:hover { color: var(--ink) !important; background: var(--panel-alt); }
+    .theme-btn { transition: border-color .16s, color .16s; }
+    .theme-btn:hover { border-color: #1477A3; color: #1477A3; }
+    .lang-btn { transition: background .15s, color .15s; cursor: pointer; }
+    .step-card { position: relative; }
+    .step-card::before { content:''; position:absolute; top:0; left:0; width:3px; height:100%; background:linear-gradient(180deg,#1477A3,#00283A); border-radius:3px 0 0 3px; }
+    table.doc-table { width:100%; border-collapse:collapse; font-size:13.5px; margin:12px 0; }
+    table.doc-table th { text-align:left; padding:10px 14px; background:var(--panel-alt); border:1px solid var(--border); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); }
+    table.doc-table td { padding:10px 14px; border:1px solid var(--border); vertical-align:top; color:var(--ink-soft); }
+    table.doc-table td code { background:var(--panel-alt); border:1px solid var(--border); padding:2px 6px; border-radius:4px; font-family:monospace; font-size:12px; color:#0B3550; }
+  </style>
+</helmet>
+<div style="{{ pageVars }}">
+
+  <!-- Sidebar -->
+  <aside style="width:260px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--border);padding:0 0 24px;position:sticky;top:0;height:100vh;overflow-y:auto;">
+    <div style="background:#00283A;padding:18px 20px 16px;margin-bottom:16px;">
+      <a href="index.html" style="display:flex;align-items:baseline;gap:7px;text-decoration:none;margin-bottom:4px;">
+        <span style="font-weight:800;font-style:italic;font-size:19px;color:#FA9D28;letter-spacing:-.3px;line-height:1;">Newegg</span>
+        <span style="font-weight:700;font-style:italic;font-size:11px;color:#fff;opacity:.9;">AI Solutions</span>
+      </a>
+      <p style="font-size:11px;color:rgba(255,255,255,.55);margin:0 0 14px;">{{ t.sideSub }}</p>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="display:flex;border:1px solid rgba(255,255,255,.2);border-radius:6px;overflow:hidden;">
+          <span class="lang-btn" onClick="{{ setLangEn }}" style="{{ langBtnStyleEn }}">EN</span>
+          <span class="lang-btn" onClick="{{ setLangZh }}" style="{{ langBtnStyleZh }}">中文</span>
+        </div>
+        <button class="theme-btn" onClick="{{ toggleTheme }}" style="{{ themeBtnStyle }}">{{ themeIcon }}</button>
+      </div>
+    </div>
+    <a href="Setup - Private AI and BI.html" class="navlink" style="display:flex;align-items:center;gap:6px;margin:0 20px 16px;font-size:12px;font-weight:700;color:#1061CD;">{{ t.backLink }}</a>
+    <nav>
+      <div style="font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#1477A3;padding:16px 20px 6px;">{{ t.navG1 }}</div>
+      <a href="#prerequisites" class="navlink" style="display:block;padding:11px 20px;font-size:{{ navFontSize }};color:var(--muted);border-left:2px solid transparent;">{{ t.navPrereq }}</a>
+      <sc-for list="{{ steps }}" as="step" hint-placeholder-count="6">
+        <a href="{{ step.href }}" class="navlink" style="display:block;padding:11px 20px;font-size:{{ navFontSize }};color:var(--muted);border-left:2px solid transparent;">{{ step.navLabel }}</a>
+      </sc-for>
+      <div style="font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#1477A3;padding:16px 20px 6px;">{{ t.navG2 }}</div>
+      <a href="#debug" class="navlink" style="display:block;padding:11px 20px;font-size:{{ navFontSize }};color:var(--muted);border-left:2px solid transparent;">{{ t.navDebug }}</a>
+      <a href="#services" class="navlink" style="display:block;padding:11px 20px;font-size:{{ navFontSize }};color:var(--muted);border-left:2px solid transparent;">{{ t.navServices }}</a>
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <main style="flex:1;max-width:900px;margin:0 auto;padding:48px 56px;">
+
+    <div style="margin-bottom:40px;padding-bottom:32px;border-bottom:1px solid var(--border);">
+      <div style="display:inline-block;background:linear-gradient(135deg,#1477A3,#00283A);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.05em;margin-bottom:12px;">DataLLM &middot; Pre-Installed Edition</div>
+      <h1 style="font-size:32px;font-weight:800;color:var(--ink);margin:0;line-height:1.2;">{{ t.hdrH1 }}</h1>
+      <p style="color:var(--muted);margin-top:10px;font-size:15px;">{{ t.hdrP }}</p>
+    </div>
+
+    <section id="prerequisites" style="margin-bottom:52px;">
+      <h2 style="font-size:21px;font-weight:800;color:var(--ink);margin:0 0 18px;">{{ t.h2Prereq }}</h2>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:8px;">{{ t.prereqP }}</p>
+      <ol style="list-style:none;padding:0;margin:0;">
+        <li style="padding:6px 0 6px 28px;position:relative;font-size:14px;color:var(--ink-soft);"><span style="position:absolute;left:0;top:8px;width:18px;height:18px;background:#1477A3;color:#fff;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;">1</span><span dangerouslySetInnerHTML="{{ h.prereqLi1 }}"></span></li>
+        <li style="padding:6px 0 6px 28px;position:relative;font-size:14px;color:var(--ink-soft);"><span style="position:absolute;left:0;top:8px;width:18px;height:18px;background:#1477A3;color:#fff;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;">2</span><span dangerouslySetInnerHTML="{{ h.prereqLi2 }}"></span></li>
+        <li style="padding:6px 0 6px 28px;position:relative;font-size:14px;color:var(--ink-soft);"><span style="position:absolute;left:0;top:8px;width:18px;height:18px;background:#1477A3;color:#fff;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;">3</span><span dangerouslySetInnerHTML="{{ h.prereqLi3 }}"></span></li>
+      </ol>
+    </section>
+
+    <sc-for list="{{ steps }}" as="step" hint-placeholder-count="6">
+      <section id="{{ step.id }}" style="margin-bottom:52px;">
+        <h2 style="font-size:21px;font-weight:800;color:var(--ink);margin:0 0 6px;display:flex;align-items:center;gap:12px;">
+          <span style="background:linear-gradient(135deg,#1477A3,#00283A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:26px;font-weight:800;">{{ step.n }}</span>
+          <span>{{ step.title }}</span>
+        </h2>
+        <sc-if value="{{ step.sub }}" hint-placeholder-val="{{ true }}">
+          <p style="font-size:13.5px;color:var(--muted);margin:0 0 18px;padding-left:38px;line-height:1.5;">{{ step.sub }}</p>
+        </sc-if>
+        <div class="step-card" style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:24px;">
+          <sc-for list="{{ step.blocks }}" as="blk" hint-placeholder-count="2">
+            <sc-if value="{{ blk.p }}" hint-placeholder-val="{{ true }}"><p style="font-size:14px;color:var(--ink-soft);line-height:1.65;margin:0 0 14px;" dangerouslySetInnerHTML="{{ blk.p }}"></p></sc-if>
+            <sc-if value="{{ blk.note }}" hint-placeholder-val="{{ true }}"><div style="background:var(--panel-alt);border:1px solid var(--border);border-left:3px solid #1477A3;border-radius:8px;padding:12px 16px;margin-bottom:14px;font-size:13.5px;color:var(--ink-soft);line-height:1.6;" dangerouslySetInnerHTML="{{ blk.note }}"></div></sc-if>
+            <sc-if value="{{ blk.verify }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;gap:8px;background:var(--panel-alt);border:1px solid var(--border);border-left:3px solid #1E852C;border-radius:8px;padding:12px 16px;margin-bottom:14px;font-size:13.5px;color:var(--ink-soft);line-height:1.6;">
+                <span style="color:#1E852C;font-weight:800;flex-shrink:0;">&#10003;</span>
+                <div dangerouslySetInnerHTML="{{ blk.verify }}"></div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ blk.code }}" hint-placeholder-val="{{ true }}">
+              <div style="background:#0d1117;border:1px solid #2e3350;border-radius:8px;overflow:hidden;margin-bottom:14px;">
+                <div style="padding:8px 14px;border-bottom:1px solid #2e3350;background:#0f2744;"><span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#7ea3c9;">{{ blk.codeLabel }}</span></div>
+                <pre style="padding:16px;overflow-x:auto;font-family:monospace;font-size:12.5px;line-height:1.65;margin:0;color:#e2e8f0;white-space:pre-wrap;">{{ blk.codeText }}</pre>
+              </div>
+            </sc-if>
+            <sc-if value="{{ blk.table }}" hint-placeholder-val="{{ true }}">
+              <table class="doc-table"><tr><th>{{ t.thField }}</th><th>{{ t.thValue }}</th></tr>
+                <sc-for list="{{ blk.tRows }}" as="row" hint-placeholder-count="3">
+                  <tr><td>{{ row.label }}</td><td><code>{{ row.value }}</code></td></tr>
+                </sc-for>
+              </table>
+            </sc-if>
+            <sc-if value="{{ blk.list }}" hint-placeholder-val="{{ true }}">
+              <ol style="list-style:none;padding:0;margin:0 0 14px;">
+                <sc-for list="{{ blk.listItems }}" as="li" hint-placeholder-count="2">
+                  <li style="padding:6px 0 6px 28px;position:relative;font-size:14px;color:var(--ink-soft);line-height:1.55;"><span style="position:absolute;left:0;top:8px;width:18px;height:18px;background:#1477A3;color:#fff;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;">{{ li.n }}</span><span dangerouslySetInnerHTML="{{ li.html }}"></span></li>
+                </sc-for>
+              </ol>
+            </sc-if>
+            <sc-if value="{{ blk.chat }}" hint-placeholder-val="{{ true }}">
+              <div style="background:var(--panel-alt);border:1px solid var(--border);border-radius:10px;padding:18px;margin-bottom:6px;">
+                <div style="display:flex;gap:10px;margin-bottom:14px;">
+                  <span style="width:32px;height:32px;border-radius:50%;background:#EAF3F7;border:1px solid #B9D8E4;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">&#128100;</span>
+                  <div style="background:#EAF3F7;border:1px solid #D3E7EE;border-radius:8px;padding:10px 14px;font-size:14px;color:#212121;">{{ blk.chatQ }}</div>
+                </div>
+                <div style="display:flex;gap:10px;">
+                  <span style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#22c55e,#15803d);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">&#129302;</span>
+                  <div style="background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:14px;color:var(--ink-soft);line-height:1.6;">{{ blk.chatA }}</div>
+                </div>
+              </div>
+            </sc-if>
+          </sc-for>
+        </div>
+      </section>
+    </sc-for>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:40px 0;" />
+
+    <section style="margin-bottom:52px;">
+      <h3 style="font-size:15px;font-weight:700;color:var(--ink);margin:0 0 12px;">{{ t.h3Core }}</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:20px;">
+          <div style="display:inline-block;background:var(--panel-alt);border:1px solid var(--border);font-size:11px;padding:2px 7px;border-radius:4px;color:#1477A3;margin-bottom:8px;font-family:monospace;">vllm.service</div>
+          <div style="font-size:14.5px;font-weight:700;color:var(--ink);margin-bottom:6px;">{{ t.core1Title }}</div>
+          <div style="font-size:12.5px;color:var(--muted);line-height:1.55;">{{ t.core1Desc }}</div>
+        </div>
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:20px;">
+          <div style="display:inline-block;background:var(--panel-alt);border:1px solid var(--border);font-size:11px;padding:2px 7px;border-radius:4px;color:#1477A3;margin-bottom:8px;font-family:monospace;">clickhouse-server</div>
+          <div style="font-size:14.5px;font-weight:700;color:var(--ink);margin-bottom:6px;">{{ t.core2Title }}</div>
+          <div style="font-size:12.5px;color:var(--muted);line-height:1.55;">{{ t.core2Desc }}</div>
+        </div>
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:20px;">
+          <div style="display:inline-block;background:var(--panel-alt);border:1px solid var(--border);font-size:11px;padding:2px 7px;border-radius:4px;color:#1477A3;margin-bottom:8px;font-family:monospace;">mcp-clickhouse</div>
+          <div style="font-size:14.5px;font-weight:700;color:var(--ink);margin-bottom:6px;">{{ t.core3Title }}</div>
+          <div style="font-size:12.5px;color:var(--muted);line-height:1.55;">{{ t.core3Desc }}</div>
+        </div>
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:20px;">
+          <div style="display:inline-block;background:var(--panel-alt);border:1px solid var(--border);font-size:11px;padding:2px 7px;border-radius:4px;color:#1477A3;margin-bottom:8px;font-family:monospace;">skill.md</div>
+          <div style="font-size:14.5px;font-weight:700;color:var(--ink);margin-bottom:6px;">{{ t.core4Title }}</div>
+          <div style="font-size:12.5px;color:var(--muted);line-height:1.55;">{{ t.core4Desc }}</div>
+        </div>
+      </div>
+    </section>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:40px 0;" />
+
+    <section id="debug" style="margin-bottom:52px;">
+      <h2 style="font-size:21px;font-weight:800;color:var(--ink);margin:0 0 18px;">{{ t.h2Debug }}</h2>
+      <h3 style="font-size:15px;font-weight:700;color:var(--ink);margin:0 0 12px;">{{ t.h3Logs }}</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="background:#0d1117;border:1px solid #2e3350;border-radius:8px;overflow:hidden;"><div style="padding:8px 14px;background:#0f2744;border-bottom:1px solid #2e3350;font-size:11px;color:#7ea3c9;text-transform:uppercase;">vllm</div><pre style="padding:14px;overflow-x:auto;color:#e2e8f0;font-family:monospace;font-size:12.5px;margin:0;">journalctl -u vllm.service -f</pre></div>
+        <div style="background:#0d1117;border:1px solid #2e3350;border-radius:8px;overflow:hidden;"><div style="padding:8px 14px;background:#0f2744;border-bottom:1px solid #2e3350;font-size:11px;color:#7ea3c9;text-transform:uppercase;">opencowork</div><pre style="padding:14px;overflow-x:auto;color:#e2e8f0;font-family:monospace;font-size:12.5px;margin:0;">journalctl -u opencowork.service -f</pre></div>
+        <div style="background:#0d1117;border:1px solid #2e3350;border-radius:8px;overflow:hidden;"><div style="padding:8px 14px;background:#0f2744;border-bottom:1px solid #2e3350;font-size:11px;color:#7ea3c9;text-transform:uppercase;">clickhouse-server</div><pre style="padding:14px;overflow-x:auto;color:#e2e8f0;font-family:monospace;font-size:12.5px;margin:0;">journalctl -u clickhouse-server -f</pre></div>
+        <div style="background:#0d1117;border:1px solid #2e3350;border-radius:8px;overflow:hidden;"><div style="padding:8px 14px;background:#0f2744;border-bottom:1px solid #2e3350;font-size:11px;color:#7ea3c9;text-transform:uppercase;">{{ t.lblGpuCheck }}</div><pre style="padding:14px;overflow-x:auto;color:#e2e8f0;font-family:monospace;font-size:12.5px;margin:0;">nvidia-smi</pre></div>
+      </div>
+    </section>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:40px 0;" />
+
+    <section id="services" style="margin-bottom:20px;">
+      <h2 style="font-size:21px;font-weight:800;color:var(--ink);margin:0 0 18px;">{{ t.h2Services }}</h2>
+      <sc-for list="{{ services }}" as="sv" hint-placeholder-count="3">
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:20px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:var(--panel-alt);border-bottom:1px solid var(--border);">
+            <span style="font-size:15px;font-weight:700;color:var(--ink);">{{ sv.name }}</span>
+            <span style="font-size:12px;color:var(--muted);font-family:monospace;">{{ sv.model }}</span>
+          </div>
+          <div style="padding:16px 20px;">
+            <div style="background:#0d1117;border:1px solid #2e3350;border-radius:8px;overflow:hidden;">
+              <div style="padding:8px 14px;background:#0f2744;border-bottom:1px solid #2e3350;font-size:11px;color:#7ea3c9;text-transform:uppercase;">bash</div>
+              <pre style="padding:16px;overflow-x:auto;color:#e2e8f0;font-family:monospace;font-size:12.5px;line-height:1.6;margin:0;white-space:pre-wrap;">{{ sv.cmds }}</pre>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </section>
+
+  </main>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;sidebarFontSize&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:13,&quot;tsType&quot;:&quot;number&quot;,&quot;min&quot;:12,&quot;max&quot;:18,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;section&quot;:&quot;Sidebar&quot;}}">
+const DICT = {
+  en: {
+    sideSub: 'Setup Guide \u00b7 Pre-Installed', backLink: '\u2190 Back to BI Setup Guides',
+    navG1: 'Quick Start', navPrereq: 'Prerequisites', navG2: 'Ops Reference', navDebug: 'Debug Commands', navServices: 'Service Management',
+    hdrH1: 'Manual A \u2014 Pre-Installed Edition',
+    hdrP: 'ClickHouse, OpenCowork, and the model services are already installed and running. Create the database, import data, write the knowledge base, and wire the MCP server into OpenCowork.',
+    h2Prereq: 'Before You Start', prereqP: 'Confirm these are already running:',
+    prereqLi1: 'ClickHouse server \u2014 check with <code>sudo systemctl status clickhouse-server</code>',
+    prereqLi2: 'The local LLM service and the OpenCowork desktop app',
+    prereqLi3: 'Your CSV data files are on the machine (this guide uses the public Olist e-commerce dataset as the example)',
+    thField: 'Field', thValue: 'Value',
+    h3Core: 'The Four Core Components',
+    core1Title: '1. Local LLM', core1Desc: 'Qwen served via vLLM on an NVIDIA RTX PRO 6000 \u2014 all reasoning stays on-box, no third-party retention or API bills.',
+    core2Title: '2. ClickHouse', core2Desc: 'A single-node ClickHouse warehouse holding your tables \u2014 the same MergeTree engine whether pre-installed or bare-metal deployed.',
+    core3Title: '3. MCP Server', core3Desc: 'mcp-clickhouse bridges OpenCowork\u2019s tool calls to ClickHouse over a local stdio connection \u2014 live queries, not a guess.',
+    core4Title: '4. Knowledge Base', core4Desc: 'skill.md and the field-level KB CSV give the model your schema, joins, and column meanings before it ever writes SQL.',
+    h2Debug: 'Debug Commands', h3Logs: 'View Service Logs in Real Time', lblGpuCheck: 'GPU Check', h2Services: 'Service Management Reference'
+  },
+  zh: {
+    sideSub: '安装指南 · 已预装环境', backLink: '← 返回 BI 安装指南',
+    navG1: '快速启动', navPrereq: '准备工作', navG2: '运维参考', navDebug: '调试命令', navServices: '服务管理',
+    hdrH1: '方案 A — 已预装环境',
+    hdrP: 'ClickHouse、OpenCowork 与模型服务均已安装并运行。创建数据库、导入数据、编写知识库并把 MCP 服务器接入 OpenCowork。',
+    h2Prereq: '开始之前', prereqP: '请确认以下服务均已在运行：',
+    prereqLi1: 'ClickHouse 服务 — 使用 <code>sudo systemctl status clickhouse-server</code> 检查',
+    prereqLi2: '本地 LLM 服务与 OpenCowork 桌面应用',
+    prereqLi3: 'CSV 数据文件已在本机（本指南以公开的 Olist 电商数据集为例）',
+    thField: '字段', thValue: '值',
+    h3Core: '四个核心组件',
+    core1Title: '1. 本地 LLM', core1Desc: '通过 vLLM 运行的 Qwen 部署在 NVIDIA RTX PRO 6000 上 — 全部推理留在本机，无第三方留存，无 API 账单。',
+    core2Title: '2. ClickHouse', core2Desc: '承载你数据表的单节点 ClickHouse 数仓 — 无论预装还是裸机部署，都是同一套 MergeTree 引擎。',
+    core3Title: '3. MCP 服务器', core3Desc: 'mcp-clickhouse 通过本地 stdio 连接，把 OpenCowork 的工具调用桥接到 ClickHouse — 实时查询，而非猜测。',
+    core4Title: '4. 知识库', core4Desc: 'skill.md 与字段级知识库 CSV，让模型在编写 SQL 之前先掌握你的表结构、关联方式与字段含义。',
+    h2Debug: '调试命令', h3Logs: '实时查看服务日志', lblGpuCheck: 'GPU 检查', h2Services: '服务管理参考'
+  }
+};
+
+const RAW = {
+  en: [
+    { id: 'a1', navLabel: 'Step 1 \u00b7 Enter WSL', title: 'Enter WSL & Open the ClickHouse Client',
+      blocks: [
+        { code: true, codeLabel: 'Windows CMD', codeText: `# Open Command Prompt, then drop into WSL
+wsl
+
+# Confirm the server is up
+sudo systemctl status clickhouse-server
+
+# Open an interactive SQL session
+clickhouse-client` }
+      ]},
+    { id: 'a2', navLabel: 'Step 2 \u00b7 Create DB & Table', title: 'Create the Database and a Table',
+      blocks: [
+        { p: 'A database is just a container that holds all your related tables. First create it, then create one table per CSV file you plan to import.' },
+        { code: true, codeLabel: 'sql', codeText: 'CREATE DATABASE IF NOT EXISTS my_data;' },
+        { p: 'Each table\u2019s columns must match the columns in its source CSV. The example below shows the general shape of a CREATE TABLE statement \u2014 replace the table name, column names, and types with your own data\u2019s:' },
+        { code: true, codeLabel: 'sql', codeText: `CREATE TABLE my_data.my_table
+(
+    id_column            String,                    -- unique identifiers, codes, text keys
+    category_column      LowCardinality(String),    -- text with few repeated values (status, type, region)
+    created_at           DateTime,                  -- a timestamp that is always present
+    completed_at         Nullable(DateTime),         -- a value that may be missing/blank
+    amount               Float64,                   -- decimal numbers (prices, measurements)
+    quantity             UInt32                     -- whole non-negative numbers
+)
+ENGINE = MergeTree
+ORDER BY (created_at, id_column);` },
+        { list: true, listItems: [
+          'Column names \u2014 open your CSV and look at the header row; each header becomes a column. A quick way to preview it: <code>head -5 yourfile.csv</code>.',
+          '<strong>Column types</strong> \u2014 pick based on what the column actually contains:<ul style="margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:13px;line-height:1.75;"><li><code>String</code> \u2014 any text, IDs, or codes</li><li><code>LowCardinality(String)</code> \u2014 text with only a handful of distinct repeated values (e.g. a status or category); a storage/speed optimization, not required</li><li><code>DateTime</code> \u2014 timestamps that are always filled in</li><li><code>Nullable(...)</code> \u2014 wrap any type when the column can be empty/blank in some rows, or the import will fail on those rows</li><li><code>Float64</code> \u2014 decimal numbers; <code>UInt32</code>/<code>UInt16</code>/<code>UInt8</code> \u2014 whole non-negative numbers; <code>Int32</code> etc. if negatives are possible</li></ul>',
+          '<code>ENGINE = MergeTree</code> \u2014 the standard engine for analytical tables; use this as the default.',
+          '<code>ORDER BY (...)</code> \u2014 the sort key, which also acts as the table\u2019s index. Choose the column(s) you\u2019ll most often filter or group by (a timestamp and/or an ID is a common choice). This isn\u2019t a uniqueness constraint \u2014 it\u2019s about query performance.'
+        ]},
+        { p: 'Repeat this once per CSV file, giving each its own table inside the same database.' },
+        { note: '<strong>Key idea:</strong> use Nullable for any column that might be blank in some rows, and plain types for columns guaranteed to always have a value. When unsure whether a column can be empty, Nullable is the safe choice.' }
+      ]},
+    { id: 'a3', navLabel: 'Step 3 \u00b7 Import CSVs', title: 'Import the CSV Data',
+      blocks: [
+        { p: 'With the table created, load the rows from your CSV into it. This command reads a file from disk and inserts every row in one shot:' },
+        { code: true, codeLabel: 'bash', codeText: `clickhouse-client \\
+  --query="INSERT INTO my_data.my_table FORMAT CSVWithNames" \\
+  < /path/to/yourfile.csv` },
+        { p: 'Run this once per file, pointing each at its matching table.' },
+        { list: true, listItems: [
+          '<code>INSERT INTO my_data.my_table</code> \u2014 the destination: replace with your database and table name.',
+          '<code>FORMAT CSVWithNames</code> \u2014 tells ClickHouse the incoming file is CSV with a header row. It uses that header to match columns by name and skips the first line rather than trying to insert it as data. If your file has no header row, use <code>FORMAT CSV</code> instead (ClickHouse then maps columns strictly by position, so the CSV\u2019s column order must match your CREATE TABLE order).',
+          '<code>&lt; /path/to/yourfile.csv</code> \u2014 feeds the file\u2019s contents into the command. Replace with the actual path to your file. If your data is on the Windows side, WSL can reach it under <code>/mnt/c/...</code> (e.g. <code>/mnt/c/Users/&lt;you&gt;/Downloads/yourfile.csv</code>).'
+        ]},
+        { p: 'Verify the import worked:' },
+        { code: true, codeLabel: 'sql', codeText: `-- row count should be close to the number of lines in your CSV
+SELECT count() FROM my_data.my_table;
+
+-- eyeball a few rows to confirm columns lined up and dates parsed correctly
+SELECT * FROM my_data.my_table LIMIT 5;` },
+        { note: 'If a row count looks off or values landed in the wrong columns, the usual causes are a header/FORMAT mismatch (using CSVWithNames on a file with no header, or vice versa) or a column-order mismatch on a headerless file.' },
+        { note: '<strong>Common gotcha \u2014 blank values:</strong> if the import errors on a column, it\u2019s often because that column is blank in some rows but the table defines it as a non-nullable type. Fix it by making that column Nullable(...) in your CREATE TABLE (see Step 2) and re-importing.' }
+      ]},
+    { id: 'a4', navLabel: 'Step 4 \u00b7 Write KB Files', title: 'Write the Two Knowledge-Base Files and Add Them as a Skill',
+      blocks: [
+        { p: 'These give the LLM the context it needs to write correct SQL against your tables.' },
+        { list: true, listItems: [
+          '<strong>skill.md</strong> (the query rulebook) \u2014 describes the dataset, each table\u2019s grain, how tables join, SQL conventions, and a handful of sample queries.',
+          '<strong>Field KB</strong> (per-field definitions) \u2014 a CSV listing every field as table_name, field_name, synonyms, type, description, example_values.'
+        ]},
+        { note: 'With a single dataset you don\u2019t need a "routing" index (a cube-overview file) \u2014 that\u2019s only useful when several distinct datasets compete for the same question.' },
+        { p: 'Package them as a skill folder. Each skill lives in its own folder named after the skill, with both files inside it:' },
+        { code: true, codeLabel: 'folder structure', codeText: `my-dataset-skill/
+\u251c\u2500\u2500 skill.md
+\u2514\u2500\u2500 field_kb.csv` },
+        { p: 'Install the skill into OpenCowork. Skills are stored in OpenCowork\u2019s skills folder \u2014 on Windows this is:' },
+        { code: true, codeLabel: 'Windows Path', codeText: 'C:\\\\Users\\\\<your-username>\\\\AppData\\\\Roaming\\\\open-cowork\\\\claude\\\\skills' },
+        { list: true, listItems: [
+          '<strong>Through the UI:</strong> in OpenCowork, go to Settings \u2192 Skills, scroll to the bottom, click Install skill from folder, and choose your skill folder.',
+          '<strong>Manually:</strong> copy your skill folder directly into the skills path above (e.g. via File Explorer or a move/copy command in Command Prompt).'
+        ]},
+        { verify: 'After installing, confirm the skill appears in OpenCowork\u2019s skills list so the model can load it.' }
+      ]},
+    { id: 'a5', navLabel: 'Step 5 \u00b7 Connect in OpenCowork', title: 'Connect the MCP Server in OpenCowork',
+      sub: 'Add a new MCP connection of type stdio (local) \u2014 OpenCowork launches the server as a local process talking to ClickHouse over localhost.',
+      blocks: [
+        { table: true, tRows: [
+          { label: 'Type', value: 'stdio (local)' },
+          { label: 'Command', value: 'wsl.exe' },
+          { label: 'Arguments', value: '-- uvx mcp-clickhouse' }
+        ]},
+        { code: true, codeLabel: 'Environment Variables', codeText: `CLICKHOUSE_HOST=localhost
+CLICKHOUSE_PORT=8123
+CLICKHOUSE_USER=default
+CLICKHOUSE_PASSWORD=<your password>
+CLICKHOUSE_DATABASE=<your database name>
+CLICKHOUSE_SECURE=false
+WSLENV=CLICKHOUSE_HOST:CLICKHOUSE_PORT:CLICKHOUSE_USER:CLICKHOUSE_PASSWORD:CLICKHOUSE_DATABASE:CLICKHOUSE_SECURE` },
+        { note: 'Set <code>CLICKHOUSE_DATABASE</code> to the database name you created in Step 2. The WSLENV line is what carries these variables across the Windows\u2192WSL boundary \u2014 without it, the server launched via wsl.exe won\u2019t see them. Port 8123 is ClickHouse\u2019s HTTP port, which mcp-clickhouse uses.' }
+      ]},
+    { id: 'a6', navLabel: 'Step 6 \u00b7 Smoke Test', title: 'Smoke-Test',
+      blocks: [
+        { p: 'Ask a simple question in OpenCowork to confirm the full chain works. Word it to match your own data \u2014 a basic count is a good first check:' },
+        { chat: true, chatQ: 'How many rows are in the <your table> table?', chatA: 'Ran a SELECT count() through the MCP connector against your table and returned the total \u2014 confirming Question \u2192 OpenCowork \u2192 MCP \u2192 ClickHouse \u2192 Answer is fully wired.' },
+        { verify: 'A correct numeric answer means Question \u2192 OpenCowork \u2192 MCP \u2192 ClickHouse \u2192 Answer is fully wired.' }
+      ]}
+  ],
+  zh: [
+    { id: 'a1', navLabel: '第一步 \u00b7 进入 WSL', title: '进入 WSL 并打开 ClickHouse 客户端',
+      blocks: [
+        { code: true, codeLabel: 'Windows CMD', codeText: `# Open Command Prompt, then drop into WSL
+wsl
+
+# Confirm the server is up
+sudo systemctl status clickhouse-server
+
+# Open an interactive SQL session
+clickhouse-client` }
+      ]},
+    { id: 'a2', navLabel: '第二步 \u00b7 创建数据库和表', title: '创建数据库和表',
+      blocks: [
+        { p: '数据库只是一个容纳所有相关表的容器。先创建数据库，再为每个要导入的 CSV 文件创建一张表。' },
+        { code: true, codeLabel: 'sql', codeText: 'CREATE DATABASE IF NOT EXISTS my_data;' },
+        { p: '每张表的列必须与其源 CSV 的列一致。下面展示了 CREATE TABLE 语句的通用结构 — 请将表名、列名和类型替换为你自己数据的对应内容：' },
+        { code: true, codeLabel: 'sql', codeText: `CREATE TABLE my_data.my_table
+(
+    id_column            String,                    -- 唯一标识符、编码、文本键
+    category_column      LowCardinality(String),    -- 取值较少的文本（状态、类型、地区）
+    created_at           DateTime,                  -- 始终存在的时间戳
+    completed_at         Nullable(DateTime),         -- 可能缺失/为空的值
+    amount               Float64,                   -- 小数（价格、度量值）
+    quantity             UInt32                     -- 非负整数
+)
+ENGINE = MergeTree
+ORDER BY (created_at, id_column);` },
+        { list: true, listItems: [
+          '列名 — 打开 CSV 查看表头行，每个表头对应一列。快速预览方法：<code>head -5 yourfile.csv</code>。',
+          '<strong>列类型</strong> — 根据列的实际内容选择：<ul style="margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:13px;line-height:1.75;"><li><code>String</code> — 任意文本、ID 或编码</li><li><code>LowCardinality(String)</code> — 取值较少且重复的文本（如状态、类别）；属于存储/速度优化，非必需</li><li><code>DateTime</code> — 始终有值的时间戳</li><li><code>Nullable(...)</code> — 当某列在部分行中可能为空时使用，否则导入会在这些行上失败</li><li><code>Float64</code> — 小数；<code>UInt32</code>/<code>UInt16</code>/<code>UInt8</code> — 非负整数；如可能为负数则用 <code>Int32</code> 等</li></ul>',
+          '<code>ENGINE = MergeTree</code> — 分析型表的标准引擎，默认使用它即可。',
+          '<code>ORDER BY (...)</code> — 排序键，同时也是表的索引。选择你最常筛选或分组的列（时间戳和/或 ID 是常见选择）。这不是唯一性约束，而是关乎查询性能。'
+        ]},
+        { p: '每个 CSV 文件重复此步骤，在同一数据库中为其建立各自的表。' },
+        { note: '<strong>关键点：</strong>对可能在部分行中为空的列使用 Nullable，对始终有值的列使用普通类型。如果不确定某列是否可能为空，选择 Nullable 更安全。' }
+      ]},
+    { id: 'a3', navLabel: '第三步 \u00b7 导入 CSV', title: '导入 CSV 数据',
+      blocks: [
+        { p: '表创建好后，将 CSV 中的数据行导入其中。以下命令会读取磁盘上的文件并一次性插入所有行：' },
+        { code: true, codeLabel: 'bash', codeText: `clickhouse-client \\
+  --query="INSERT INTO my_data.my_table FORMAT CSVWithNames" \\
+  < /path/to/yourfile.csv` },
+        { p: '每个文件执行一次，分别指向其对应的表。' },
+        { list: true, listItems: [
+          '<code>INSERT INTO my_data.my_table</code> — 目标位置：替换为你的数据库和表名。',
+          '<code>FORMAT CSVWithNames</code> — 告诉 ClickHouse 该文件带有表头行的 CSV：它会用表头按列名匹配，并跳过第一行而不是把它当作数据插入。如果文件没有表头行，改用 <code>FORMAT CSV</code>（此时 ClickHouse 严格按位置映射列，因此 CSV 的列顺序必须与 CREATE TABLE 中的顺序一致）。',
+          '<code>&lt; /path/to/yourfile.csv</code> — 将文件内容输入命令，替换为你文件的实际路径。如果数据在 Windows 一侧，WSL 可通过 <code>/mnt/c/...</code> 访问（例如 <code>/mnt/c/Users/&lt;you&gt;/Downloads/yourfile.csv</code>）。'
+        ]},
+        { p: '核对导入结果：' },
+        { code: true, codeLabel: 'sql', codeText: `-- 行数应接近 CSV 的行数
+SELECT count() FROM my_data.my_table;
+
+-- 抽查几行，确认列对齐、日期解析正确
+SELECT * FROM my_data.my_table LIMIT 5;` },
+        { note: '如果行数不对或数值列错位，通常是表头/FORMAT 不匹配（对无表头文件用了 CSVWithNames，或反之），或无表头文件的列顺序不一致。' },
+        { note: '<strong>常见坑 — 空值：</strong>如果导入时某列报错，通常是因为该列在部分行中为空，但表中把它定义为非空类型。解决方法：在 CREATE TABLE 中把该列改为 Nullable(...)（见第二步），然后重新导入。' }
+      ]},
+    { id: 'a4', navLabel: '第四步 \u00b7 编写知识库文件', title: '编写两个知识库文件并添加为 Skill',
+      blocks: [
+        { p: '这两个文件让 LLM 具备对你的表编写正确 SQL 所需的上下文。' },
+        { list: true, listItems: [
+          '<strong>skill.md</strong>（查询规则手册）— 描述数据集、各表粒度、表间关联方式、SQL 约定，以及若干示例查询。',
+          '<strong>字段知识库</strong>（逐字段定义）— 一份 CSV，列出每个字段的 table_name、field_name、同义词、类型、描述、示例值。'
+        ]},
+        { note: '单一数据集不需要"路由"索引（cube 总览文件）— 这仅在多个数据集争夺同一问题时才有用。' },
+        { p: '将它们打包成一个 skill 文件夹。每个 skill 都放在以其自身命名的文件夹中，两个文件都在里面：' },
+        { code: true, codeLabel: '文件夹结构', codeText: `my-dataset-skill/
+\u251c\u2500\u2500 skill.md
+\u2514\u2500\u2500 field_kb.csv` },
+        { p: '将 skill 安装到 OpenCowork 中。Skill 存放在 OpenCowork 的 skills 文件夹里 — 在 Windows 上是：' },
+        { code: true, codeLabel: 'Windows 路径', codeText: 'C:\\\\Users\\\\<your-username>\\\\AppData\\\\Roaming\\\\open-cowork\\\\claude\\\\skills' },
+        { list: true, listItems: [
+          '<strong>通过界面：</strong>在 OpenCowork 中进入 Settings → Skills，滚动到底部，点击 Install skill from folder，选择你的 skill 文件夹。',
+          '<strong>手动安装：</strong>直接把 skill 文件夹复制到上方的 skills 路径中（例如通过文件资源管理器，或在命令提示符中用移动/复制命令）。'
+        ]},
+        { verify: '安装后，确认该 skill 出现在 OpenCowork 的 skills 列表中，以便模型能够加载它。' }
+      ]},
+    { id: 'a5', navLabel: '第五步 \u00b7 在 OpenCowork 中连接', title: '在 OpenCowork 中连接 MCP 服务器',
+      sub: '添加一个 stdio（本地）类型的 MCP 连接 — OpenCowork 会把它作为本地进程启动，通过 localhost 与 ClickHouse 通信。',
+      blocks: [
+        { table: true, tRows: [
+          { label: '类型', value: 'stdio (local)' },
+          { label: '命令', value: 'wsl.exe' },
+          { label: '参数', value: '-- uvx mcp-clickhouse' }
+        ]},
+        { code: true, codeLabel: '环境变量', codeText: `CLICKHOUSE_HOST=localhost
+CLICKHOUSE_PORT=8123
+CLICKHOUSE_USER=default
+CLICKHOUSE_PASSWORD=<your password>
+CLICKHOUSE_DATABASE=<你的数据库名>
+CLICKHOUSE_SECURE=false
+WSLENV=CLICKHOUSE_HOST:CLICKHOUSE_PORT:CLICKHOUSE_USER:CLICKHOUSE_PASSWORD:CLICKHOUSE_DATABASE:CLICKHOUSE_SECURE` },
+        { note: '将 <code>CLICKHOUSE_DATABASE</code> 设置为你在第二步中创建的数据库名。WSLENV 负责把这些变量带过 Windows→WSL 边界 — 缺少它，通过 wsl.exe 启动的服务将看不到这些变量。8123 是 ClickHouse 的 HTTP 端口，mcp-clickhouse 使用的正是这个端口。' }
+      ]},
+    { id: 'a6', navLabel: '第六步 \u00b7 冒烟测试', title: '冒烟测试',
+      blocks: [
+        { p: '在 OpenCowork 中提出一个简单问题，验证整条链路是否正常工作。请按你自己的数据来提问 — 一个简单的行数统计是不错的第一步：' },
+        { chat: true, chatQ: '<你的表> 表里一共有多少行数据？', chatA: '通过 MCP 连接器对你的表执行了 SELECT count()，并返回了总数 — 确认 提问 → OpenCowork → MCP → ClickHouse → 回答 全链路已打通。' },
+        { verify: '返回正确的数字，即确认全链路：提问 → OpenCowork → MCP → ClickHouse → 回答。' }
+      ]}
+  ]
+};
+
+function mapBlocks(blocks) {
+  return blocks.map(b => {
+    if (b.p !== undefined) return { p: { __html: b.p } };
+    if (b.note !== undefined) return { note: { __html: b.note } };
+    if (b.verify !== undefined) return { verify: { __html: b.verify } };
+    if (b.code) return { code: true, codeLabel: b.codeLabel, codeText: b.codeText };
+    if (b.table) return { table: true, tRows: b.tRows };
+    if (b.list) return { list: true, listItems: b.listItems.map((li, i) => ({ n: i + 1, html: { __html: li } })) };
+    if (b.chat) return { chat: true, chatQ: b.chatQ, chatA: b.chatA };
+    return b;
+  });
+}
+
+class Component extends DCLogic {
+  state = { dark: false, lang: 'en' };
+  toggleTheme = () => this.setState(s => ({ dark: !s.dark }));
+  setLang = (l) => this.setState({ lang: l });
+
+  renderVals() {
+    const dark = this.state.dark;
+    const vars = dark ? {
+      '--bg': '#0B1220', '--panel': '#101a2c', '--panel-alt': '#0d1626',
+      '--ink': '#E7ECF3', '--ink-soft': '#C7CEDC', '--muted': '#93A0B8', '--border': '#213047'
+    } : {
+      '--bg': '#ffffff', '--panel': '#ffffff', '--panel-alt': '#F7F9FC',
+      '--ink': '#212121', '--ink-soft': '#505050', '--muted': '#6E6E6E', '--border': '#E8E8E8'
+    };
+    const pageVars = { ...vars, color: 'var(--ink)', background: 'var(--bg)', display: 'flex', minHeight: '100vh' };
+    const lang = this.state.lang;
+    const t = DICT[lang];
+    const h = {};
+    Object.keys(t).forEach(k => { h[k] = { __html: t[k] }; });
+    const activeBtn = { padding: '5px 10px', fontSize: '11px', fontWeight: 700, background: '#FA9D28', color: '#00283A' };
+    const inactiveBtn = { padding: '5px 10px', fontSize: '11px', fontWeight: 700, background: 'transparent', color: '#fff' };
+
+    const steps = RAW[lang].map((s, i) => ({
+      id: s.id, href: '#' + s.id, navLabel: s.navLabel, title: s.title, sub: s.sub,
+      n: String(i + 1).padStart(2, '0'),
+      blocks: mapBlocks(s.blocks)
+    }));
+
+    const services = [
+      { name: 'vllm.service', model: 'Qwen3.6-35b-a3b', cmds: 'sudo vim /etc/systemd/system/vllm.service\n\nsudo systemctl daemon-reload\nsystemctl status vllm.service\nsystemctl start vllm.service\nsystemctl stop vllm.service\nsystemctl enable vllm.service\nsystemctl disable vllm.service' },
+      { name: 'opencowork.service', model: 'OpenCowork', cmds: 'sudo vim /etc/systemd/system/opencowork.service\n\nsudo systemctl daemon-reload\nsystemctl status opencowork.service\nsystemctl start opencowork.service\nsystemctl stop opencowork.service\nsystemctl enable opencowork.service\nsystemctl disable opencowork.service' },
+      { name: 'clickhouse-server', model: 'ClickHouse', cmds: 'sudo systemctl daemon-reload\nsystemctl status clickhouse-server\nsystemctl start clickhouse-server\nsystemctl stop clickhouse-server\nsystemctl enable clickhouse-server\nsystemctl disable clickhouse-server\n\n# pin version\nsudo apt-mark hold clickhouse-server clickhouse-client' }
+    ];
+
+    return {
+      pageVars, toggleTheme: this.toggleTheme,
+      themeIcon: dark ? '\u2600' : '\u263D',
+      themeBtnStyle: { display: 'flex', alignItems: 'center', gap: '6px', height: '30px', minWidth: '30px', padding: '0 7px', justifyContent: 'center', fontSize: '13px', color: '#fff', background: 'rgba(255,255,255,.08)', border: '1px solid rgba(255,255,255,.2)', borderRadius: '6px', cursor: 'pointer', flexShrink: 0 },
+      setLangEn: () => this.setLang('en'), setLangZh: () => this.setLang('zh'),
+      langBtnStyleEn: lang === 'en' ? activeBtn : inactiveBtn, langBtnStyleZh: lang === 'zh' ? activeBtn : inactiveBtn,
+      navFontSize: (this.props.sidebarFontSize ?? 13) + 'px',
+      t, h, steps, services
+    };
+  }
+}
+
+</script>
+</body>
+</html>
